@@ -7,3 +7,5 @@ dist
 *.whl
 *.tar.gz
 
+# nix build dist
+result
