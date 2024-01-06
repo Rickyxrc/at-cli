@@ -22,8 +22,17 @@
                 poetry shell
             '';
         };
-        packages."${system}".default = pkgs.poetry2nix.mkPoetryApplication {
-            projectDir = ./.;
+        packages."${system}".default = pkgs.writeShellApplication {
+            name = "atcli";
+            runtimeInputs =
+                let
+                    app = pkgs.poetry2nix.mkPoetryApplication {
+                        projectDir = ./.;
+                    };
+                in [ app.dependencyEnv ];
+            text = ''
+                python -m atcodercli
+            '';
         };
     };
 }
