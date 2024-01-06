@@ -1,7 +1,8 @@
 """
-This module is used to login user and save session at ~/.config/at-cli/session.yaml
+This module is used to login user and save session at ~/.config/atcli/session.yaml
 TODO: Add override confirm;
 """
+
 import requests, re
 import os
 from rich.console import Console
@@ -47,10 +48,10 @@ def handle(console: Console):
         if not os.path.exists(os.path.join(home, ".config")):
             console.log(f'creating dir \"{os.path.join(home, ".config")}\"')
             os.mkdir(os.path.join(home, ".config"))
-        if not os.path.exists(os.path.join(home, ".config", "at-cli")):
-            console.log(f'creating dir \"{os.path.join(home, ".config", "at-cli")}\"')
-            os.mkdir(os.path.join(home, ".config", "at-cli"))
-        with open(os.path.join(home, ".config", "at-cli", "session.yaml"), "w", encoding = "utf-8") as write_stream:
+        if not os.path.exists(os.path.join(home, ".config", "atcli")):
+            console.log(f'creating dir \"{os.path.join(home, ".config", "atcli")}\"')
+            os.mkdir(os.path.join(home, ".config", "atcli"))
+        with open(os.path.join(home, ".config", "atcli", "session.yaml"), "w", encoding = "utf-8") as write_stream:
             write_stream.write(conf)
     else:
         console.log(doc)

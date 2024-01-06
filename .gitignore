@@ -1,3 +1,9 @@
+# python cache file
+__pycache
 *.pyc
 
+# python build dist
+dist
+*.whl
+*.tar.gz
 

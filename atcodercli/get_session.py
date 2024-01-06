@@ -4,14 +4,14 @@ from requests.utils import cookiejar_from_dict
 
 def get_session(console:Console) -> requests.Session:
     """
-        read the file ~/.config/at-cli/session.yaml and return a requests.session object
+        read the file ~/.config/atcli/session.yaml and return a requests.session object
     """
     try:
-        with open(os.path.join(os.path.expanduser('~'), ".config", "at-cli", "session.yaml")) as read_stream:
+        with open(os.path.join(os.path.expanduser('~'), ".config", "atcli", "session.yaml")) as read_stream:
             dat = yaml.safe_load(read_stream)
     except FileNotFoundError:
-        console.log(f'[red]ERROR:no session file found at {os.path.join(os.path.expanduser("~"), ".config", "at-cli", "config.yaml")}[/red]')
-        console.log(r'try run "at login" first.')
+        console.log(f'[red]ERROR:no session file found at {os.path.join(os.path.expanduser("~"), ".config", "atcli", "config.yaml")}[/red]')
+        console.log(r'try run "atcli login" first.')
         raise SystemExit(1)
     session = requests.session()
     session.cookies.update(cookiejar_from_dict(dat['cookies']))
