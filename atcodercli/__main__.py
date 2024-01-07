@@ -1,6 +1,8 @@
 import rich, argparse
 from .login import handle as handleLogin
 from .loginstat import handle as handleLoginStat
+from .fetchresult import handle as handleFetchResult
+from .fetchpage import handle as handleFetchPage
 
 def dispatch_args():
     parser = argparse.ArgumentParser(
@@ -15,7 +17,9 @@ def dispatch_args():
 
     OPERATIONS = {
         "login" : handleLogin,
-        "loginstat" : handleLoginStat
+        "loginstat" : handleLoginStat,
+        "fetchresult" : handleFetchResult,
+        "fetchpage" : handleFetchPage
     }
     parser.add_argument(
         "operation",
