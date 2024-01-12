@@ -1,10 +1,18 @@
-import rich, argparse
-from commands.login import handle as handleLogin
-from commands.me import handle as handleMe
-from commands.watchpage import handle as handleWatchPage
-from commands.watchresult import handle as handleWatchResult
+"""
+Main Module of atcli
+"""
+import argparse
+import rich
+from .commands.login import handle as handleLogin
+from .commands.me import handle as handleMe
+from .commands.watchpage import handle as handleWatchPage
+from .commands.watchresult import handle as handleWatchResult
 
 def dispatch_args():
+    """
+    dispatch argument(from command line)
+    the main entry of cli
+    """
     console = rich.console.Console()
     try:
         parser = argparse.ArgumentParser(
@@ -18,16 +26,46 @@ def dispatch_args():
         )
 
         subparsers = parser.add_subparsers(dest="command", help="sub command", required=True)
-        login_parser = subparsers.add_parser("login", help = "login with your username and password, the session will stored in ~/.config/atcli/session.yaml")
-        me_parser = subparsers.add_parser("me", help="check if your session file is valid")
+        login_parser = subparsers.add_parser(
+            "login",
+            help = "login with your username and password,"
+                " the session will stored in ~/.config/atcli/session.yaml"
+        )
+        me_parser = subparsers.add_parser(
+            "me",
+            help="check if your session file is valid"
+        )
 
-        result_parser = subparsers.add_parser("result", help="watch submission's results")
-        result_subparsers = result_parser.add_subparsers(dest="result_subcommand", help = "result's subcommand", required=True)
-        result_watch_parser = result_subparsers.add_parser("watch", help="watch a specific submission id's result")
-        result_watch_parser.add_argument("contest_id", help="The id of the contest, like 'abc123'")
-        result_watch_parser.add_argument("submissions", help="The submission id of the contest", nargs='+')
-        result_page_parser = result_subparsers.add_parser("page", help="watch a contest's latest submissions")
-        result_page_parser.add_argument("contest_id", help="The id of the contest, like 'abc123'")
+        result_parser = subparsers.add_parser(
+            "result",
+            help="watch submission's results"
+        )
+        result_subparsers = result_parser.add_subparsers(
+            dest="result_subcommand",
+            help = "result's subcommand",
+            required=True
+        )
+        result_watch_parser = result_subparsers.add_parser(
+            "watch",
+            help="watch a specific submission id's result"
+        )
+        result_watch_parser.add_argument(
+            "contest_id",
+            help="The id of the contest, like 'abc123'"
+        )
+        result_watch_parser.add_argument(
+            "submissions",
+            help="The submission id of the contest",
+            nargs='+'
+        )
+        result_page_parser = result_subparsers.add_parser(
+            "page",
+            help="watch a contest's latest submissions"
+        )
+        result_page_parser.add_argument(
+            "contest_id",
+            help="The id of the contest, like 'abc123'"
+        )
 
         arg = parser.parse_args()
         if arg.command == 'login':
@@ -45,4 +83,3 @@ def dispatch_args():
 
 if __name__ == '__main__':
     dispatch_args()
-

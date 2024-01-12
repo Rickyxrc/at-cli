@@ -31,7 +31,7 @@
                     };
                 in [ app.dependencyEnv ];
             text = ''
-                python -m atcodercli
+                python -m atcodercli "$@"
             '';
         };
     };

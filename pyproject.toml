@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atcodercli"
-version = "0.1.0"
+version = "0.1.1"
 description = "A lightweight, fast and beautiful command line interface for Atcoder.jp"
 authors = ["Rickyxrc <rickyxrc@outlook.com>"]
 license = "MIT"
@@ -13,6 +13,9 @@ requests = "^2.31.0"
 beautifulsoup4 = "^4.12.2"
 pyyaml = "^6.0.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.0.3"
 
 [build-system]
 requires = ["poetry-core"]
