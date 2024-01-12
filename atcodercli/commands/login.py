@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 import yaml
 from requests.utils import dict_from_cookiejar
 
-def handle(console: Console):
+def handle(console: Console, arg):
     console.log("logging in...")
 
     username = console.input("username:")

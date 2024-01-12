@@ -2,11 +2,11 @@
 This module is used to get your current login status
 """
 
-from .get_session import get_session
+from utils.get_session import get_session
 from rich.console import Console
 import re
 
-def handle(console: Console):
+def handle(console: Console, arg):
     console.log("getting login status...")
     session = get_session(console)
     res = session.get("https://atcoder.jp")
