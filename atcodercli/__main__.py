@@ -9,6 +9,7 @@ from .commands.watchpage import handle as handleWatchPage
 from .commands.watchresult import handle as handleWatchResult
 from .commands.addproblem import handle as handleAddProblem
 from .commands.initproblem import handle as handleInitProblem
+from .commands.initcontest import handle as handleInitContest
 
 def dispatch_args():
     """
@@ -96,6 +97,26 @@ def dispatch_args():
             "--force",
             action = "store_true"
         )
+        contest_parser = subparsers.add_parser(
+            "contest",
+            help = "operate with contests(pull all problem samples)"
+        )
+        contest_subparsers = contest_parser.add_subparsers(
+            dest = "contest_subcommand",
+            required = True
+        )
+        contest_race_parser = contest_subparsers.add_parser(
+            "race",
+            help = "init a problem.yaml locally and pull all problem samples"
+        )
+        contest_race_parser.add_argument(
+            "contest_id",
+            help = "The id of the contest, like 'abc123'"
+        )
+        contest_race_parser.add_argument(
+            "--force",
+            action = "store_true"
+        )
 
         arg = parser.parse_args()
         if arg.command == 'login':
@@ -112,6 +133,10 @@ def dispatch_args():
                 handleAddProblem(console, arg)
             if arg.problem_subcommand == 'init':
                 handleInitProblem(console, arg)
+        if arg.command == 'contest':
+            if arg.contest_subcommand == 'race':
+                handleInitContest(console, arg)
+
 
     except KeyboardInterrupt:
         console.log("[red]FATAL:Interrupted.[/red]")
