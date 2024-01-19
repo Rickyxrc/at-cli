@@ -7,6 +7,7 @@ from .commands.login import handle as handleLogin
 from .commands.me import handle as handleMe
 from .commands.watchpage import handle as handleWatchPage
 from .commands.watchresult import handle as handleWatchResult
+from .commands.addproblem import handle as handleAddProblem
 
 def dispatch_args():
     """
@@ -67,6 +68,28 @@ def dispatch_args():
             help="The id of the contest, like 'abc123'"
         )
 
+        problem_parser = subparsers.add_parser(
+            "problem",
+            help="operate with problems(like submit, add)"
+        )
+        problem_subparsers = problem_parser.add_subparsers(
+            dest = "problem_subcommand",
+            help = "problem's subcommand",
+            required = True
+        )
+        problem_add_parser = problem_subparsers.add_parser(
+            "add",
+            help = "add a problem to solve"
+        )
+        problem_add_parser.add_argument(
+            "contest_id",
+            help = "The id of the contest, like 'abc123'"
+        )
+        problem_add_parser.add_argument(
+            "problem_id",
+            help = "The id of the problem, like 'a' or 'g'"
+        )
+
         arg = parser.parse_args()
         if arg.command == 'login':
             handleLogin(console, arg)
@@ -77,6 +100,9 @@ def dispatch_args():
                 handleWatchResult(console, arg)
             if arg.result_subcommand == 'page':
                 handleWatchPage(console, arg)
+        if arg.command == 'problem':
+            if arg.problem_subcommand == 'add':
+                handleAddProblem(console, arg)
 
     except KeyboardInterrupt:
         console.log("[red]FATAL:Interrupted.[/red]")

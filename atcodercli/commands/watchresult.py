@@ -42,7 +42,7 @@ def watch_result(console:Console, contest_id:str, sids:list):
             for sid in sids:
                 status_string = res.json()['Result']\
                     .get(str(sid), {"Html":r'title="Not Found">.</span'})['Html']
-                console.log(sids, res.json())
+                # console.log(sids, res.json())
                 if "WJ" in status_string:
                     pass
                 elif "waiting-judge" in status_string:

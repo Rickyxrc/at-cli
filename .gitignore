@@ -9,3 +9,6 @@ dist
 
 # nix build dist
 result
+
+# temp dir to test program
+playground
