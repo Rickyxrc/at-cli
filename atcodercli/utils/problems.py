@@ -1,5 +1,5 @@
 """
-This module is used to load problems.yaml
+This module is used to load problem.yaml
 """
 
 from bs4.element import whitespace_re

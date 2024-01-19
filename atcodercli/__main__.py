@@ -8,6 +8,7 @@ from .commands.me import handle as handleMe
 from .commands.watchpage import handle as handleWatchPage
 from .commands.watchresult import handle as handleWatchResult
 from .commands.addproblem import handle as handleAddProblem
+from .commands.initproblem import handle as handleInitProblem
 
 def dispatch_args():
     """
@@ -26,7 +27,7 @@ def dispatch_args():
             ''',
         )
 
-        subparsers = parser.add_subparsers(dest="command", help="sub command", required=True)
+        subparsers = parser.add_subparsers(dest="command", required=True)
         login_parser = subparsers.add_parser(
             "login",
             help = "login with your username and password,"
@@ -43,7 +44,6 @@ def dispatch_args():
         )
         result_subparsers = result_parser.add_subparsers(
             dest="result_subcommand",
-            help = "result's subcommand",
             required=True
         )
         result_watch_parser = result_subparsers.add_parser(
@@ -74,7 +74,6 @@ def dispatch_args():
         )
         problem_subparsers = problem_parser.add_subparsers(
             dest = "problem_subcommand",
-            help = "problem's subcommand",
             required = True
         )
         problem_add_parser = problem_subparsers.add_parser(
@@ -88,6 +87,14 @@ def dispatch_args():
         problem_add_parser.add_argument(
             "problem_id",
             help = "The id of the problem, like 'a' or 'g'"
+        )
+        problem_init_parser = problem_subparsers.add_parser(
+            "init",
+            help = "init problem.yaml in current dir"
+        )
+        problem_init_parser.add_argument(
+            "--force",
+            action = "store_true"
         )
 
         arg = parser.parse_args()
@@ -103,6 +110,8 @@ def dispatch_args():
         if arg.command == 'problem':
             if arg.problem_subcommand == 'add':
                 handleAddProblem(console, arg)
+            if arg.problem_subcommand == 'init':
+                handleInitProblem(console, arg)
 
     except KeyboardInterrupt:
         console.log("[red]FATAL:Interrupted.[/red]")
