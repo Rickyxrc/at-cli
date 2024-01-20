@@ -6,21 +6,26 @@
         poetry2nix.url = "github:nix-community/poetry2nix";
     };
 
-    outputs = { self, nixpkgs, poetry2nix, ...}: let
+    outputs = { nixpkgs, poetry2nix, ...}: let
         system = "x86_64-linux";
         pkgs = import nixpkgs {
             inherit system;
             overlays = [ poetry2nix.overlays.default ];
         };
     in {
-        devShells."${system}".default = let
-        in pkgs.mkShell {
-            packages = with pkgs; [
-                poetry
-            ];
-            shellHook = ''
-                poetry shell
-            '';
+        devShells."${system}" = {
+            default = pkgs.mkShell {
+                packages = with pkgs; [ poetry ];
+                shellHook = ''
+                    alias atcli-dev="poetry run python3 -m atcodercli"
+                '';
+            };
+            poetryShell = pkgs.mkShell {
+                packages = with pkgs; [ poetry ];
+                shellHook = ''
+                    poetry shell;
+                '';
+            };
         };
         packages."${system}".default = pkgs.writeShellApplication {
             name = "atcli";

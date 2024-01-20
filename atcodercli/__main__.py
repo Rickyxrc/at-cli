@@ -10,6 +10,7 @@ from .commands.watchresult import handle as handleWatchResult
 from .commands.addproblem import handle as handleAddProblem
 from .commands.initproblem import handle as handleInitProblem
 from .commands.initcontest import handle as handleInitContest
+from .commands.inittemplate import handle as handleInitTemplate
 
 def dispatch_args():
     """
@@ -117,6 +118,30 @@ def dispatch_args():
             "--force",
             action = "store_true"
         )
+        template_parser = subparsers.add_parser(
+            "template",
+            help = "init with template, run template commands(like test)"
+        )
+        template_subparsers = template_parser.add_subparsers(
+            dest = "template_subcommand",
+            required = True
+        )
+        template_init_parser = template_subparsers.add_parser(
+            "init",
+            help = "init a template under current dir(need \"atcli contest racce\" or \"atcli problem init\"), template name is dirname default, a \"problem.yaml\" should exist exactly pwd's parent dir."
+        )
+        template_init_parser.add_argument(
+            "--name",
+            help = "specific generated file name"
+        )
+        template_init_parser.add_argument(
+            "--template",
+            help = "specific template type(or using the default)"
+        )
+        template_init_parser.add_argument(
+            "--force",
+            action = "store_true"
+        )
 
         arg = parser.parse_args()
         if arg.command == 'login':
@@ -136,7 +161,9 @@ def dispatch_args():
         if arg.command == 'contest':
             if arg.contest_subcommand == 'race':
                 handleInitContest(console, arg)
-
+        if arg.command == 'template':
+            if arg.template_subcommand == 'init':
+                handleInitTemplate(console, arg)
 
     except KeyboardInterrupt:
         console.log("[red]FATAL:Interrupted.[/red]")
