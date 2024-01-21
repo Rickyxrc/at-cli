@@ -1,5 +1,5 @@
 # python cache file
-__pycache
+__pycache__
 *.pyc
 
 # python build dist
@@ -19,3 +19,5 @@ playground
 # logs
 *.log
 
+# i18n file
+*.mo

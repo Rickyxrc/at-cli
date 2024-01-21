@@ -35,7 +35,7 @@ def handle(console: Console, arg):
     )
 
     if res.status_code == 403:
-        console.print("[red]" + _("FATAL: Https status 403, blocked by atcoder.)") + "[/red]")
+        console.print("[red]" + _("FATAL: Https status 403, blocked by atcoder.") + "[/red]")
 
     doc = BeautifulSoup(res.text, features = "html.parser")
     if "Username or Password is incorrect" in str(doc.select("div.alert")):

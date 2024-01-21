@@ -16,7 +16,7 @@ def initFile(path: str, template: str, config: Config, problems: ProblemSet, con
     generate_file = str(path) + f".{config.dat['template']['types'][template]['ext']}"
     if pathlib.Path(generate_file).exists() and not force:
         console.print("[red]" + _("file %s already exists!") % generate_file + "[/red]")
-        console.print(_("use --force to override"))
+        console.print(_("to override, use --force"))
         console.print(_("or if you want to create other file, use --name <file_name>"))
         raise SystemExit(1)
     with open(generate_file, "w", encoding = "utf-8") as write_stream:
