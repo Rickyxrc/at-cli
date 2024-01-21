@@ -12,29 +12,22 @@
             inherit system;
             overlays = [ poetry2nix.overlays.default ];
         };
+        app = pkgs.poetry2nix.mkPoetryApplication {
+            projectDir = ./.;
+        };
     in {
         devShells."${system}" = {
             default = pkgs.mkShell {
-                packages = with pkgs; [ poetry ];
+                packages = with pkgs; [ poetry app.dependencyEnv ];
                 shellHook = ''
                     alias atcli-dev="poetry run python3 -m atcodercli"
-                '';
-            };
-            poetryShell = pkgs.mkShell {
-                packages = with pkgs; [ poetry ];
-                shellHook = ''
-                    poetry shell;
                 '';
             };
         };
         packages."${system}".default = pkgs.writeShellApplication {
             name = "atcli";
             runtimeInputs =
-                let
-                    app = pkgs.poetry2nix.mkPoetryApplication {
-                        projectDir = ./.;
-                    };
-                in [ app.dependencyEnv ];
+                [ app.dependencyEnv ];
             text = ''
                 python -m atcodercli "$@"
             '';

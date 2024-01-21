@@ -12,3 +12,6 @@ result
 
 # temp dir to test program
 playground
+
+# direnv cache
+.direnv
