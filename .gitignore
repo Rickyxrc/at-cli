@@ -19,3 +19,5 @@ playground
 # logs
 *.log
 
+# i18n file
+*.mo
