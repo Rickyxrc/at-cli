@@ -1,5 +1,5 @@
 # python cache file
-__pycache
+__pycache__
 *.pyc
 
 # python build dist

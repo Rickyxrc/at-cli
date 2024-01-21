@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atcodercli"
-version = "0.2.1"
+version = "0.3.1"
 description = "A lightweight, fast and beautiful command line interface for Atcoder.jp"
 authors = ["Rickyxrc <rickyxrc@outlook.com>"]
 license = "MIT"
@@ -17,6 +17,10 @@ pyyaml = "^6.0.1"
 pylint = "^3.0.3"
 babel = "^2.14.0"
 
+[tool.poetry.build]
+generate-setup-file = false
+script = "scripts/build-mo.py"
+
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core", "pybabel"]
 build-backend = "poetry.core.masonry.api"
