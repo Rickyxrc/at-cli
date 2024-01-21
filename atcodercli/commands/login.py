@@ -16,7 +16,7 @@ def handle(console: Console, arg):
     """
     handle args
     """
-    console.log("logging in...")
+    console.print("logging in...")
 
     username = console.input("username:")
     password = console.input("password(invisible):", password=True)
@@ -35,13 +35,13 @@ def handle(console: Console, arg):
     )
 
     if res.status_code == 403:
-        console.log("[red]FATAL: blocked by atcoder.[/red]")
+        console.print("[red]FATAL: blocked by atcoder.[/red]")
 
     doc = BeautifulSoup(res.text, features = "html.parser")
     if "Username or Password is incorrect" in str(doc.select("div.alert")):
-        console.log("[red]ERROR: Username or Password is incorrect[/red]")
+        console.print("[red]ERROR: Username or Password is incorrect[/red]")
     elif username in str(res.text):
-        console.log(f"[green]welcome, user {username}.[/green]")
+        console.print(f"[green]welcome, user {username}.[/green]")
         # if confirm(console, "save password?"):
         # TODO : save password for auto flush(optional)
         conf = yaml.safe_dump({
@@ -50,14 +50,14 @@ def handle(console: Console, arg):
         })
         home = os.path.expanduser("~")
         if not os.path.exists(os.path.join(home, ".config")):
-            console.log(f'creating dir \"{os.path.join(home, ".config")}\"')
+            console.print(f'creating dir \"{os.path.join(home, ".config")}\"')
             os.mkdir(os.path.join(home, ".config"))
         if not os.path.exists(os.path.join(home, ".config", "atcli")):
-            console.log(f'creating dir \"{os.path.join(home, ".config", "atcli")}\"')
+            console.print(f'creating dir \"{os.path.join(home, ".config", "atcli")}\"')
             os.mkdir(os.path.join(home, ".config", "atcli"))
         with open(os.path.join(home, ".config", "atcli", "session.yaml"),
                   "w", encoding = "utf-8") as write_stream:
             write_stream.write(conf)
     else:
-        console.log(doc)
-        console.log("[red]ERROR: unhandled statment[/red]")
+        console.print(doc)
+        console.print("[red]ERROR: unhandled statment[/red]")

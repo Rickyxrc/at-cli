@@ -31,7 +31,7 @@ def watch_result(console:Console, contest_id:str, sids:list):
     watch results with sids[]
     """
     with Progress(console=console) as progress:
-        console.log(f"Getting result with contestid \"{contest_id}\" and sids {sids}...")
+        console.print(f"Getting result with contestid \"{contest_id}\" and sids {sids}...")
         running_progress = {}
         for sid in sids:
             running_progress[sid] = progress.add_task("[gray]Getting results...[/gray]")
@@ -42,7 +42,7 @@ def watch_result(console:Console, contest_id:str, sids:list):
             for sid in sids:
                 status_string = res.json()['Result']\
                     .get(str(sid), {"Html":r'title="Not Found">.</span'})['Html']
-                # console.log(sids, res.json())
+                # console.print(sids, res.json())
                 if "WJ" in status_string:
                     pass
                 elif "waiting-judge" in status_string:
@@ -69,7 +69,7 @@ def handle(console:Console, args):
     """
     handle args
     """
-    console.log("[yellow]warn:you needn't call it most of the time, "
+    console.print("[yellow]warn:you needn't call it most of the time, "
         "run \"atcli submit\" will automatically run this with sid.")
     watch_result(console, args.contest_id, args.submissions)
 

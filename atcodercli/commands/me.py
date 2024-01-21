@@ -10,16 +10,16 @@ def handle(console: Console, arg):
     """
     handle args
     """
-    console.log("getting login status...")
+    console.print("getting login status...")
     session = get_session(console)
     res = session.get("https://atcoder.jp")
     if res.status_code == 200:
         try:
             username = re.findall(r'var userScreenName = "(\S+)";', res.text)[0]
-            console.log(f"[green]successfully logged in as user {username}[/green]")
+            console.print(f"[green]successfully logged in as user {username}[/green]")
         except IndexError as exc:
-            console.log("[red]FATAL:failed to login[/red]")
+            console.print("[red]FATAL:failed to login[/red]")
             raise SystemExit(1) from exc
     else:
-        console.log("[red]FATAL:failed to login[/red]")
+        console.print("[red]FATAL:failed to login[/red]")
         raise SystemExit(1)

@@ -187,7 +187,7 @@ def dispatch_args():
                 handleTestTemplate(console, arg)
 
     except KeyboardInterrupt:
-        console.log("[red]FATAL:Interrupted.[/red]")
+        console.print("[red]FATAL:Interrupted.[/red]")
 
 if __name__ == '__main__':
     dispatch_args()

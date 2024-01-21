@@ -20,7 +20,7 @@ class ProblemSet:
         if not addobj in self.dat['problems']:
             self.dat['problems'].append(addobj)
         else:
-            self.console.log(f"[yellow]problem {contest_id} {problem_id} already exists.[/yellow]")
+            self.console.print(f"[yellow]problem {contest_id} {problem_id} already exists.[/yellow]")
     def add_template(self, contest_id:str, problem_id:str, file_path:str, template:str) -> None:
         addobj = {"path": file_path, "template": template}
         for index, problem in enumerate(self.dat['problems']):
@@ -44,9 +44,9 @@ def tryLoadProblemInProblem(pathStr: str, console: Console):
         return ProblemSet(path.parent / "problem.yaml", console)
     else:
         if (path / "problem.yaml").exists():
-            console.log("[red]This command should run under problem dir, not contest's root dir.[/red]")
-            console.log("please cd in problem dir and exec this command again!")
-        console.log("[red]problem.yaml not found in parent dir.")
+            console.print("[red]This command should run under problem dir, not contest's root dir.[/red]")
+            console.print("please cd in problem dir and exec this command again!")
+        console.print("[red]problem.yaml not found in parent dir.")
         raise SystemExit(1)
 
 def tryLoadProblemDirectly(pathStr: str, console: Console):
@@ -58,9 +58,9 @@ def tryLoadProblemDirectly(pathStr: str, console: Console):
     if (path / "problem.yaml").exists():
         return ProblemSet(path / "problem.yaml", console)
     else:
-        console.log(f"[red]file {path / 'problem.yaml'} not exist.[/red]")
-        console.log("You may want to start a contest using 'atcli contest race'")
-        console.log("create one manually using 'atcli problem init'")
+        console.print(f"[red]file {path / 'problem.yaml'} not exist.[/red]")
+        console.print("You may want to start a contest using 'atcli contest race'")
+        console.print("create one manually using 'atcli problem init'")
         raise SystemExit(1)
 
 def tryLoadProblem(pathStr:str, console:Console) -> ProblemSet:
@@ -73,11 +73,11 @@ def tryLoadProblem(pathStr:str, console:Console) -> ProblemSet:
         if (path / "problem.yaml").exists():
             return ProblemSet(path / "problem.yaml", console)
         if path == pathlib.Path('/'):
-            console.log(f"[red]No problem.yaml found under {pathStr}.[/red]")
-            console.log("You may want to start a contest using 'atcli contest race'")
-            console.log("create one manually using 'atcli problem init'")
+            console.print(f"[red]No problem.yaml found under {pathStr}.[/red]")
+            console.print("You may want to start a contest using 'atcli contest race'")
+            console.print("create one manually using 'atcli problem init'")
             raise SystemExit(1)
-        console.log(f"\"problem.yaml\" not found in {path}, searching up")
+        console.print(f"\"problem.yaml\" not found in {path}, searching up")
         path = path.parent
 
 def getProblemName(pathStr:str, problems:ProblemSet, console:Console):
@@ -93,16 +93,16 @@ def getProblemName(pathStr:str, problems:ProblemSet, console:Console):
     try:
         contest_id, problem_id = path.name.split("_")
     except ValueError:
-        console.log(f"[red]{path} invalid, don't look like <contest_id>_<problem_id>[/red]")
-        console.log("use \"atcli problem add\" or \"atcli contest race\", cd in that dir and execute this command again!")
+        console.print(f"[red]{path} invalid, don't look like <contest_id>_<problem_id>[/red]")
+        console.print("use \"atcli problem add\" or \"atcli contest race\", cd in that dir and execute this command again!")
         raise SystemExit(1)
     exist = False
     for problem in problems.dat['problems']:
         if problem['contest_id'] == contest_id and problem['problem_id'] == problem_id:
             exist = True
     if not exist:
-        console.log(f"[red]problem {path.name} not exist[/red]")
-        console.log("[blue]tip: don't create problem dir manually, use \"atcli problem add\" or \"atcli contest race\"[/blue]")
+        console.print(f"[red]problem {path.name} not exist[/red]")
+        console.print("[blue]tip: don't create problem dir manually, use \"atcli problem add\" or \"atcli contest race\"[/blue]")
         raise SystemExit(1)
     return (contest_id, problem_id)
 
