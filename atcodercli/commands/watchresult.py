@@ -14,7 +14,7 @@ def render_status(stat:str) -> str:
     Input a standard status string and render it in rich format.
     """
     return {
-        "Judging": "[gray]Judging[/gray]",
+        "Judging": "[gray]" + _("Judging") + "[/gray]",
         "Accepted": "[green]Accepted[/green]",
         "Time Limit Exceeded": "[yellow]Time Limit Exceeded[/yellow]",
         "Runtime Error": "[yellow]Runtime Error[/yellow]",

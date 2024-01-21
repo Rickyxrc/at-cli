@@ -116,7 +116,7 @@ def handle(console:Console, args):
             else:
                 console.print("[green]" + _("Test %d Passed") % (index+1) + "[/green]")
                 passed += 1
-        console.print(_("---------------SUMMARY---------------"))
+        console.print("---------------" + _("TEST SUMMARY") + "---------------")
         if passed == totalTask:
             console.print("[green]" + _("All check passed!") + "[/green]")
         else:
