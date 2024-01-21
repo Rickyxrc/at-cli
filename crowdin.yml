@@ -1,0 +1,3 @@
+files:
+  - source: /atcodercli/locales/atcodercli.pot
+    translation: /atcodercli/locales/%locale_with_underscore%/LC_MESSAGES/atcodercli.po
