@@ -32,7 +32,7 @@ def add_problem(console:Console, contest_id:str, problem_id:str):
         if 'Sample Output' in stat_str.string:
             id = int(re.findall("Sample Output (\d+)", stat_str.string)[0])
             code_block = sample.pre.string
-            with open(base_dir / f"{contest_id}_{problem_id}" / f"{id}.out", "w", encoding = "utf-8") as write_stream:
+            with open(base_dir / f"{contest_id}_{problem_id}" / f"{id}.ans", "w", encoding = "utf-8") as write_stream:
                 write_stream.write(code_block)
     problems.add_problem(contest_id, problem_id)
     problems.save()

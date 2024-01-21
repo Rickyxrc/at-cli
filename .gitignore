@@ -15,3 +15,7 @@ playground
 
 # direnv cache
 .direnv
+
+# logs
+*.log
+

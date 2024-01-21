@@ -3,7 +3,7 @@ import yaml
 import os
 import pathlib
 
-def init(console, filepath:str, force:bool):
+def init(console, filepath:str|pathlib.Path, force:bool):
     path = pathlib.Path(filepath)
     if (path / "problem.yaml").exists() and not force:
         console.log(f"[red]problem.yaml already exists under {path}[/red]")

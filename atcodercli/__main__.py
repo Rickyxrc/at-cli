@@ -2,15 +2,18 @@
 Main Module of atcli
 """
 import argparse
+
 import rich
+
+from .commands.addproblem import handle as handleAddProblem
+from .commands.initcontest import handle as handleInitContest
+from .commands.initproblem import handle as handleInitProblem
+from .commands.inittemplate import handle as handleInitTemplate
 from .commands.login import handle as handleLogin
 from .commands.me import handle as handleMe
 from .commands.watchpage import handle as handleWatchPage
 from .commands.watchresult import handle as handleWatchResult
-from .commands.addproblem import handle as handleAddProblem
-from .commands.initproblem import handle as handleInitProblem
-from .commands.initcontest import handle as handleInitContest
-from .commands.inittemplate import handle as handleInitTemplate
+from .commands.testtemplate import handle as handleTestTemplate
 
 def dispatch_args():
     """
@@ -118,6 +121,10 @@ def dispatch_args():
             "--force",
             action = "store_true"
         )
+        contest_race_parser.add_argument(
+            "--template",
+            help = "specific template type"
+        )
         template_parser = subparsers.add_parser(
             "template",
             help = "init with template, run template commands(like test)"
@@ -142,6 +149,18 @@ def dispatch_args():
             "--force",
             action = "store_true"
         )
+        template_test_parser = template_subparsers.add_parser(
+            "test",
+            help = "test a templete defined in config."
+        )
+        template_test_parser.add_argument(
+            "--file",
+            help = "specific file to test(or test the default)"
+        )
+        template_test_parser.add_argument(
+            "--checker",
+            help = "specific checker to use"
+        )
 
         arg = parser.parse_args()
         if arg.command == 'login':
@@ -164,6 +183,8 @@ def dispatch_args():
         if arg.command == 'template':
             if arg.template_subcommand == 'init':
                 handleInitTemplate(console, arg)
+            if arg.template_subcommand == 'test':
+                handleTestTemplate(console, arg)
 
     except KeyboardInterrupt:
         console.log("[red]FATAL:Interrupted.[/red]")
