@@ -1,5 +1,5 @@
 """
-This module is used to load problem.yaml
+    This module is used to load problem.yaml
 """
 import pathlib
 
@@ -44,9 +44,9 @@ def tryLoadProblemInProblem(pathStr: str, console: Console):
         return ProblemSet(path.parent / "problem.yaml", console)
     else:
         if (path / "problem.yaml").exists():
-            console.print("[red]This command should run under problem dir, not contest's root dir.[/red]")
-            console.print("please cd in problem dir and exec this command again!")
-        console.print("[red]problem.yaml not found in parent dir.")
+            console.print("[red]" + _("This command should run under problem dir, not contest's root dir.") + "[/red]")
+            console.print(_("please cd in problem dir and exec this command again!"))
+        console.print("[red]" + _("problem.yaml not found in parent dir.") + "[/red]")
         raise SystemExit(1)
 
 def tryLoadProblemDirectly(pathStr: str, console: Console):
@@ -58,9 +58,9 @@ def tryLoadProblemDirectly(pathStr: str, console: Console):
     if (path / "problem.yaml").exists():
         return ProblemSet(path / "problem.yaml", console)
     else:
-        console.print(f"[red]file {path / 'problem.yaml'} not exist.[/red]")
-        console.print("You may want to start a contest using 'atcli contest race'")
-        console.print("create one manually using 'atcli problem init'")
+        console.print("[red]" + _("file %s not exist.") % (path / 'problem.yaml') + "[/red]")
+        console.print(_("You may want to start a contest using 'atcli contest race'"))
+        console.print(_("create one manually using 'atcli problem init'"))
         raise SystemExit(1)
 
 def tryLoadProblem(pathStr:str, console:Console) -> ProblemSet:
@@ -73,11 +73,11 @@ def tryLoadProblem(pathStr:str, console:Console) -> ProblemSet:
         if (path / "problem.yaml").exists():
             return ProblemSet(path / "problem.yaml", console)
         if path == pathlib.Path('/'):
-            console.print(f"[red]No problem.yaml found under {pathStr}.[/red]")
-            console.print("You may want to start a contest using 'atcli contest race'")
-            console.print("create one manually using 'atcli problem init'")
+            console.print("[red]" + _("No problem.yaml found under %s.") % path + "[/red]")
+            console.print(_("You may want to start a contest using 'atcli contest race'"))
+            console.print(_("create one manually using 'atcli problem init'"))
             raise SystemExit(1)
-        console.print(f"\"problem.yaml\" not found in {path}, searching up")
+        console.print(_("\"problem.yaml\" not found in %s, searching up") % path)
         path = path.parent
 
 def getProblemName(pathStr:str, problems:ProblemSet, console:Console):
@@ -93,16 +93,16 @@ def getProblemName(pathStr:str, problems:ProblemSet, console:Console):
     try:
         contest_id, problem_id = path.name.split("_")
     except ValueError:
-        console.print(f"[red]{path} invalid, don't look like <contest_id>_<problem_id>[/red]")
-        console.print("use \"atcli problem add\" or \"atcli contest race\", cd in that dir and execute this command again!")
+        console.print("[red]" + _("%s invalid, don't look like <contest_id>_<problem_id>") % path + "[/red]")
+        console.print(_("use \"atcli problem add\" or \"atcli contest race\", cd in that dir and execute this command again!"))
         raise SystemExit(1)
     exist = False
     for problem in problems.dat['problems']:
         if problem['contest_id'] == contest_id and problem['problem_id'] == problem_id:
             exist = True
     if not exist:
-        console.print(f"[red]problem {path.name} not exist[/red]")
-        console.print("[blue]tip: don't create problem dir manually, use \"atcli problem add\" or \"atcli contest race\"[/blue]")
+        console.print("[red]" + _("problem %s not exist") % (path.name) + "[/red]")
+        console.print("[blue]" + _("tip: don't create problem dir manually, use \"atcli problem add\" or \"atcli contest race\"") + "[/blue]")
         raise SystemExit(1)
     return (contest_id, problem_id)
 
