@@ -1,5 +1,5 @@
 {
-    description = "Nix develop environment for at-cli";
+    description = "at-cli, a lightweight, cross-platform, fast and beautiful command line interface for https://atcoder.jp";
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
@@ -18,10 +18,7 @@
     in {
         devShells."${system}" = {
             default = pkgs.mkShell {
-                packages = with pkgs; [ poetry app.dependencyEnv ];
-                shellHook = ''
-                    alias atcli-dev="poetry run python3 -m atcodercli"
-                '';
+                packages = with pkgs; [ poetry ];
             };
         };
         packages."${system}".default = pkgs.writeShellApplication {
