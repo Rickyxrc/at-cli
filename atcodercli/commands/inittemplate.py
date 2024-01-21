@@ -9,19 +9,19 @@ def initFile(path: str, template: str, config: Config, problems: ProblemSet, con
     if template_path.exists():
         with open(template_path, "r", encoding = "utf-8") as read_stream:
             code_template = read_stream.read()
-        console.print(f"loaded template \"{template}\" from {template_path}")
+        console.print(_("loaded template \"%s\" from %s") % (template, template_path))
     else:
-        console.print(f"[red]template \"{template}\" file {template_path} does not exist![/red]")
+        console.print("[red]" + _("template \"%s\" file %s does not exist!") % (template, template_path) + "[/red]")
         raise SystemExit(1)
     generate_file = str(path) + f".{config.dat['template']['types'][template]['ext']}"
     if pathlib.Path(generate_file).exists() and not force:
-        console.print(f"[red]file {generate_file} already exists![/red]")
-        console.print("use --force to override")
-        console.print("or if you want to create other file, use --name <file_name>")
+        console.print("[red]" + _("file %s already exists!") % generate_file + "[/red]")
+        console.print(_("use --force to override"))
+        console.print(_("or if you want to create other file, use --name <file_name>"))
         raise SystemExit(1)
     with open(generate_file, "w", encoding = "utf-8") as write_stream:
         write_stream.write(code_template)
-        console.print(f"generated {generate_file}")
+        console.print(_("generated %s") % generate_file)
     problems.add_template(contest_id, problem_id, generate_file, template)
     problems.save()
 

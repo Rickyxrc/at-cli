@@ -11,7 +11,7 @@ from rich.progress import Progress
 # https://stackoverflow.com/a/21978778/19706510
 def log_subprocess_output(pipe, prefix:str, console:Console):
     for line in iter(pipe.readline, b''):
-        console.print(prefix, str(line, encoding="utf-8"))
+        console.print(prefix, str(line, encoding="utf-8"), end="")
 
 def handle(console:Console, args):
     problems = tryLoadProblemInProblem(os.getcwd(), console)
@@ -24,17 +24,18 @@ def handle(console:Console, args):
             found = True
             if args.file == None:
                 if problem['templates'] == []:
-                    console.print(f"[red]problem {contest_id}_{problem_id} have no any code.[/red]")
-                    console.print("please generate one using \"atcli template generate\"")
+                    console.print("[red]" + _("problem %s_%s have no any code.") % (contest_id, problem_id) + "[/red]")
+                    console.print(_("please generate one using \"atcli template generate\""))
                     raise SystemExit(1)
                 file = problem['templates'][0]
             else:
                 file = args.file
             break
     if not found:
-        console.print(f"[red]problem {contest_id}_{problem_id} not found![/red]")
+        console.print("[red]" + _("problem %s_%s not found!") % (contest_id, problem_id) + "[/red]")
         raise SystemExit(1)
-    console.print(f"testing file {file['path']} with template \"{file['template']}\"...")
+    # console.print(f"testing file {file['path']} with template \"{file['template']}\"...")
+    console.print(_("testing file %s with template \"%s\"...") % (file['path'], file['template']))
     tests = config.dat['template']['types'][file['template']]['test']
     run_env = os.environ.copy()
     run_env['FILE'] = file['path']
@@ -51,11 +52,11 @@ def handle(console:Console, args):
         checker = config.dat['checker']['default']
     else:
         if config.dat['checker'].get(args.checker) == None:
-            console.print(f"[red]checker \"{args.checker}\" not found in config file.[/red]")
+            console.print("[red]" + _("checker \"%s\" not found in config file.") % args.checker + "[/red]")
             raise SystemExit(1)
         checker = args.checker
     with Progress(console=console) as progress:
-        test_task = progress.add_task("Waiting Judge...", total = totalTask)
+        test_task = progress.add_task(_("Waiting Judge..."), total = totalTask)
 
         console.print(f"$ {tests['before']}")
         command_init = subprocess.Popen(
@@ -68,14 +69,14 @@ def handle(console:Console, args):
             stdin=subprocess.DEVNULL
         )
         with command_init.stdout:
-            log_subprocess_output(command_init.stdout, "[blue]stdout:[/blue]", console)
+            log_subprocess_output(command_init.stdout, "[blue]" + _("stdout:") + "[/blue]", console)
         with command_init.stderr:
-            log_subprocess_output(command_init.stderr, "[red]stderr:[/red]", console)
+            log_subprocess_output(command_init.stderr, "[red]" + _("stderr:") + "[/red]", console)
 
         passed = 0
         failed = []
         for index, test in enumerate(test_files):
-            progress.update(test_task, description=f"Running {index+1}/{totalTask}")
+            progress.update(test_task, description = _("Running on %d/%d") % (index+1, totalTask))
             run_env['INPUT'], run_env['ANSWER'] = test
             run_env['OUTPUT'] = "file.out"
             console.print(f"$ {tests['run']}")
@@ -89,9 +90,9 @@ def handle(console:Console, args):
                 stdin=subprocess.DEVNULL
             )
             with command_test.stdout:
-                log_subprocess_output(command_test.stdout, "[blue]runner stdout:[/blue]", console)
+                log_subprocess_output(command_test.stdout, "[blue]" + _("runner stdout:") + "[/blue]", console)
             with command_test.stderr:
-                log_subprocess_output(command_test.stderr, "[red]runner stderr:[/red]", console)
+                log_subprocess_output(command_test.stderr, "[red]" + _("runner stderr:") + "[/red]", console)
 
             progress.update(test_task, advance=1)
             console.print(f"$ {config.dat['checker']['types'][checker]}")
@@ -105,21 +106,21 @@ def handle(console:Console, args):
                 stdin=subprocess.DEVNULL
             )
             with command_check.stdout:
-                log_subprocess_output(command_check.stdout, "[blue]checker stdout:[/blue]", console)
+                log_subprocess_output(command_check.stdout, "[blue]" + _("checker stdout:") + "[/blue]", console)
             with command_check.stderr:
-                log_subprocess_output(command_check.stderr, "[red]checker stderr:[/red]", console)
+                log_subprocess_output(command_check.stderr, "[red]" + _("checker stderr:") + "[/red]", console)
             res = command_check.wait()
             if res:
-                console.print(f"[red]Test {index+1} Failed - checker returned non-zero value[/red]")
+                console.print("[red]" + _("Test %d Failed - checker returned non-zero value") % (index+1) + "[/red]")
                 failed.append((index+1, test[0], test[1]))
             else:
-                console.print(f"[green]Test {index+1} Passed[/green]")
+                console.print("[green]" + _("Test %d Passed") % (index+1) + "[/green]")
                 passed += 1
-        console.print("---------------SUMMARY---------------")
+        console.print(_("---------------SUMMARY---------------"))
         if passed == totalTask:
-            console.print("[green]All check passed![/green]")
+            console.print("[green]" + _("All check passed!") + "[/green]")
         else:
-            console.print("[red]Some checks failed.[/red]")
+            console.print("[red]" + _("Some checks failed.") + "[/red]")
             for failedCheck in failed:
-                # console.print(failedCheck)
-                console.print(f"[red]check {failedCheck[0]} failed, files are \"{failedCheck[1]}\" \"{failedCheck[2]}\"")
+                console.print("[red]" + _("check %d failed, files are \"%s\" \"%s\"") % failedCheck + "[/red]")
+

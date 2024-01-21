@@ -1,0 +1,298 @@
+# Translations template for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-01-21 19:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: atcodercli/__main__.py:27
+msgid ""
+"at-cli, a lightweight, cross-platform, fast and beautiful command line "
+"interface for https://atcoder.jp"
+msgstr ""
+
+#: atcodercli/__main__.py:28
+msgid ""
+"default config path: ~/.config/atcli/config.yaml\n"
+"default login session path: ~/.config/atcli/session.yaml\n"
+"program source: https://github.com/rickyxrc/atcli\n"
+msgstr ""
+
+#: atcodercli/__main__.py:38
+msgid ""
+"login with your username and password, the session will stored in "
+"~/.config/atcli/session.yaml"
+msgstr ""
+
+#: atcodercli/__main__.py:43
+msgid "check if your session file is valid"
+msgstr ""
+
+#: atcodercli/__main__.py:48
+msgid "watch submission's results"
+msgstr ""
+
+#: atcodercli/__main__.py:56
+msgid "watch a specific submission id's result"
+msgstr ""
+
+#: atcodercli/__main__.py:60 atcodercli/__main__.py:73
+#: atcodercli/__main__.py:90 atcodercli/__main__.py:118
+msgid "The id of the contest, like 'abc123'"
+msgstr ""
+
+#: atcodercli/__main__.py:64
+msgid "The submission id of the contest"
+msgstr ""
+
+#: atcodercli/__main__.py:69
+msgid "watch a contest's latest submissions"
+msgstr ""
+
+#: atcodercli/__main__.py:78
+msgid "operate with problems(like submit, add)"
+msgstr ""
+
+#: atcodercli/__main__.py:86
+msgid "add a problem to solve"
+msgstr ""
+
+#: atcodercli/__main__.py:94
+msgid "The id of the problem, like 'a' or 'g'"
+msgstr ""
+
+#: atcodercli/__main__.py:98
+msgid "init problem.yaml in current dir"
+msgstr ""
+
+#: atcodercli/__main__.py:106
+msgid "operate with contests(pull all problem samples)"
+msgstr ""
+
+#: atcodercli/__main__.py:114
+msgid "init a problem.yaml locally and pull all problem samples"
+msgstr ""
+
+#: atcodercli/__main__.py:126
+msgid "specific template type"
+msgstr ""
+
+#: atcodercli/__main__.py:130
+msgid "init with template, run template commands(like test)"
+msgstr ""
+
+#: atcodercli/__main__.py:138
+msgid ""
+"init a template under current dir(need \"atcli contest racce\" or \"atcli"
+" problem init\"), template name is dirname default, a \"problem.yaml\" "
+"should exist exactly pwd's parent dir."
+msgstr ""
+
+#: atcodercli/__main__.py:142
+msgid "specific generated file name"
+msgstr ""
+
+#: atcodercli/__main__.py:146
+msgid "specific template type(or using the default)"
+msgstr ""
+
+#: atcodercli/__main__.py:154
+msgid "test a templete defined in config."
+msgstr ""
+
+#: atcodercli/__main__.py:158
+msgid "specific file to test(or test the default)"
+msgstr ""
+
+#: atcodercli/__main__.py:162
+msgid "specific checker to use"
+msgstr ""
+
+#: atcodercli/__main__.py:190
+msgid "FATAL:Interrupted."
+msgstr ""
+
+#: atcodercli/commands/addproblem.py:17
+#, python-format
+msgid "add problem %s_%s"
+msgstr ""
+
+#: atcodercli/commands/initproblem.py:9
+#, python-format
+msgid "problem.yaml already exists under %s"
+msgstr ""
+
+#: atcodercli/commands/initproblem.py:10
+msgid "to override, use --force"
+msgstr ""
+
+#: atcodercli/commands/initproblem.py:14
+msgid "initialized empty problem.yaml, now use \"atcli problem add\""
+msgstr ""
+
+#: atcodercli/commands/inittemplate.py:12
+#, python-format
+msgid "loaded template \"%s\" from %s"
+msgstr ""
+
+#: atcodercli/commands/inittemplate.py:14
+#, python-format
+msgid "template \"%s\" file %s does not exist!"
+msgstr ""
+
+#: atcodercli/commands/inittemplate.py:18
+#, python-format
+msgid "file %s already exists!"
+msgstr ""
+
+#: atcodercli/commands/inittemplate.py:19
+msgid "use --force to override"
+msgstr ""
+
+#: atcodercli/commands/inittemplate.py:20
+msgid "or if you want to create other file, use --name <file_name>"
+msgstr ""
+
+#: atcodercli/commands/inittemplate.py:24
+#, python-format
+msgid "generated %s"
+msgstr ""
+
+#: atcodercli/commands/login.py:19
+msgid "logging in..."
+msgstr ""
+
+#: atcodercli/commands/login.py:21
+msgid "username:"
+msgstr ""
+
+#: atcodercli/commands/login.py:22
+msgid "password(invisible):"
+msgstr ""
+
+#: atcodercli/commands/login.py:38
+msgid "FATAL: Https status 403, blocked by atcoder.)"
+msgstr ""
+
+#: atcodercli/commands/login.py:42
+msgid "ERROR: Username or Password is incorrect"
+msgstr ""
+
+#: atcodercli/commands/login.py:44
+#, python-format
+msgid "welcome, user %s."
+msgstr ""
+
+#: atcodercli/commands/login.py:64
+msgid "FATAL: unhandled statment"
+msgstr ""
+
+#: atcodercli/commands/me.py:13
+msgid "getting login status..."
+msgstr ""
+
+#: atcodercli/commands/me.py:19
+#, python-format
+msgid "successfully logged in as user %s"
+msgstr ""
+
+#: atcodercli/commands/me.py:21 atcodercli/commands/me.py:24
+msgid "FATAL:failed to login"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:27
+#, python-format
+msgid "problem %s_%s have no any code."
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:28
+msgid "please generate one using \"atcli template generate\""
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:35
+#, python-format
+msgid "problem %s_%s not found!"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:38
+#, python-format
+msgid "testing file %s with template \"%s\"..."
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:55
+#, python-format
+msgid "checker \"%s\" not found in config file."
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:59
+msgid "Waiting Judge..."
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:72
+msgid "stdout:"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:74
+msgid "stderr:"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:79
+#, python-format
+msgid "Running on %d/%d"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:93
+msgid "runner stdout:"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:95
+msgid "runner stderr:"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:109
+msgid "checker stdout:"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:111
+msgid "checker stderr:"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:114
+#, python-format
+msgid "Test %d Failed - checker returned non-zero value"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:117
+#, python-format
+msgid "Test %d Passed"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:119
+msgid "---------------SUMMARY---------------"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:121
+msgid "All check passed!"
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:123
+msgid "Some checks failed."
+msgstr ""
+
+#: atcodercli/commands/testtemplate.py:125
+#, python-format
+msgid "check %d failed, files are \"%s\" \"%s\""
+msgstr ""
+

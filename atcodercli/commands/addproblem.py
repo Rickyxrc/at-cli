@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 def add_problem(console:Console, contest_id:str, problem_id:str):
     problems = tryLoadProblem(os.getcwd(), console)
     session = get_session(console)
-    console.print(f"add problem \"{contest_id}\" \"{problem_id}\"")
+    console.print(_("add problem %s_%s") % (contest_id, problem_id))
     endpoint = f"https://atcoder.jp/contests/{contest_id}/tasks/{contest_id}_{problem_id}"
     res = session.get(endpoint)
     html = BeautifulSoup(res.text, features="html.parser")
