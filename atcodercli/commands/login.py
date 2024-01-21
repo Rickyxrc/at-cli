@@ -16,10 +16,10 @@ def handle(console: Console, arg):
     """
     handle args
     """
-    console.print("logging in...")
+    console.print(_("logging in..."))
 
-    username = console.input("username:")
-    password = console.input("password(invisible):", password=True)
+    username = console.input(_("username:"))
+    password = console.input(_("password(invisible):"), password=True)
 
     session = requests.session()
 
@@ -35,19 +35,20 @@ def handle(console: Console, arg):
     )
 
     if res.status_code == 403:
-        console.print("[red]FATAL: blocked by atcoder.[/red]")
+        console.print("[red]" + _("FATAL: Https status 403, blocked by atcoder.)") + "[/red]")
 
     doc = BeautifulSoup(res.text, features = "html.parser")
     if "Username or Password is incorrect" in str(doc.select("div.alert")):
-        console.print("[red]ERROR: Username or Password is incorrect[/red]")
+        console.print("[red]" + _("ERROR: Username or Password is incorrect") + "[/red]")
     elif username in str(res.text):
-        console.print(f"[green]welcome, user {username}.[/green]")
-        # if confirm(console, "save password?"):
+        console.print("[green]" + _("welcome, user %s.") % username + "[/green]")
+
         # TODO : save password for auto flush(optional)
         conf = yaml.safe_dump({
             'cookies': dict_from_cookiejar(session.cookies),
             'username': username
         })
+
         home = os.path.expanduser("~")
         if not os.path.exists(os.path.join(home, ".config")):
             console.print(f'creating dir \"{os.path.join(home, ".config")}\"')
@@ -60,4 +61,5 @@ def handle(console: Console, arg):
             write_stream.write(conf)
     else:
         console.print(doc)
-        console.print("[red]ERROR: unhandled statment[/red]")
+        console.print("[red]" + _("FATAL: unhandled statment") + "[/red]")
+

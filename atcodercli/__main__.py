@@ -24,28 +24,28 @@ def dispatch_args():
     try:
         parser = argparse.ArgumentParser(
             prog = "atcli",
-            description = "A lightweight, fast and beautiful command line interface for Atcoder.jp",
-            epilog = '''
-                default config path: ~/.config/atcli/config.yaml
-                default login session path: ~/.config/atcli/session.yaml
-                program source: https://github.com/rickyxrc/atcli
-            ''',
+            description = _("at-cli, a lightweight, cross-platform, fast and beautiful command line interface for https://atcoder.jp"),
+            epilog = _(
+                "default config path: ~/.config/atcli/config.yaml\n"
+                "default login session path: ~/.config/atcli/session.yaml\n"
+                "program source: https://github.com/rickyxrc/atcli\n"
+            ),
         )
 
         subparsers = parser.add_subparsers(dest="command", required=True)
         login_parser = subparsers.add_parser(
             "login",
-            help = "login with your username and password,"
-                " the session will stored in ~/.config/atcli/session.yaml"
+            help = _("login with your username and password,"
+                " the session will stored in ~/.config/atcli/session.yaml")
         )
         me_parser = subparsers.add_parser(
             "me",
-            help="check if your session file is valid"
+            help = _("check if your session file is valid")
         )
 
         result_parser = subparsers.add_parser(
             "result",
-            help="watch submission's results"
+            help = _("watch submission's results")
         )
         result_subparsers = result_parser.add_subparsers(
             dest="result_subcommand",
@@ -53,29 +53,29 @@ def dispatch_args():
         )
         result_watch_parser = result_subparsers.add_parser(
             "watch",
-            help="watch a specific submission id's result"
+            help = _("watch a specific submission id's result")
         )
         result_watch_parser.add_argument(
             "contest_id",
-            help="The id of the contest, like 'abc123'"
+            help = _("The id of the contest, like 'abc123'")
         )
         result_watch_parser.add_argument(
             "submissions",
-            help="The submission id of the contest",
+            help = _("The submission id of the contest"),
             nargs='+'
         )
         result_page_parser = result_subparsers.add_parser(
             "page",
-            help="watch a contest's latest submissions"
+            help = _("watch a contest's latest submissions")
         )
         result_page_parser.add_argument(
             "contest_id",
-            help="The id of the contest, like 'abc123'"
+            help = _("The id of the contest, like 'abc123'")
         )
 
         problem_parser = subparsers.add_parser(
             "problem",
-            help="operate with problems(like submit, add)"
+            help = _("operate with problems(like submit, add)")
         )
         problem_subparsers = problem_parser.add_subparsers(
             dest = "problem_subcommand",
@@ -83,19 +83,19 @@ def dispatch_args():
         )
         problem_add_parser = problem_subparsers.add_parser(
             "add",
-            help = "add a problem to solve"
+            help = _("add a problem to solve")
         )
         problem_add_parser.add_argument(
             "contest_id",
-            help = "The id of the contest, like 'abc123'"
+            help = _("The id of the contest, like 'abc123'")
         )
         problem_add_parser.add_argument(
             "problem_id",
-            help = "The id of the problem, like 'a' or 'g'"
+            help = _("The id of the problem, like 'a' or 'g'")
         )
         problem_init_parser = problem_subparsers.add_parser(
             "init",
-            help = "init problem.yaml in current dir"
+            help = _("init problem.yaml in current dir")
         )
         problem_init_parser.add_argument(
             "--force",
@@ -103,7 +103,7 @@ def dispatch_args():
         )
         contest_parser = subparsers.add_parser(
             "contest",
-            help = "operate with contests(pull all problem samples)"
+            help = _("operate with contests(pull all problem samples)")
         )
         contest_subparsers = contest_parser.add_subparsers(
             dest = "contest_subcommand",
@@ -111,11 +111,11 @@ def dispatch_args():
         )
         contest_race_parser = contest_subparsers.add_parser(
             "race",
-            help = "init a problem.yaml locally and pull all problem samples"
+            help = _("init a problem.yaml locally and pull all problem samples")
         )
         contest_race_parser.add_argument(
             "contest_id",
-            help = "The id of the contest, like 'abc123'"
+            help = _("The id of the contest, like 'abc123'")
         )
         contest_race_parser.add_argument(
             "--force",
@@ -123,11 +123,11 @@ def dispatch_args():
         )
         contest_race_parser.add_argument(
             "--template",
-            help = "specific template type"
+            help = _("specific template type")
         )
         template_parser = subparsers.add_parser(
             "template",
-            help = "init with template, run template commands(like test)"
+            help = _("init with template, run template commands(like test)")
         )
         template_subparsers = template_parser.add_subparsers(
             dest = "template_subcommand",
@@ -135,15 +135,15 @@ def dispatch_args():
         )
         template_init_parser = template_subparsers.add_parser(
             "init",
-            help = "init a template under current dir(need \"atcli contest racce\" or \"atcli problem init\"), template name is dirname default, a \"problem.yaml\" should exist exactly pwd's parent dir."
+            help = _("init a template under current dir(need \"atcli contest racce\" or \"atcli problem init\"), template name is dirname default, a \"problem.yaml\" should exist exactly pwd's parent dir.")
         )
         template_init_parser.add_argument(
             "--name",
-            help = "specific generated file name"
+            help = _("specific generated file name")
         )
         template_init_parser.add_argument(
             "--template",
-            help = "specific template type(or using the default)"
+            help = _("specific template type(or using the default)")
         )
         template_init_parser.add_argument(
             "--force",
@@ -151,15 +151,15 @@ def dispatch_args():
         )
         template_test_parser = template_subparsers.add_parser(
             "test",
-            help = "test a templete defined in config."
+            help = _("test a templete defined in config.")
         )
         template_test_parser.add_argument(
             "--file",
-            help = "specific file to test(or test the default)"
+            help = _("specific file to test(or test the default)")
         )
         template_test_parser.add_argument(
             "--checker",
-            help = "specific checker to use"
+            help = _("specific checker to use")
         )
 
         arg = parser.parse_args()
@@ -187,7 +187,7 @@ def dispatch_args():
                 handleTestTemplate(console, arg)
 
     except KeyboardInterrupt:
-        console.print("[red]FATAL:Interrupted.[/red]")
+        console.print("[red]" + _("FATAL:Interrupted.") + "[/red]")
 
 if __name__ == '__main__':
     dispatch_args()
