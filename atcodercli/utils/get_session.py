@@ -18,9 +18,8 @@ def get_session(console:Console) -> requests.Session:
                 encoding="utf-8") as read_stream:
             dat = yaml.safe_load(read_stream)
     except FileNotFoundError as exc:
-        console.print('[red]ERROR:no session file found at '
-            f'{os.path.join(os.path.expanduser("~"), ".config", "atcli", "config.yaml")}[/red]')
-        console.print(r'try run "atcli login" first.')
+        console.print("[red]" + _("ERROR:no session file found at %s") % os.path.join(os.path.expanduser("~"), ".config", "atcli", "config.yaml") + "[/red]")
+        console.print(_('try run \"atcli login\" first.'))
         raise SystemExit(1) from exc
     session = requests.session()
     session.cookies.update(cookiejar_from_dict(dat['cookies']))
