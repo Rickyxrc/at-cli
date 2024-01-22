@@ -11,30 +11,30 @@ from ..utils.get_session import get_session
 
 def render_status(stat:str) -> str:
     """
-    Input a standard status string and render it in rich format.
+        Input a standard status string and render it in rich format.
     """
     return {
         "Judging": "[gray]" + _("Judging") + "[/gray]",
-        "Accepted": "[green]Accepted[/green]",
-        "Time Limit Exceeded": "[yellow]Time Limit Exceeded[/yellow]",
-        "Runtime Error": "[yellow]Runtime Error[/yellow]",
-        "Compilation Error": "[yellow]Compilation Error[/yellow]",
-        "Wrong Answer": "[yellow]Wrong Answer[/yellow]",
-        "Not Found": "Not Found"
+        "Accepted": "[green]" + _("Accepted") + "[/green]",
+        "Time Limit Exceeded": "[yellow]" + _("Time Limit Exceeded") + "[/yellow]",
+        "Runtime Error": "[yellow]" + _("Runtime Error") + "[/yellow]",
+        "Compilation Error": "[yellow]" + _("Compilation Error") + "[/yellow]",
+        "Wrong Answer": "[yellow]" + _("Wrong Answer") + "[/yellow]",
+        "Not Found": _("Not Found")
     }.get(
         stat,
-        f"Unknown status {stat}"
+        _("Unknown status %s") % stat
     )
 
 def watch_result(console:Console, contest_id:str, sids:list):
     """
-    watch results with sids[]
+        watch results with sids[]
     """
     with Progress(console=console) as progress:
-        console.print(f"Getting result with contestid \"{contest_id}\" and sids {sids}...")
+        console.print(_("Getting result with contestid \"%s\" and sids %s...") % (contest_id, sids))
         running_progress = {}
         for sid in sids:
-            running_progress[sid] = progress.add_task("[gray]Getting results...[/gray]")
+            running_progress[sid] = progress.add_task("[gray]" + _("Getting results...") + "[/gray]")
         session = get_session(console)
         while not progress.finished:
             res = session.get(f"https://atcoder.jp/contests/{contest_id}"
@@ -50,8 +50,8 @@ def watch_result(console:Console, contest_id:str, sids:list):
                         r'title="(.+)">(\d+)/(\d+)\s*\S*</span', status_string)[0]
                     progress.update(
                         running_progress[sid],
-                        description=f"[green]{sid}[/green]  {render_status(verdict)}"
-                            f" | Running on {now}/{total}...",
+                        description=f"[green]{sid}[/green] {render_status(verdict)}"
+                            " | " + _("Running on %d/%d...") % (now, total),
                         total = int(total),
                         completed = int(now)
                     )
@@ -59,7 +59,7 @@ def watch_result(console:Console, contest_id:str, sids:list):
                     verdict = re.findall(r'title="(.+)">\S*</span', status_string)[0]
                     progress.update(
                         running_progress[sid],
-                        description=f"[green]{sid}[/green]  {render_status(verdict)}",
+                        description=f"[green]{sid}[/green] {render_status(verdict)}",
                         completed = 1,
                         total = 1
                     )
@@ -69,8 +69,8 @@ def handle(console:Console, args):
     """
     handle args
     """
-    console.print("[yellow]warn:you needn't call it most of the time, "
-        "run \"atcli submit\" will automatically run this with sid.")
+    console.print("[yellow]" + _("warn:you needn't call it most of the time, "
+        "run \"atcli submit\" will automatically run this with sid."))
     watch_result(console, args.contest_id, args.submissions)
 
 if __name__ == '__main__':
