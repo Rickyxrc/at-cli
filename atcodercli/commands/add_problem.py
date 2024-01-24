@@ -65,6 +65,6 @@ def add_problem(console: Console, contest_id: str, problem_id: str):
 
 def handle(console: Console, arg):
     """
-    handle args
+    Entry of cli, handle args.
     """
     add_problem(console, arg.contest_id, arg.problem_id)

@@ -10,6 +10,9 @@ from rich.console import Console
 
 
 def _check_path(dic: dict, path: str, origin: str, console: Console):
+    """
+    For the ducumention, please refer to check_path, this function is the inner function.
+    """
     if not isinstance(dic, dict):
         console.print(
             "[red]"
@@ -49,6 +52,9 @@ def check_path(dic: dict, path: str, console: Console):
 
 
 def check_template(dic: dict, name: str, console: Console):
+    """
+    Check if a template defined in config is valid.
+    """
     base_path = f"template.types.{name}"
     check_path(dic, f"{base_path}.file", console)
     check_path(dic, f"{base_path}.ext", console)
@@ -59,6 +65,9 @@ def check_template(dic: dict, name: str, console: Console):
 
 
 def check_differ(dic: dict, name: str, console: Console):
+    """
+    Check if a checker defined in config is valid.
+    """
     base_path = f"checker.types.{name}"
     check_path(dic, f"{base_path}", console)
 

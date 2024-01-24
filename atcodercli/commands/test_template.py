@@ -12,11 +12,17 @@ from ..utils.problems import get_problem_name, load_parent_of_problem
 
 # https://stackoverflow.com/a/21978778/19706510
 def log_subprocess_output(pipe, prefix: str, console: Console):
+    """
+    Print output of a subprocess with a prefix.
+    """
     for line in iter(pipe.readline, b""):
         console.print(prefix, str(line, encoding="utf-8"), end="")
 
 
 def handle(console: Console, args):
+    """
+    Entry of cli, handle args.
+    """
     problems = load_parent_of_problem(os.getcwd(), console)
     config = Config(console)
     contest_id, problem_id = get_problem_name(os.getcwd(), problems, console)

@@ -4,7 +4,16 @@ import pathlib
 from rich.console import Console
 
 
-def init(console, filepath, force: bool):
+def init(console: Console, filepath: pathlib.Path, force: bool):
+    """
+    Init a empty problem.yaml.
+    Args:
+        filepath(pathlib.Path):
+        force(bool): will override exist problem.yaml if set to True, otherwise not.
+        console(Console):
+    Returns:
+        None
+    """
     path = pathlib.Path(filepath)
     if (path / "problem.yaml").exists() and not force:
         console.print(

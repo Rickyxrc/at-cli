@@ -13,7 +13,7 @@ from .watch_result import watch_result
 
 def handle(console: Console, arg):
     """
-    handle args
+    Entry of cli, handle args.
     """
     contest_id = arg.contest_id
     session = get_session(console)
