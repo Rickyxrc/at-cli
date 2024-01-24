@@ -2,20 +2,25 @@
 This module is used to add the problem to your current problem.yaml
 """
 
-import rich
-from rich.console import Console
-from ..utils.problems import tryLoadProblem
 import os
-import re
 import pathlib
-from ..utils.get_session import get_session
-from bs4 import BeautifulSoup
+import re
 
-def add_problem(console:Console, contest_id:str, problem_id:str):
+import rich
+from bs4 import BeautifulSoup
+from rich.console import Console
+
+from ..utils.get_session import get_session
+from ..utils.problems import tryLoadProblem
+
+
+def add_problem(console: Console, contest_id: str, problem_id: str):
     problems = tryLoadProblem(os.getcwd(), console)
     session = get_session(console)
     console.print(_("Adding problem %s...") % (f"{contest_id}_{problem_id}"))
-    endpoint = f"https://atcoder.jp/contests/{contest_id}/tasks/{contest_id}_{problem_id}"
+    endpoint = (
+        f"https://atcoder.jp/contests/{contest_id}/tasks/{contest_id}_{problem_id}"
+    )
     res = session.get(endpoint)
     html = BeautifulSoup(res.text, features="html.parser")
     base_dir = problems.filePath.parent
@@ -25,25 +30,42 @@ def add_problem(console:Console, contest_id:str, problem_id:str):
         if not (base_dir / foldername).exists():
             os.mkdir(base_dir / foldername)
         try:
-            if 'Sample Input' in stat_str.string:
+            if "Sample Input" in stat_str.string:
                 id = int(re.findall("Sample Input (\d+)", stat_str.string)[0])
                 code_block = sample.pre.string
-                with open(base_dir / f"{contest_id}_{problem_id}" / f"{id}.in", "w", encoding = "utf-8") as write_stream:
+                with open(
+                    base_dir / f"{contest_id}_{problem_id}" / f"{id}.in",
+                    "w",
+                    encoding="utf-8",
+                ) as write_stream:
                     write_stream.write(code_block)
-            if 'Sample Output' in stat_str.string:
+            if "Sample Output" in stat_str.string:
                 id = int(re.findall("Sample Output (\d+)", stat_str.string)[0])
                 code_block = sample.pre.string
-                with open(base_dir / f"{contest_id}_{problem_id}" / f"{id}.ans", "w", encoding = "utf-8") as write_stream:
+                with open(
+                    base_dir / f"{contest_id}_{problem_id}" / f"{id}.ans",
+                    "w",
+                    encoding="utf-8",
+                ) as write_stream:
                     write_stream.write(code_block)
         except IndexError:
-            console.print("[red]" + _("Failed when parsing %s.") % (f"{contest_id}_{problem_id}") + "[/red]")
+            console.print(
+                "[red]"
+                + _("Failed when parsing %s.") % (f"{contest_id}_{problem_id}")
+                + "[/red]"
+            )
             console.print(_("This problem maybe a [bold]interactive problem[/bold]."))
-            console.print(_("If not, this behavior might not net your expectation, please open a issue and let me know."))
+            console.print(
+                _(
+                    "If not, this behavior might not net your expectation, please open a issue and let me know."
+                )
+            )
     problems.add_problem(contest_id, problem_id)
     problems.save()
     console.print("[green]" + _("success.") + "[/green]")
 
-def handle(console:Console, arg):
+
+def handle(console: Console, arg):
     """
     handle args
     """

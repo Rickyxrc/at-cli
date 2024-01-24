@@ -3,8 +3,12 @@ This helper function is used to let user confirm a operation(with default value)
 """
 from rich.console import Console
 
-def confirm(console: Console, text:str,
-        default:str = "type default selection here(yes or no), not required"):
+
+def confirm(
+    console: Console,
+    text: str,
+    default: str = "type default selection here(yes or no), not required",
+):
     """
     Let user confirm a operation(with default value)
     """
@@ -19,17 +23,18 @@ def confirm(console: Console, text:str,
 
     while True:
         choice = console.input(f"{text} {hint_str}:")
-        if choice == '':
+        if choice == "":
             if default.lower() in inputyes:
                 return True
             if default.lower() in inputno:
                 return False
-            console.print(r'this input have no default operation.')
+            console.print(r"this input have no default operation.")
         if choice.lower() in inputyes:
             return True
         if choice.lower() in inputno:
             return False
         console.print(r'Type "y"("yes") or "n"("no") please.')
+
 
 if __name__ == "__main__":
     print(confirm(Console(), "(test) confirm this operation?", "yes"))
