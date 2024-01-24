@@ -6,6 +6,7 @@ LOCALEDIR = pathlib.Path(__file__).parent / "locales"
 
 # TODO: fix this DIRTY solution
 LANG = os.environ.get("LANG", "en_US.utf-8").split(".")[0]
+
 try:
     lang = gettext.translation(
         "atcodercli",
@@ -16,4 +17,4 @@ try:
     )
     lang.install()
 except FileNotFoundError:
-    lang = gettext.install("atcodercli")
+    gettext.install("atcodercli")

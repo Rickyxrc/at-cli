@@ -4,10 +4,10 @@ import pathlib
 from rich.console import Console
 
 from ..utils.config import Config
-from ..utils.problems import ProblemSet, getProblemName, tryLoadProblemInProblem
+from ..utils.problems import ProblemSet, get_problem_name, load_parent_of_problem
 
 
-def initFile(
+def init_file(
     path: str,
     template: str,
     config: Config,
@@ -46,12 +46,12 @@ def initFile(
 
 def handle(console: Console, arg):
     path = pathlib.Path(os.getcwd())
-    problems = tryLoadProblemInProblem(path, console)
-    contest_id, problem_id = getProblemName(path, problems, console)
+    problems = load_parent_of_problem(path, console)
+    contest_id, problem_id = get_problem_name(path, problems, console)
     config = Config(console)
     file_name = path.name if arg.name is None else arg.name
     template = config.dat["template"]["default"]
-    initFile(
+    init_file(
         path / file_name,
         template,
         config,

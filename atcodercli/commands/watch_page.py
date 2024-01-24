@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from rich.console import Console
 
 from ..utils.get_session import get_session
-from .watchresult import watch_result
+from .watch_result import watch_result
 
 
 def handle(console: Console, arg):

@@ -7,7 +7,7 @@ from rich.progress import Progress
 
 from atcodercli.utils.config import Config
 
-from ..utils.problems import getProblemName, tryLoadProblemInProblem
+from ..utils.problems import get_problem_name, load_parent_of_problem
 
 
 # https://stackoverflow.com/a/21978778/19706510
@@ -17,15 +17,14 @@ def log_subprocess_output(pipe, prefix: str, console: Console):
 
 
 def handle(console: Console, args):
-    problems = tryLoadProblemInProblem(os.getcwd(), console)
+    problems = load_parent_of_problem(os.getcwd(), console)
     config = Config(console)
-    contest_id, problem_id = getProblemName(os.getcwd(), problems, console)
+    contest_id, problem_id = get_problem_name(os.getcwd(), problems, console)
     found = False
     for index, problem in enumerate(problems.dat["problems"]):
         if problem["contest_id"] == contest_id and problem["problem_id"] == problem_id:
-            # console.print(index, problem)
             found = True
-            if args.file == None:
+            if args.file is None:
                 if problem["templates"] == []:
                     console.print(
                         "[red]"
@@ -41,6 +40,7 @@ def handle(console: Console, args):
             else:
                 file = args.file
             break
+
     if not found:
         console.print(
             "[red]"
@@ -59,19 +59,19 @@ def handle(console: Console, args):
     test_files = []
     tot_files = os.listdir(path)
     for file in tot_files:
-        fileWithoutExt = ".".join(file.split(".")[:-1])
+        file_without_ext = ".".join(file.split(".")[:-1])
         if (
             "." in file
             and file.split(".")[-1] == "in"
-            and fileWithoutExt + ".ans" in tot_files
+            and file_without_ext + ".ans" in tot_files
         ):
-            test_files.append((file, f"{fileWithoutExt}.ans"))
+            test_files.append((file, f"{file_without_ext}.ans"))
     test_files = sorted(test_files)
-    totalTask = len(test_files)
-    if args.checker == None:
+    task_count = len(test_files)
+    if args.checker is None:
         checker = config.dat["checker"]["default"]
     else:
-        if config.dat["checker"].get(args.checker) == None:
+        if config.dat["checker"].get(args.checker) is None:
             console.print(
                 "[red]"
                 + _('checker "%s" not found in config file.') % args.checker
@@ -80,10 +80,10 @@ def handle(console: Console, args):
             raise SystemExit(1)
         checker = args.checker
     with Progress(console=console) as progress:
-        test_task = progress.add_task(_("Waiting Judge..."), total=totalTask)
+        test_task = progress.add_task(_("Waiting Judge..."), total=task_count)
 
         console.print(f"$ {tests['before']}")
-        command_init = subprocess.Popen(
+        with subprocess.Popen(
             tests["before"],
             cwd=os.getcwd(),
             env=run_env,
@@ -91,26 +91,26 @@ def handle(console: Console, args):
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             stdin=subprocess.DEVNULL,
-        )
-        with command_init.stdout:
-            log_subprocess_output(
-                command_init.stdout, "[blue]" + _("stdout:") + "[/blue]", console
-            )
-        with command_init.stderr:
-            log_subprocess_output(
-                command_init.stderr, "[red]" + _("stderr:") + "[/red]", console
-            )
+        ) as command_init:
+            with command_init.stdout:
+                log_subprocess_output(
+                    command_init.stdout, "[blue]" + _("stdout:") + "[/blue]", console
+                )
+            with command_init.stderr:
+                log_subprocess_output(
+                    command_init.stderr, "[red]" + _("stderr:") + "[/red]", console
+                )
 
         passed = 0
         failed = []
         for index, test in enumerate(test_files):
             progress.update(
-                test_task, description=_("Running on %d/%d") % (index + 1, totalTask)
+                test_task, description=_("Running on %d/%d") % (index + 1, task_count)
             )
             run_env["INPUT"], run_env["ANSWER"] = test
             run_env["OUTPUT"] = "file.out"
             console.print(f"$ {tests['run']}")
-            command_test = subprocess.Popen(
+            with subprocess.Popen(
                 tests["run"],
                 cwd=os.getcwd(),
                 env=run_env,
@@ -118,23 +118,23 @@ def handle(console: Console, args):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 stdin=subprocess.DEVNULL,
-            )
-            with command_test.stdout:
-                log_subprocess_output(
-                    command_test.stdout,
-                    "[blue]" + _("runner stdout:") + "[/blue]",
-                    console,
-                )
-            with command_test.stderr:
-                log_subprocess_output(
-                    command_test.stderr,
-                    "[red]" + _("runner stderr:") + "[/red]",
-                    console,
-                )
+            ) as command_test:
+                with command_test.stdout:
+                    log_subprocess_output(
+                        command_test.stdout,
+                        "[blue]" + _("runner stdout:") + "[/blue]",
+                        console,
+                    )
+                with command_test.stderr:
+                    log_subprocess_output(
+                        command_test.stderr,
+                        "[red]" + _("runner stderr:") + "[/red]",
+                        console,
+                    )
 
             progress.update(test_task, advance=1)
             console.print(f"$ {config.dat['checker']['types'][checker]}")
-            command_check = subprocess.Popen(
+            with subprocess.Popen(
                 config.dat["checker"]["types"][checker],
                 cwd=os.getcwd(),
                 env=run_env,
@@ -142,20 +142,20 @@ def handle(console: Console, args):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 stdin=subprocess.DEVNULL,
-            )
-            with command_check.stdout:
-                log_subprocess_output(
-                    command_check.stdout,
-                    "[blue]" + _("checker stdout:") + "[/blue]",
-                    console,
-                )
-            with command_check.stderr:
-                log_subprocess_output(
-                    command_check.stderr,
-                    "[red]" + _("checker stderr:") + "[/red]",
-                    console,
-                )
-            res = command_check.wait()
+            ) as command_check:
+                with command_check.stdout:
+                    log_subprocess_output(
+                        command_check.stdout,
+                        "[blue]" + _("checker stdout:") + "[/blue]",
+                        console,
+                    )
+                with command_check.stderr:
+                    log_subprocess_output(
+                        command_check.stderr,
+                        "[red]" + _("checker stderr:") + "[/red]",
+                        console,
+                    )
+                res = command_check.wait()
             if res:
                 console.print(
                     "[red]"
@@ -169,14 +169,15 @@ def handle(console: Console, args):
                     "[green]" + _("Test %d Passed") % (index + 1) + "[/green]"
                 )
                 passed += 1
+
         console.print("---------------" + _("TEST SUMMARY") + "---------------")
-        if passed == totalTask:
+        if passed == task_count:
             console.print("[green]" + _("All check passed!") + "[/green]")
         else:
             console.print("[red]" + _("Some checks failed.") + "[/red]")
-            for failedCheck in failed:
+            for failed_check in failed:
                 console.print(
                     "[red]"
-                    + _('check %d failed, files are "%s" "%s"') % failedCheck
+                    + _('check %d failed, files are "%s" "%s"') % failed_check
                     + "[/red]"
                 )

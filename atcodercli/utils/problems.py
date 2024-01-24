@@ -14,8 +14,9 @@ class ProblemNotFoundError(Exception):
 
 class ProblemSet:
     def __init__(self, file_path: pathlib.Path, console: Console) -> None:
-        self.filePath = file_path
-        self.dat = yaml.safe_load(open(file_path, "r", encoding="utf-8"))
+        self.file_path = file_path
+        with open(file_path, "r", encoding="utf-8") as f:
+            self.dat = yaml.safe_load(f)
         self.console = console
 
     def add_problem(self, contest_id: str, problem_id: str) -> None:
@@ -47,56 +48,54 @@ class ProblemSet:
         raise ProblemNotFoundError
 
     def save(self) -> None:
-        with open(self.filePath, "w", encoding="utf-8") as write_stream:
+        with open(self.file_path, "w", encoding="utf-8") as write_stream:
             write_stream.write(yaml.safe_dump(self.dat))
 
 
-def tryLoadProblemInProblem(pathStr: str, console: Console):
+def load_parent_of_problem(path_str: str, console: Console):
     """
     Load problem.yaml exactly from parent
     if not found, throw Error
     if not found but problem.yaml exist on $pwd, give user hints.
     """
-    path = pathlib.Path(pathStr)
+    path = pathlib.Path(path_str)
     if (path.parent / "problem.yaml").exists():
         return ProblemSet(path.parent / "problem.yaml", console)
-    else:
-        if (path / "problem.yaml").exists():
-            console.print(
-                "[red]"
-                + _(
-                    "This command should run under problem dir, not contest's root dir."
-                )
-                + "[/red]"
-            )
-            console.print(_("please cd in problem dir and exec this command again!"))
-        console.print("[red]" + _("problem.yaml not found in parent dir.") + "[/red]")
-        raise SystemExit(1)
+
+    if (path / "problem.yaml").exists():
+        console.print(
+            "[red]"
+            + _("This command should run under problem dir, not contest's root dir.")
+            + "[/red]"
+        )
+        console.print(_("please cd in problem dir and exec this command again!"))
+    console.print("[red]" + _("problem.yaml not found in parent dir.") + "[/red]")
+    raise SystemExit(1)
 
 
-def tryLoadProblemDirectly(pathStr: str, console: Console):
+def load_problem_directly(path_str: str, console: Console):
     """
     Try to load problem.yaml from path
     If not found, throw Error
     """
-    path = pathlib.Path(pathStr)
+    path = pathlib.Path(path_str)
     if (path / "problem.yaml").exists():
         return ProblemSet(path / "problem.yaml", console)
-    else:
-        console.print(
-            "[red]" + _("file %s not exist.") % (path / "problem.yaml") + "[/red]"
-        )
-        console.print(_("You may want to start a contest using 'atcli contest race'"))
-        console.print(_("create one manually using 'atcli problem init'"))
-        raise SystemExit(1)
+
+    console.print(
+        "[red]" + _("file %s not exist.") % (path / "problem.yaml") + "[/red]"
+    )
+    console.print(_("You may want to start a contest using 'atcli contest race'"))
+    console.print(_("create one manually using 'atcli problem init'"))
+    raise SystemExit(1)
 
 
-def tryLoadProblem(pathStr: str, console: Console) -> ProblemSet:
+def load_problem_from_all_ancestors(path_str: str, console: Console) -> ProblemSet:
     """
     Try to load problem.yaml from all parents.
     If not found, throw Error
     """
-    path = pathlib.Path(pathStr)
+    path = pathlib.Path(path_str)
     while True:
         if (path / "problem.yaml").exists():
             return ProblemSet(path / "problem.yaml", console)
@@ -113,7 +112,7 @@ def tryLoadProblem(pathStr: str, console: Console) -> ProblemSet:
         path = path.parent
 
 
-def getProblemName(pathStr: str, problems: ProblemSet, console: Console):
+def get_problem_name(path_str: str, problems: ProblemSet, console: Console):
     """
     Get Problem by path and problem object from parent
     like: getProblemName(
@@ -122,10 +121,10 @@ def getProblemName(pathStr: str, problems: ProblemSet, console: Console):
         console
     ) = ("abc000", "a")
     """
-    path = pathlib.Path(pathStr)
+    path = pathlib.Path(path_str)
     try:
         contest_id, problem_id = path.name.split("_")
-    except ValueError:
+    except ValueError as e:
         console.print(
             "[red]"
             + _("%s invalid, don't look like <contest_id>_<problem_id>") % path
@@ -136,7 +135,8 @@ def getProblemName(pathStr: str, problems: ProblemSet, console: Console):
                 'use "atcli problem add" or "atcli contest race", cd in that dir and execute this command again!'
             )
         )
-        raise SystemExit(1)
+        raise SystemExit(1) from e
+
     exist = False
     for problem in problems.dat["problems"]:
         if problem["contest_id"] == contest_id and problem["problem_id"] == problem_id:

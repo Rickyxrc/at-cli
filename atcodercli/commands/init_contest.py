@@ -4,13 +4,13 @@ import pathlib
 from bs4 import BeautifulSoup
 from rich.console import Console
 
-from atcodercli.commands.inittemplate import initFile
+from atcodercli.commands.init_template import init_file
 from atcodercli.utils.config import Config
-from atcodercli.utils.problems import tryLoadProblemDirectly
+from atcodercli.utils.problems import load_problem_directly
 
 from ..utils.get_session import get_session
-from .addproblem import add_problem
-from .initproblem import init
+from .add_problem import add_problem
+from .init_problem import init
 
 
 def handle(console: Console, arg):
@@ -23,21 +23,20 @@ def handle(console: Console, arg):
     html = BeautifulSoup(res.text, features="html.parser")
     for problem in list(html.select("td.text-center.no-break")):
         if not "Submit" in problem.a.string:
-            problemId = problem.a["href"].split("_")[-1]
-            add_problem(console, arg.contest_id, problemId)
-    problemObject = tryLoadProblemDirectly(path, console)
-    if arg.template == None:
-        template_name: str = config.dat["template"]["default"]
-    else:
-        template_name: str = arg.template
-    for problem in problemObject.dat["problems"]:
-        initFile(
+            problem_id = problem.a["href"].split("_")[-1]
+            add_problem(console, arg.contest_id, problem_id)
+    problem_object = load_problem_directly(path, console)
+    template_name: str = (
+        config.dat["template"]["default"] if arg.template is None else arg.template
+    )
+    for problem in problem_object.dat["problems"]:
+        init_file(
             path
             / f"{arg.contest_id}_{problem['problem_id']}"
             / f"{arg.contest_id}_{problem['problem_id']}",
-            config.dat["template"]["default"],
+            template_name,
             config,
-            problemObject,
+            problem_object,
             problem["contest_id"],
             problem["problem_id"],
             arg.force,

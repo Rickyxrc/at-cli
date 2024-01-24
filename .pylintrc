@@ -1,3 +1,10 @@
 [MASTER]
 init-hook = 'import sys; sys.path.append("./atcodercli")'
+additional-builtins = _
+jobs = 0
+max-line-length = 150
+disable = raw-checker-failed, bad-inline-option, locally-disabled, file-ignored, suppressed-message, useless-suppression, deprecated-pragma, use-symbolic-message-instead, use-implicit-booleaness-not-comparison-to-string, use-implicit-booleaness-not-comparison-to-zero, line-too-long, fixme
+        , missing-module-docstring, missing-function-docstring, missing-class-docstring
 
+[MESSAGES CONTROL]
+disable = R

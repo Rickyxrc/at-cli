@@ -1,7 +1,6 @@
 import os
 import pathlib
 
-import yaml
 from rich.console import Console
 
 
