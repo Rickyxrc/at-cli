@@ -29,7 +29,7 @@ Add this to your flakes.nix:
 ```nix
     inputs = {
         ...
-        atcodercli.url = "github:rickyxrc/at-cli/tags/v0.3.3";
+        atcodercli.url = "github:rickyxrc/at-cli/tags/<version>";
     };
 ```
 
