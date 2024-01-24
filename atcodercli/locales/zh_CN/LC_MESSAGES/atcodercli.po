@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: atcodercli\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-24 11:30+0800\n"
-"PO-Revision-Date: 2024-01-24 06:27\n"
+"PO-Revision-Date: 2024-01-24 06:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: atcodercli/__main__.py:27
 msgid "at-cli, a lightweight, cross-platform, fast and beautiful command line interface for https://atcoder.jp"
-msgstr "at-cli，一个轻量级、跨平台、的 https://atcoder.jp 命令行工具"
+msgstr "at-cli，一个轻量级、跨平台、的 Atcoder 命令行工具"
 
 #: atcodercli/__main__.py:28
 msgid "default config path: ~/.config/atcli/config.yaml\n"
@@ -36,7 +36,7 @@ msgstr "使用您的用户名和密码登录，会话将存储在 ~/.config/atcl
 
 #: atcodercli/__main__.py:43
 msgid "check if your session file is valid"
-msgstr "检查您的会话文件是否有效"
+msgstr "检查您的登录状态（会话文件）是否有效"
 
 #: atcodercli/__main__.py:48
 msgid "watch submission's results"
@@ -122,7 +122,7 @@ msgstr "致命错误：操作被用户中断。"
 #: atcodercli/commands/addproblem.py:17
 #, python-format
 msgid "add problem %s"
-msgstr ""
+msgstr "添加问题 %s"
 
 #: atcodercli/commands/addproblem.py:39
 #, python-format
@@ -131,11 +131,11 @@ msgstr ""
 
 #: atcodercli/commands/addproblem.py:40
 msgid "This problem maybe a [bold]interactive problem[/bold]."
-msgstr ""
+msgstr "这个问题有可能是一道[bold]交互题[/bold]。"
 
 #: atcodercli/commands/addproblem.py:41
 msgid "If not, this behavior might not net your expectation, please open a issue and let me know."
-msgstr ""
+msgstr "如果不是这样的话，程序现在的行为可能和它的期望行为不同，请提出 issue 让我知道。"
 
 #: atcodercli/commands/initproblem.py:9
 #, python-format
