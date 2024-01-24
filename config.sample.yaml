@@ -1,0 +1,18 @@
+checker:
+  default: diff
+  types:
+    # If you're using windows, please use 'fc'
+    diff: diff --strip-trailing-cr --ignore-trailing-space $OUTPUT $ANSWER
+
+template:
+  default: cpp
+  types:
+    cpp:
+      file: ~/oi/template.cpp
+      ext: cpp
+      test:
+        before: g++ $FILE -o $FILE.run -fsanitize=undefined -D debug_rickyxrc
+        # $OUTPUT is fixed now, but please use it, in future it will be dynamic.
+        run: $FILE.run < $INPUT > $OUTPUT
+        after: rm ./file_run $OUTPUT
+

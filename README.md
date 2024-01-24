@@ -29,6 +29,12 @@ And use like this:
 home.packages = [ inputs.atcodercli.packages.${pkgs.system}.default ];
 ```
 
+## Configuration
+
+See config.sample.yaml for details.
+
+WARNING: EVERY command defined here will DIRECTLY execute on your machine!
+
 ## Contribute translation
 
 We currently use [crowdin](https://crowdin.com/project/atcodercli) and support Chinese only, if you want to contribute to other languages, let me know by issue.
