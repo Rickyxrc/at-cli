@@ -1,6 +1,6 @@
 """
-This module is used to watch a result of records until judge ends
-You needn't to call it most of time
+    This module is used to watch a result of record(s) until judge ends
+    You needn't to call it most of time
 """
 
 import re
@@ -14,7 +14,13 @@ from ..utils.get_session import get_session
 
 def render_status(stat: str) -> str:
     """
-    Input a standard status string and render it in rich format.
+    Render status string to rich-formatted string.
+    Args:
+        stat(str): status string from Atcoder.
+    Returns:
+        rendered string.
+    Examples:
+        render_status("Accepted") -> "[green]Accepted[/green]"
     """
     return {
         "Judging": "[gray]" + _("Judging") + "[/gray]",
@@ -27,9 +33,15 @@ def render_status(stat: str) -> str:
     }.get(stat, _("Unknown status %s") % stat)
 
 
-def watch_result(console: Console, contest_id: str, sids: list):
+def watch_result(console: Console, contest_id: str, sids: list[str]) -> None:
     """
-    watch results with sids[]
+    Render a list of records until judge ends.
+    Args:
+        contest_id(str): The id of a contest.
+        sids(list[str]): The id(s) of a contest.
+        console(Console): Console object from rich.console.
+    Returns:
+        None, outputs are rendered.
     """
     with Progress(console=console) as progress:
         console.print(
@@ -77,7 +89,7 @@ def watch_result(console: Console, contest_id: str, sids: list):
 
 def handle(console: Console, args):
     """
-    handle args
+    Entry of cli, handle args.
     """
     console.print(
         "[yellow]"

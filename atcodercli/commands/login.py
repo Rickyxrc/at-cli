@@ -17,7 +17,7 @@ from rich.console import Console
 
 def handle(console: Console, _arg):
     """
-    handle args
+    Entry of cli, handle args.
     """
     console.print(_("logging in..."))
 

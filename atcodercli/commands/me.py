@@ -11,7 +11,7 @@ from ..utils.get_session import get_session
 
 def handle(console: Console, _arg):
     """
-    handle args
+    Entry of cli, handle args.
     """
     console.print(_("getting login status..."))
     session = get_session(console)
