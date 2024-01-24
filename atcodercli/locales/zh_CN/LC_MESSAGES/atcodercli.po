@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: atcodercli\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-22 16:06+0800\n"
-"PO-Revision-Date: 2024-01-22 09:25\n"
+"PO-Revision-Date: 2024-01-24 05:14\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -354,7 +354,7 @@ msgstr ""
 
 #: atcodercli/utils/get_session.py:22
 msgid "try run \"atcli login\" first."
-msgstr ""
+msgstr "请尝试先运行 \"atcli login\""
 
 #: atcodercli/utils/problems.py:47
 msgid "This command should run under problem dir, not contest's root dir."
