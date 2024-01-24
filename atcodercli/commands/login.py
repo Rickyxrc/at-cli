@@ -15,7 +15,7 @@ from requests.utils import dict_from_cookiejar
 from rich.console import Console
 
 
-def handle(console: Console, arg):
+def handle(console: Console, _arg):
     """
     handle args
     """

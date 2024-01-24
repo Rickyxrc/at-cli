@@ -9,7 +9,7 @@ from rich.console import Console
 from ..utils.get_session import get_session
 
 
-def handle(console: Console, arg):
+def handle(console: Console, _arg):
     """
     handle args
     """

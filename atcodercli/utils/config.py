@@ -10,7 +10,7 @@ from rich.console import Console
 
 
 def _check_path(dic: dict, path: str, origin: str, console: Console):
-    if type(dic) != dict:
+    if not isinstance(dic, dict):
         console.print(
             "[red]"
             + _("Incorrect type in config path %s, expect dict, found %s")
@@ -22,19 +22,19 @@ def _check_path(dic: dict, path: str, origin: str, console: Console):
         var = path.split(".")[0]
         path_remain = ".".join(path.split(".")[1:])
         subdic = dic.get(var)
-        if subdic == None:
+        if subdic is None:
             console.print(
                 "[red]" + _("config %s not exist in config.yaml.") % (origin) + "[/red]"
             )
             raise SystemExit(1)
         return _check_path(subdic, path_remain, origin, console)
-    else:
-        if dic.get(path) == None:
-            console.print(
-                "[red]" + _("config %s not exist in config.yaml.") % (origin) + "[/red]"
-            )
-            raise SystemExit(1)
-        return dic.get(path)
+
+    if dic.get(path) is None:
+        console.print(
+            "[red]" + _("config %s not exist in config.yaml.") % (origin) + "[/red]"
+        )
+        raise SystemExit(1)
+    return dic.get(path)
 
 
 # TODO: Fix this dirty solution.
@@ -65,7 +65,7 @@ def check_differ(dic: dict, name: str, console: Console):
 
 class Config:
     """
-    Config is a read-only object now(cannot write to dir)
+    Config is a read-only object now (cannot write to dir)
     """
 
     def __init__(self, console: Console) -> None:
@@ -81,7 +81,8 @@ class Config:
             with open(self.config_path, "w", encoding="utf-8") as write_stream:
                 write_stream.write("")
             console.print(_("created a null config at %s") % self.config_path)
-        self.dat = yaml.safe_load(open(self.config_path, "r", encoding="utf-8"))
+        with open(self.config_path, "r", encoding="utf-8") as f:
+            self.dat = yaml.safe_load(f)
         self.console = console
 
         template_default = check_path(self.dat, "template.default", console)

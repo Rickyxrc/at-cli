@@ -5,15 +5,15 @@ import argparse
 
 import rich
 
-from .commands.addproblem import handle as handleAddProblem
-from .commands.initcontest import handle as handleInitContest
-from .commands.initproblem import handle as handleInitProblem
-from .commands.inittemplate import handle as handleInitTemplate
+from .commands.add_problem import handle as handleAddProblem
+from .commands.init_contest import handle as handleInitContest
+from .commands.init_problem import handle as handleInitProblem
+from .commands.init_template import handle as handleInitTemplate
 from .commands.login import handle as handleLogin
 from .commands.me import handle as handleMe
-from .commands.testtemplate import handle as handleTestTemplate
-from .commands.watchpage import handle as handleWatchPage
-from .commands.watchresult import handle as handleWatchResult
+from .commands.test_template import handle as handleTestTemplate
+from .commands.watch_page import handle as handleWatchPage
+from .commands.watch_result import handle as handleWatchResult
 
 
 def dispatch_args():
@@ -36,6 +36,8 @@ def dispatch_args():
         )
 
         subparsers = parser.add_subparsers(dest="command", required=True)
+
+        # pylint: disable=unused-variable
         login_parser = subparsers.add_parser(
             "login",
             help=_(
@@ -43,6 +45,8 @@ def dispatch_args():
                 " the session will stored in ~/.config/atcli/session.yaml"
             ),
         )
+
+        # pylint: disable=unused-variable
         me_parser = subparsers.add_parser(
             "me", help=_("check if your session file is valid")
         )

@@ -3,19 +3,17 @@ This module is used to add the problem to your current problem.yaml
 """
 
 import os
-import pathlib
 import re
 
-import rich
 from bs4 import BeautifulSoup
 from rich.console import Console
 
 from ..utils.get_session import get_session
-from ..utils.problems import tryLoadProblem
+from ..utils.problems import load_problem_from_all_ancestors
 
 
 def add_problem(console: Console, contest_id: str, problem_id: str):
-    problems = tryLoadProblem(os.getcwd(), console)
+    problems = load_problem_from_all_ancestors(os.getcwd(), console)
     session = get_session(console)
     console.print(_("Adding problem %s...") % (f"{contest_id}_{problem_id}"))
     endpoint = (
@@ -23,7 +21,7 @@ def add_problem(console: Console, contest_id: str, problem_id: str):
     )
     res = session.get(endpoint)
     html = BeautifulSoup(res.text, features="html.parser")
-    base_dir = problems.filePath.parent
+    base_dir = problems.file_path.parent
     for sample in list(html.select(".part>section")):
         stat_str = sample.h3
         foldername = f"{contest_id}_{problem_id}"
@@ -31,19 +29,19 @@ def add_problem(console: Console, contest_id: str, problem_id: str):
             os.mkdir(base_dir / foldername)
         try:
             if "Sample Input" in stat_str.string:
-                id = int(re.findall("Sample Input (\d+)", stat_str.string)[0])
+                sample_id = int(re.findall("Sample Input (\\d+)", stat_str.string)[0])
                 code_block = sample.pre.string
                 with open(
-                    base_dir / f"{contest_id}_{problem_id}" / f"{id}.in",
+                    base_dir / f"{contest_id}_{problem_id}" / f"{sample_id}.in",
                     "w",
                     encoding="utf-8",
                 ) as write_stream:
                     write_stream.write(code_block)
             if "Sample Output" in stat_str.string:
-                id = int(re.findall("Sample Output (\d+)", stat_str.string)[0])
+                sample_id = int(re.findall("Sample Output (\\d+)", stat_str.string)[0])
                 code_block = sample.pre.string
                 with open(
-                    base_dir / f"{contest_id}_{problem_id}" / f"{id}.ans",
+                    base_dir / f"{contest_id}_{problem_id}" / f"{sample_id}.ans",
                     "w",
                     encoding="utf-8",
                 ) as write_stream:
