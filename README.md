@@ -2,6 +2,16 @@
 
 At-cli, a lightweight, cross-platform, fast and beautiful command line interface for https://atcoder.jp.
 
+## Multi-language support
+
+NOTE: This content is in Chinese, doesn't matter if you use english.
+
+中文用户请务必看过来！这个程序是有中文支持的！
+
+检测使用语言的方法是环境变量 `LANG`，请将其设置为 `zh_CN.UTF-8` 以使用中文。
+
+如果认为我（或其他译者）的文笔太差，或有未翻译文本，想要贡献翻译，详见 [Contribute translation](#contribute-translation) 章节。
+
 ## Installation
 
 ### Via pypi package
