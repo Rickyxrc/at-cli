@@ -88,6 +88,13 @@ def dispatch_args():
         problem_add_parser.add_argument(
             "problem_id", help=_("The id of the problem, like 'a' or 'g'")
         )
+        problem_add_parser.add_argument("--force", action="store_true")
+        problem_add_parser.add_argument(
+            "--template", help=_("specific template type(or using the default)")
+        )
+        problem_add_parser.add_argument(
+            "--name", help=_("specific generated file name")
+        )
         problem_init_parser = problem_subparsers.add_parser(
             "init", help=_("init problem.yaml in current dir")
         )

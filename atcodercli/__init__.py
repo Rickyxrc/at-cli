@@ -1,3 +1,6 @@
+"""
+    Load gettext function _() to translate
+"""
 import gettext
 import os
 import pathlib

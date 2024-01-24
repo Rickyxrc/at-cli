@@ -8,11 +8,19 @@ from rich.console import Console
 
 
 class ProblemNotFoundError(Exception):
+    """
+    ProblemNotFoundError
+    """
+
     def __init__(self, *args: object) -> None:
         super().__init__(*args)
 
 
 class ProblemSet:
+    """
+    A set of problems, usually load from problem.yaml
+    """
+
     def __init__(self, file_path: pathlib.Path, console: Console) -> None:
         self.file_path = file_path
         with open(file_path, "r", encoding="utf-8") as f:
@@ -20,6 +28,10 @@ class ProblemSet:
         self.console = console
 
     def add_problem(self, contest_id: str, problem_id: str) -> None:
+        """
+        Add a problem to this problem object.
+        Remember to save.
+        """
         addobj = {
             "contest_id": contest_id,
             "problem_id": problem_id,
@@ -30,12 +42,18 @@ class ProblemSet:
             self.dat["problems"].append(addobj)
         else:
             self.console.print(
-                f"[yellow]problem {contest_id} {problem_id} already exists.[/yellow]"
+                "[yellow]"
+                + _("problem %s already exists.") % (f"{contest_id}_{problem_id}")
+                + "[/yellow]"
             )
 
     def add_template(
         self, contest_id: str, problem_id: str, file_path: str, template: str
     ) -> None:
+        """
+        Add a template to a problem in this problem object.
+        Remember to save.
+        """
         addobj = {"path": file_path, "template": template}
         for index, problem in enumerate(self.dat["problems"]):
             if (
@@ -48,6 +66,9 @@ class ProblemSet:
         raise ProblemNotFoundError
 
     def save(self) -> None:
+        """
+        Write the object back to file.
+        """
         with open(self.file_path, "w", encoding="utf-8") as write_stream:
             write_stream.write(yaml.safe_dump(self.dat))
 
