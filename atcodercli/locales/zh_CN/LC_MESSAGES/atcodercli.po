@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: atcodercli\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-24 23:40+0800\n"
-"PO-Revision-Date: 2024-01-24 15:44\n"
+"PO-Revision-Date: 2024-01-24 15:48\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -122,12 +122,12 @@ msgstr "致命错误：操作被用户中断。"
 #: atcodercli/commands/add_problem.py:33
 #, python-format
 msgid "Adding problem %s..."
-msgstr ""
+msgstr "正在添加题目 %s……"
 
 #: atcodercli/commands/add_problem.py:67
 #, python-format
 msgid "Failed when parsing %s."
-msgstr ""
+msgstr "在解析题目 %s 时失败。"
 
 #: atcodercli/commands/add_problem.py:70
 msgid "This problem maybe a [bold]interactive problem[/bold]."
@@ -140,7 +140,7 @@ msgstr "如果不是这样的话，程序现在的行为可能和它的期望行
 #: atcodercli/commands/add_problem.py:80
 #, python-format
 msgid "success fully add problem %s"
-msgstr ""
+msgstr "成功添加问题 %s"
 
 #: atcodercli/commands/init_problem.py:20
 #, python-format
@@ -360,26 +360,26 @@ msgstr "警告：大多数时间您不需要手动运行此命令，运行 “at
 #: atcodercli/utils/config.py:19
 #, python-format
 msgid "Incorrect type in config path %s, expect dict, found %s"
-msgstr ""
+msgstr "配置文件中，路径 %s 的类型不正确，应该是字典，却是 %s"
 
 #: atcodercli/utils/config.py:30 atcodercli/utils/config.py:37
 #, python-format
 msgid "config %s not exist in config.yaml."
-msgstr ""
+msgstr "配置项 %s 在 config.yaml 中未找到。"
 
 #: atcodercli/utils/config.py:87
 msgid "No config file found under ~/.config/atcli/config.yaml"
-msgstr ""
+msgstr "~/.config/atcli/config.yaml 不存在"
 
 #: atcodercli/utils/config.py:92
 #, python-format
 msgid "created a null config at %s"
-msgstr ""
+msgstr "在 %s 创建了空配置"
 
 #: atcodercli/utils/get_session.py:26
 #, python-format
 msgid "ERROR:no session file found at %s"
-msgstr ""
+msgstr "错误：在 %s 没有找到绘画文件"
 
 #: atcodercli/utils/get_session.py:30
 msgid "try run \"atcli login\" first."
@@ -388,7 +388,7 @@ msgstr "请尝试先运行 \"atcli login\""
 #: atcodercli/utils/problems.py:46
 #, python-format
 msgid "problem %s already exists."
-msgstr ""
+msgstr "问题 %s 已经存在。"
 
 #: atcodercli/utils/problems.py:89
 msgid "This command should run under problem dir, not contest's root dir."
