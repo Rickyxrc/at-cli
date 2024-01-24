@@ -1,17 +1,35 @@
+import os
 import pathlib
+
 from rich.console import Console
+
 from ..utils.config import Config
 from ..utils.problems import ProblemSet, getProblemName, tryLoadProblemInProblem
-import os
 
-def initFile(path: str, template: str, config: Config, problems: ProblemSet, contest_id:str, problem_id:str, force:bool, console:Console):
-    template_path = pathlib.Path(os.path.expanduser(config.dat['template']['types'][template]['file']))
+
+def initFile(
+    path: str,
+    template: str,
+    config: Config,
+    problems: ProblemSet,
+    contest_id: str,
+    problem_id: str,
+    force: bool,
+    console: Console,
+):
+    template_path = pathlib.Path(
+        os.path.expanduser(config.dat["template"]["types"][template]["file"])
+    )
     if template_path.exists():
-        with open(template_path, "r", encoding = "utf-8") as read_stream:
+        with open(template_path, "r", encoding="utf-8") as read_stream:
             code_template = read_stream.read()
-        console.print(_("loaded template \"%s\" from %s") % (template, template_path))
+        console.print(_('loaded template "%s" from %s') % (template, template_path))
     else:
-        console.print("[red]" + _("template \"%s\" file %s does not exist!") % (template, template_path) + "[/red]")
+        console.print(
+            "[red]"
+            + _('template "%s" file %s does not exist!') % (template, template_path)
+            + "[/red]"
+        )
         raise SystemExit(1)
     generate_file = str(path) + f".{config.dat['template']['types'][template]['ext']}"
     if pathlib.Path(generate_file).exists() and not force:
@@ -19,19 +37,20 @@ def initFile(path: str, template: str, config: Config, problems: ProblemSet, con
         console.print(_("to override, use --force"))
         console.print(_("or if you want to create other file, use --name <file_name>"))
         raise SystemExit(1)
-    with open(generate_file, "w", encoding = "utf-8") as write_stream:
+    with open(generate_file, "w", encoding="utf-8") as write_stream:
         write_stream.write(code_template)
         console.print(_("generated %s") % generate_file)
     problems.add_template(contest_id, problem_id, generate_file, template)
     problems.save()
 
-def handle(console:Console, arg):
+
+def handle(console: Console, arg):
     path = pathlib.Path(os.getcwd())
     problems = tryLoadProblemInProblem(path, console)
     contest_id, problem_id = getProblemName(path, problems, console)
     config = Config(console)
     file_name = path.name if arg.name is None else arg.name
-    template = config.dat['template']['default']
+    template = config.dat["template"]["default"]
     initFile(
         path / file_name,
         template,
@@ -42,4 +61,3 @@ def handle(console:Console, arg):
         arg.force,
         console,
     )
-
