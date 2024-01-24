@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 def add_problem(console:Console, contest_id:str, problem_id:str):
     problems = tryLoadProblem(os.getcwd(), console)
     session = get_session(console)
-    console.print(_("add problem %s") % (f"{contest_id}_{problem_id}"))
+    console.print(_("Adding problem %s...") % (f"{contest_id}_{problem_id}"))
     endpoint = f"https://atcoder.jp/contests/{contest_id}/tasks/{contest_id}_{problem_id}"
     res = session.get(endpoint)
     html = BeautifulSoup(res.text, features="html.parser")
@@ -36,11 +36,12 @@ def add_problem(console:Console, contest_id:str, problem_id:str):
                 with open(base_dir / f"{contest_id}_{problem_id}" / f"{id}.ans", "w", encoding = "utf-8") as write_stream:
                     write_stream.write(code_block)
         except IndexError:
-            console.print(_("[red]Failed when parsing %s.[/red]") % (f"{contest_id}_{problem_id}"))
+            console.print("[red]" + _("Failed when parsing %s.") % (f"{contest_id}_{problem_id}") + "[/red]")
             console.print(_("This problem maybe a [bold]interactive problem[/bold]."))
             console.print(_("If not, this behavior might not net your expectation, please open a issue and let me know."))
     problems.add_problem(contest_id, problem_id)
     problems.save()
+    console.print("[green]" + _("success.") + "[/green]")
 
 def handle(console:Console, arg):
     """
