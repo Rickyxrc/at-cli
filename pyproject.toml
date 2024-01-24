@@ -1,16 +1,16 @@
 [tool.poetry]
 name = "atcodercli"
-version = "0.3.6"
+version = "0.3.7"
 description = "A lightweight, fast and beautiful command line interface for Atcoder.jp"
 authors = ["Rickyxrc <rickyxrc@outlook.com>"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.6"
 rich = "^13.7.0"
 requests = "^2.31.0"
-beautifulsoup4 = "^4.12.3"
+beautifulsoup4 = "^4.12.2"
 pyyaml = "^6.0.1"
 
 [tool.poetry.group.dev.dependencies]
