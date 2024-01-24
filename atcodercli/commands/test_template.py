@@ -1,3 +1,6 @@
+"""
+    Test a template use config defined in ~/.config/atcli/config.yaml
+"""
 import os
 import pathlib
 import subprocess

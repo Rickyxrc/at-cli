@@ -3,16 +3,31 @@ This module is used to add the problem to your current problem.yaml
 """
 
 import os
+import pathlib
 import re
 
 from bs4 import BeautifulSoup
 from rich.console import Console
 
+from atcodercli.commands.init_template import init_file
+
+from ..utils.config import Config
 from ..utils.get_session import get_session
 from ..utils.problems import load_problem_from_all_ancestors
 
 
-def add_problem(console: Console, contest_id: str, problem_id: str):
+def add_problem(
+    console: Console,
+    contest_id: str,
+    problem_id: str,
+    force: bool,
+    template: str,
+    config: Config,
+    file_name: str,
+):
+    """
+    Add a problem to ./problem.yaml
+    """
     problems = load_problem_from_all_ancestors(os.getcwd(), console)
     session = get_session(console)
     console.print(_("Adding problem %s...") % (f"{contest_id}_{problem_id}"))
@@ -60,11 +75,40 @@ def add_problem(console: Console, contest_id: str, problem_id: str):
             )
     problems.add_problem(contest_id, problem_id)
     problems.save()
-    console.print("[green]" + _("success.") + "[/green]")
+    console.print(
+        "[green]"
+        + _("success fully add problem %s") % (f"{contest_id}_{problem_id}")
+        + "[/green]"
+    )
+    init_file(
+        pathlib.Path(os.getcwd()) / f"{contest_id}_{problem_id}" / file_name,
+        template,
+        config,
+        problems,
+        contest_id,
+        problem_id,
+        force,
+        console,
+    )
 
 
 def handle(console: Console, arg):
     """
     Entry of cli, handle args.
     """
-    add_problem(console, arg.contest_id, arg.problem_id)
+    config = Config(console)
+    template = (
+        arg.template if arg.template is not None else config.dat["template"]["default"]
+    )
+    file_name = (
+        arg.name if arg.name is not None else f"{arg.contest_id}_{arg.problem_id}"
+    )
+    add_problem(
+        console,
+        arg.contest_id,
+        arg.problem_id,
+        arg.force,
+        template,
+        Config(console),
+        file_name,
+    )
