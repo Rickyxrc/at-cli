@@ -1,0 +1,27 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+      - id: trailing-whitespace
+      - id: check-ast
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+  - repo: local
+    hooks:
+    - id: lint
+      name: lint code
+      entry: pylint
+      language: system
+      files: "^(.*)\\.pyi?$"
+    - id: extract-string
+      name: (i18n) extract string
+      entry: /bin/sh ./scripts/extract-string
+      language: script
+      always_run: true
