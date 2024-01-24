@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atcodercli\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-22 16:06+0800\n"
-"PO-Revision-Date: 2024-01-24 05:14\n"
+"POT-Creation-Date: 2024-01-24 11:30+0800\n"
+"PO-Revision-Date: 2024-01-24 06:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -121,8 +121,21 @@ msgstr "致命错误：操作被用户中断。"
 
 #: atcodercli/commands/addproblem.py:17
 #, python-format
-msgid "add problem %s_%s"
-msgstr "添加问题 %s_%s"
+msgid "add problem %s"
+msgstr ""
+
+#: atcodercli/commands/addproblem.py:39
+#, python-format
+msgid "[red]Failed when parsing %s.[/red]"
+msgstr ""
+
+#: atcodercli/commands/addproblem.py:40
+msgid "This problem maybe a [bold]interactive problem[/bold]."
+msgstr ""
+
+#: atcodercli/commands/addproblem.py:41
+msgid "If not, this behavior might not net your expectation, please open a issue and let me know."
+msgstr ""
 
 #: atcodercli/commands/initproblem.py:9
 #, python-format
