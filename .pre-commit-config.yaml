@@ -22,6 +22,6 @@ repos:
       files: "^(.*)\\.pyi?$"
     - id: extract-string
       name: (i18n) extract string
-      entry: ./scripts/extract-string
+      entry: /bin/sh ./scripts/extract-string
       language: script
-      types: [shell]
+      always_run: true
