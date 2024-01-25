@@ -8,7 +8,9 @@ NOTE: This content is in Chinese, doesn't matter if you use english.
 
 中文用户请务必看过来！这个程序是有中文支持的！
 
-检测使用语言的方法是环境变量 `LANG`，请将其设置为 `zh_CN.UTF-8` 以使用中文。
+检测语言使用了 locale 库，对于 windows，由于作者目前没有一台 windows 设备，无法进行测试（或许是可以的吧）。
+
+对于 linux，它的主要工作原理是检测环境变量 `LANG`，请设置为 `zh_CN.UTF-8` 以使用中文。
 
 如果认为我（或其他译者）的文笔太差，或有未翻译文本，想要贡献翻译，详见 [Contribute translation](#contribute-translation) 章节。
 
