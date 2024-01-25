@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-25 23:13+0800\n"
+"POT-Creation-Date: 2024-01-26 02:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,67 +17,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: atcodercli/__main__.py:28
+#: atcodercli/__main__.py:30
 msgid ""
 "at-cli, a lightweight, cross-platform, fast and beautiful command line "
 "interface for https://atcoder.jp"
 msgstr ""
 
-#: atcodercli/__main__.py:31
+#: atcodercli/__main__.py:33
 msgid ""
 "default config path: ~/.config/atcli/config.yaml\n"
 "default login session path: ~/.config/atcli/session.yaml\n"
 "program source: https://github.com/rickyxrc/atcli\n"
 msgstr ""
 
-#: atcodercli/__main__.py:43
+#: atcodercli/__main__.py:45
 msgid ""
 "login with your username and password, the session will stored in "
 "~/.config/atcli/session.yaml"
 msgstr ""
 
-#: atcodercli/__main__.py:51
+#: atcodercli/__main__.py:53
 msgid "check if your session file is valid"
 msgstr ""
 
-#: atcodercli/__main__.py:55
+#: atcodercli/__main__.py:57
 msgid "watch submission's results"
 msgstr ""
 
-#: atcodercli/__main__.py:61
+#: atcodercli/__main__.py:63
 msgid "watch a specific submission id's result"
 msgstr ""
 
-#: atcodercli/__main__.py:64 atcodercli/__main__.py:73
-#: atcodercli/__main__.py:86 atcodercli/__main__.py:112
+#: atcodercli/__main__.py:66 atcodercli/__main__.py:75
+#: atcodercli/__main__.py:88 atcodercli/__main__.py:137
 msgid "The id of the contest, like 'abc123'"
 msgstr ""
 
-#: atcodercli/__main__.py:67
+#: atcodercli/__main__.py:69
 msgid "The submission id of the contest"
 msgstr ""
 
-#: atcodercli/__main__.py:70
+#: atcodercli/__main__.py:72
 msgid "watch a contest's latest submissions"
 msgstr ""
 
-#: atcodercli/__main__.py:77
+#: atcodercli/__main__.py:79
 msgid "operate with problems(like submit, add)"
 msgstr ""
 
-#: atcodercli/__main__.py:83
+#: atcodercli/__main__.py:85
 msgid "add a problem to solve"
 msgstr ""
 
-#: atcodercli/__main__.py:89
+#: atcodercli/__main__.py:91
 msgid "The id of the problem, like 'a' or 'g'"
 msgstr ""
 
-#: atcodercli/__main__.py:93 atcodercli/__main__.py:132
-msgid "specific template type(or using the default)"
+#: atcodercli/__main__.py:94 atcodercli/__main__.py:117
+#: atcodercli/__main__.py:140
+msgid "specific template type"
 msgstr ""
 
-#: atcodercli/__main__.py:96 atcodercli/__main__.py:129
+#: atcodercli/__main__.py:96 atcodercli/__main__.py:155
 msgid "specific generated file name"
 msgstr ""
 
@@ -86,65 +87,89 @@ msgid "init problem.yaml in current dir"
 msgstr ""
 
 #: atcodercli/__main__.py:103
+msgid "submit current problem"
+msgstr ""
+
+#: atcodercli/__main__.py:106
+msgid "ignore pretest check"
+msgstr ""
+
+#: atcodercli/__main__.py:110
+msgid "submit this problem, though it's completed"
+msgstr ""
+
+#: atcodercli/__main__.py:114
+msgid "ignore all check, just submit the problem"
+msgstr ""
+
+#: atcodercli/__main__.py:120
+msgid "specific the file to submit"
+msgstr ""
+
+#: atcodercli/__main__.py:123 atcodercli/__main__.py:166
+msgid "specific checker to use"
+msgstr ""
+
+#: atcodercli/__main__.py:126
 msgid "operate with contests(pull all problem samples)"
 msgstr ""
 
-#: atcodercli/__main__.py:109
+#: atcodercli/__main__.py:133
 msgid "init a problem.yaml locally and pull all problem samples"
 msgstr ""
 
-#: atcodercli/__main__.py:115
-msgid "specific template type"
-msgstr ""
-
-#: atcodercli/__main__.py:117
+#: atcodercli/__main__.py:142
 msgid "init with template, run template commands(like test)"
 msgstr ""
 
-#: atcodercli/__main__.py:124
+#: atcodercli/__main__.py:150
 msgid ""
 "init a template under current dir(need \"atcli contest racce\" or \"atcli"
 " problem init\"), template name is dirname default, a \"problem.yaml\" "
 "should exist exactly pwd's parent dir."
 msgstr ""
 
-#: atcodercli/__main__.py:136
+#: atcodercli/__main__.py:158
+msgid "specific template type(or using the default)"
+msgstr ""
+
+#: atcodercli/__main__.py:162
 msgid "test a templete defined in config."
 msgstr ""
 
-#: atcodercli/__main__.py:139
-msgid "specific file to test(or test the default)"
+#: atcodercli/__main__.py:164
+msgid "specific file to test"
 msgstr ""
 
-#: atcodercli/__main__.py:142
-msgid "specific checker to use"
+#: atcodercli/__main__.py:169
+msgid "override the template setting"
 msgstr ""
 
-#: atcodercli/__main__.py:170
+#: atcodercli/__main__.py:199
 msgid "FATAL:Interrupted."
 msgstr ""
 
-#: atcodercli/commands/add_problem.py:33
+#: atcodercli/commands/add_problem.py:36
 #, python-format
 msgid "Adding problem %s..."
 msgstr ""
 
-#: atcodercli/commands/add_problem.py:67
+#: atcodercli/commands/add_problem.py:70
 #, python-format
 msgid "Failed when parsing %s."
 msgstr ""
 
-#: atcodercli/commands/add_problem.py:70
+#: atcodercli/commands/add_problem.py:73
 msgid "This problem maybe a [bold]interactive problem[/bold]."
 msgstr ""
 
-#: atcodercli/commands/add_problem.py:72
+#: atcodercli/commands/add_problem.py:75
 msgid ""
 "If not, this behavior might not net your expectation, please open a issue"
 " and let me know."
 msgstr ""
 
-#: atcodercli/commands/add_problem.py:80
+#: atcodercli/commands/add_problem.py:83
 #, python-format
 msgid "success fully add problem %s"
 msgstr ""
@@ -229,82 +254,97 @@ msgstr ""
 msgid "FATAL:failed to login"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:42
+#: atcodercli/commands/submit_problem.py:44
 #, python-format
-msgid "testing file %s with template \"%s\"..."
+msgid "Submitting problem %s"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:61
+#: atcodercli/commands/test_template.py:39
+#, python-format
+msgid "testing file %s with template \"%s\" and checker \"%s\"..."
+msgstr ""
+
+#: atcodercli/commands/test_template.py:60
 msgid "Waiting Judge..."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:75
+#: atcodercli/commands/test_template.py:74
 msgid "stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:79
+#: atcodercli/commands/test_template.py:78
 msgid "stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:84
+#: atcodercli/commands/test_template.py:83
 msgid "Pre-execute script return non-zero value"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:92
+#: atcodercli/commands/test_template.py:91
 #, python-format
 msgid "Running on %d/%d"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:109
+#: atcodercli/commands/test_template.py:108
 msgid "runner stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:115
+#: atcodercli/commands/test_template.py:114
 msgid "runner stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:133
+#: atcodercli/commands/test_template.py:132
 msgid "checker stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:139
+#: atcodercli/commands/test_template.py:138
 msgid "checker stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:146
+#: atcodercli/commands/test_template.py:145
 #, python-format
 msgid "Test %d Failed - checker returned non-zero value"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:153
+#: atcodercli/commands/test_template.py:152
 #, python-format
 msgid "Test %d Passed"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:157
+#: atcodercli/commands/test_template.py:156
 msgid "TEST SUMMARY"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:159
+#: atcodercli/commands/test_template.py:158
 msgid "All check passed!"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:162
+#: atcodercli/commands/test_template.py:161
 msgid "Some checks failed."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:166
+#: atcodercli/commands/test_template.py:165
 #, python-format
 msgid "check %d failed, files are \"%s\" \"%s\""
 msgstr ""
 
-#: atcodercli/commands/test_template.py:184
+#: atcodercli/commands/test_template.py:183
 msgid "This problem is marked as accepted."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:195
+#: atcodercli/commands/test_template.py:193
 #, python-format
-msgid "template %s not found"
+msgid "file %s not found"
+msgstr ""
+
+#: atcodercli/commands/test_template.py:201
+#, python-format
+msgid "checker \"%s\" not exist in config."
+msgstr ""
+
+#: atcodercli/commands/test_template.py:212
+#, python-format
+msgid "template \"%s\" not exist in config"
 msgstr ""
 
 #: atcodercli/commands/watch_result.py:26
@@ -370,83 +410,83 @@ msgstr ""
 msgid "config %s not exist in config.yaml."
 msgstr ""
 
-#: atcodercli/utils/config.py:87
+#: atcodercli/utils/config.py:88
 msgid "No config file found under ~/.config/atcli/config.yaml"
 msgstr ""
 
-#: atcodercli/utils/config.py:92
+#: atcodercli/utils/config.py:93
 #, python-format
 msgid "created a null config at %s"
 msgstr ""
 
-#: atcodercli/utils/get_session.py:26
+#: atcodercli/utils/get_session.py:27
 #, python-format
 msgid "ERROR:no session file found at %s"
 msgstr ""
 
-#: atcodercli/utils/get_session.py:30
+#: atcodercli/utils/get_session.py:31
 msgid "try run \"atcli login\" first."
 msgstr ""
 
-#: atcodercli/utils/problems.py:112
+#: atcodercli/utils/problems.py:103
 #, python-format
 msgid "problem %s already exists."
 msgstr ""
 
-#: atcodercli/utils/problems.py:155
+#: atcodercli/utils/problems.py:146
 msgid "This command should run under problem dir, not contest's root dir."
 msgstr ""
 
-#: atcodercli/utils/problems.py:158
+#: atcodercli/utils/problems.py:149
 msgid "please cd in problem dir and exec this command again!"
 msgstr ""
 
-#: atcodercli/utils/problems.py:159
+#: atcodercli/utils/problems.py:150
 msgid "problem.yaml not found in parent dir."
 msgstr ""
 
-#: atcodercli/utils/problems.py:173
+#: atcodercli/utils/problems.py:164
 #, python-format
 msgid "file %s not exist."
 msgstr ""
 
-#: atcodercli/utils/problems.py:175 atcodercli/utils/problems.py:194
-msgid "You may want to start a contest using 'atcli contest race'"
+#: atcodercli/utils/problems.py:166 atcodercli/utils/problems.py:185
+msgid "You may want to start a contest using 'atcli contest init'"
 msgstr ""
 
-#: atcodercli/utils/problems.py:176 atcodercli/utils/problems.py:196
+#: atcodercli/utils/problems.py:167 atcodercli/utils/problems.py:187
 msgid "create one manually using 'atcli problem init'"
 msgstr ""
 
-#: atcodercli/utils/problems.py:191
+#: atcodercli/utils/problems.py:182
 #, python-format
 msgid "No problem.yaml found under %s."
 msgstr ""
 
-#: atcodercli/utils/problems.py:198
+#: atcodercli/utils/problems.py:189
 #, python-format
 msgid "\"problem.yaml\" not found in %s, searching up"
 msgstr ""
 
-#: atcodercli/utils/problems.py:217
+#: atcodercli/utils/problems.py:208
 #, python-format
 msgid "%s invalid, don't look like <contest_id>_<problem_id>"
 msgstr ""
 
-#: atcodercli/utils/problems.py:221
+#: atcodercli/utils/problems.py:212
 msgid ""
-"use \"atcli problem add\" or \"atcli contest race\", cd in that dir and "
+"use \"atcli problem add\" or \"atcli contest init\", cd in that dir and "
 "execute this command again!"
 msgstr ""
 
-#: atcodercli/utils/problems.py:232
+#: atcodercli/utils/problems.py:223
 #, python-format
 msgid "problem %s not exist"
 msgstr ""
 
-#: atcodercli/utils/problems.py:235
+#: atcodercli/utils/problems.py:226
 msgid ""
 "tip: don't create problem dir manually, use \"atcli problem add\" or "
-"\"atcli contest race\""
+"\"atcli contest init\""
 msgstr ""
 

@@ -1,6 +1,7 @@
 """
 Main Module of atcli
 """
+# TODO: input the config and problem object here to reuse
 import argparse
 
 import rich
@@ -11,6 +12,7 @@ from .commands.init_problem import handle as handleInitProblem
 from .commands.init_template import handle as handleInitTemplate
 from .commands.login import handle as handleLogin
 from .commands.me import handle as handleMe
+from .commands.submit_problem import handle as handleSubmitProblem
 from .commands.test_template import handle as handleTestTemplate
 from .commands.watch_page import handle as handleWatchPage
 from .commands.watch_result import handle as handleWatchResult
@@ -89,9 +91,7 @@ def dispatch_args():
             "problem_id", help=_("The id of the problem, like 'a' or 'g'")
         )
         problem_add_parser.add_argument("--force", action="store_true")
-        problem_add_parser.add_argument(
-            "--template", help=_("specific template type(or using the default)")
-        )
+        problem_add_parser.add_argument("--template", help=_("specific template type"))
         problem_add_parser.add_argument(
             "--name", help=_("specific generated file name")
         )
@@ -99,20 +99,45 @@ def dispatch_args():
             "init", help=_("init problem.yaml in current dir")
         )
         problem_init_parser.add_argument("--force", action="store_true")
+        problem_submit_parser = problem_subparsers.add_parser(
+            "submit", help=_("submit current problem")
+        )
+        problem_submit_parser.add_argument(
+            "--no-check", help=_("ignore pretest check"), action="store_true"
+        )
+        problem_submit_parser.add_argument(
+            "--ignore-completed",
+            help=_("submit this problem, though it's completed"),
+            action="store_true",
+        )
+        problem_submit_parser.add_argument(
+            "--force", help=_("ignore all check, just submit the problem")
+        )
+        problem_submit_parser.add_argument(
+            "--template", help=_("specific template type")
+        )
+        problem_submit_parser.add_argument(
+            "--file", help=_("specific the file to submit")
+        )
+        problem_submit_parser.add_argument(
+            "--checker", help=_("specific checker to use")
+        )
         contest_parser = subparsers.add_parser(
             "contest", help=_("operate with contests(pull all problem samples)")
         )
         contest_subparsers = contest_parser.add_subparsers(
             dest="contest_subcommand", required=True
         )
-        contest_race_parser = contest_subparsers.add_parser(
-            "race", help=_("init a problem.yaml locally and pull all problem samples")
+        contest_init_parser = contest_subparsers.add_parser(
+            "init",
+            help=_("init a problem.yaml locally and pull all problem samples"),
+            aliases=["race"],
         )
-        contest_race_parser.add_argument(
+        contest_init_parser.add_argument(
             "contest_id", help=_("The id of the contest, like 'abc123'")
         )
-        contest_race_parser.add_argument("--force", action="store_true")
-        contest_race_parser.add_argument("--template", help=_("specific template type"))
+        contest_init_parser.add_argument("--force", action="store_true")
+        contest_init_parser.add_argument("--template", help=_("specific template type"))
         template_parser = subparsers.add_parser(
             "template", help=_("init with template, run template commands(like test)")
         )
@@ -121,6 +146,7 @@ def dispatch_args():
         )
         template_init_parser = template_subparsers.add_parser(
             "init",
+            aliases=["gen", "add"],
             help=_(
                 'init a template under current dir(need "atcli contest racce" or "atcli problem init"), template name is dirname default, a "problem.yaml" should exist exactly pwd\'s parent dir.'
             ),
@@ -135,11 +161,12 @@ def dispatch_args():
         template_test_parser = template_subparsers.add_parser(
             "test", help=_("test a templete defined in config.")
         )
-        template_test_parser.add_argument(
-            "--file", help=_("specific file to test(or test the default)")
-        )
+        template_test_parser.add_argument("--file", help=_("specific file to test"))
         template_test_parser.add_argument(
             "--checker", help=_("specific checker to use")
+        )
+        template_test_parser.add_argument(
+            "--template", help=_("override the template setting")
         )
 
         arg = parser.parse_args()
@@ -157,11 +184,13 @@ def dispatch_args():
                 handleAddProblem(console, arg)
             if arg.problem_subcommand == "init":
                 handleInitProblem(console, arg)
+            if arg.problem_subcommand == "submit":
+                handleSubmitProblem(console, arg)
         if arg.command == "contest":
-            if arg.contest_subcommand == "race":
+            if arg.contest_subcommand in ["init", "race"]:
                 handleInitContest(console, arg)
         if arg.command == "template":
-            if arg.template_subcommand == "init":
+            if arg.template_subcommand in ["init", "gen", "add"]:
                 handleInitTemplate(console, arg)
             if arg.template_subcommand == "test":
                 handleTestTemplate(console, arg)
