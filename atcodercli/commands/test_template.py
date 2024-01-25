@@ -10,9 +10,14 @@ from rich.progress import Progress
 
 from atcodercli.utils.config import Config
 
-from ..utils.problems import get_problem_name, load_parent_of_problem
+from ..utils.problems import (
+    TemplateNotFoundError,
+    get_problem_name,
+    load_parent_of_problem,
+)
 
 
+# TODO: eval ansi code
 # https://stackoverflow.com/a/21978778/19706510
 def log_subprocess_output(pipe, prefix: str, console: Console):
     """
@@ -22,48 +27,22 @@ def log_subprocess_output(pipe, prefix: str, console: Console):
         console.print(prefix, str(line, encoding="utf-8"), end="")
 
 
-def handle(console: Console, args):
+def test_template(
+    path: pathlib.Path,
+    template: str,
+    checker: str,
+    config: Config,
+    console: Console,
+) -> bool:
     """
-    Entry of cli, handle args.
+    Test a template and return succeed or not.
     """
-    problems = load_parent_of_problem(os.getcwd(), console)
-    config = Config(console)
-    contest_id, problem_id = get_problem_name(os.getcwd(), problems, console)
-    found = False
-    for index, problem in enumerate(problems.dat["problems"]):
-        if problem["contest_id"] == contest_id and problem["problem_id"] == problem_id:
-            found = True
-            if args.file is None:
-                if problem["templates"] == []:
-                    console.print(
-                        "[red]"
-                        + _("problem %s_%s have no any code.")
-                        % (contest_id, problem_id)
-                        + "[/red]"
-                    )
-                    console.print(
-                        _('please generate one using "atcli template generate"')
-                    )
-                    raise SystemExit(1)
-                file = problem["templates"][0]
-            else:
-                file = args.file
-            break
+    # contest_id, problem_id = get_problem_name(path.parent, problems, console)
 
-    if not found:
-        console.print(
-            "[red]"
-            + _("problem %s_%s not found!") % (contest_id, problem_id)
-            + "[/red]"
-        )
-        raise SystemExit(1)
-    # console.print(f"testing file {file['path']} with template \"{file['template']}\"...")
-    console.print(
-        _('testing file %s with template "%s"...') % (file["path"], file["template"])
-    )
-    tests = config.dat["template"]["types"][file["template"]]["test"]
+    console.print(_('testing file %s with template "%s"...') % (path, template))
+    tests = config.dat["template"]["types"][template]["test"]
     run_env = os.environ.copy()
-    run_env["FILE"] = file["path"]
+    run_env["FILE"] = path
     path = pathlib.Path(os.getcwd())
     test_files = []
     tot_files = os.listdir(path)
@@ -77,17 +56,7 @@ def handle(console: Console, args):
             test_files.append((file, f"{file_without_ext}.ans"))
     test_files = sorted(test_files)
     task_count = len(test_files)
-    if args.checker is None:
-        checker = config.dat["checker"]["default"]
-    else:
-        if config.dat["checker"].get(args.checker) is None:
-            console.print(
-                "[red]"
-                + _('checker "%s" not found in config file.') % args.checker
-                + "[/red]"
-            )
-            raise SystemExit(1)
-        checker = args.checker
+
     with Progress(console=console) as progress:
         test_task = progress.add_task(_("Waiting Judge..."), total=task_count)
 
@@ -109,6 +78,12 @@ def handle(console: Console, args):
                 log_subprocess_output(
                     command_init.stderr, "[red]" + _("stderr:") + "[/red]", console
                 )
+            command_init_res = command_init.wait()
+            if command_init_res is not 0:
+                console.print(
+                    "[red]" + _("Pre-execute script return non-zero value") + "[/red]"
+                )
+                raise SystemExit(1)
 
         passed = 0
         failed = []
@@ -182,6 +157,7 @@ def handle(console: Console, args):
         console.print("---------------" + _("TEST SUMMARY") + "---------------")
         if passed == task_count:
             console.print("[green]" + _("All check passed!") + "[/green]")
+            return True
         else:
             console.print("[red]" + _("Some checks failed.") + "[/red]")
             for failed_check in failed:
@@ -190,3 +166,42 @@ def handle(console: Console, args):
                     + _('check %d failed, files are "%s" "%s"') % failed_check
                     + "[/red]"
                 )
+            return False
+
+
+def handle(console: Console, args):
+    """
+    Entry of cli, handle args.
+    """
+    # TODO: change path when args.template set
+    path = pathlib.Path(os.getcwd())
+    problems = load_parent_of_problem(os.getcwd(), console)
+    contest_id, problem_id = get_problem_name(path, problems, console)
+    current_problem = problems.get_by_contest_problem_id(contest_id, problem_id)
+    config = Config(console)
+    if current_problem["accepted"] is True:
+        console.print("[yellow]This problem is marked as accepted.[/yellow]")
+    if args.template is None:
+        template = problems.get_default_template(contest_id, problem_id)
+    else:
+        try:
+            template = problems.get_by_contest_problem_id_file(
+                contest_id, problem_id, args.template
+            )
+        except TemplateNotFoundError as exception:
+            console.print(f'[red]template "{args.template}" not found[/red]')
+            raise SystemExit(1) from exception
+    if args.checker is None:
+        checker = config.dat["checker"]["default"]
+    else:
+        if config.dat["checker"]["types"].get(args.checker) is None:
+            console.print(f'[red]checker "{args.checker}" not exist in config.')
+            raise SystemExit(1)
+        checker = args.checker
+    test_template(
+        pathlib.Path(template["path"]),
+        template["template"],
+        checker,
+        config,
+        console,
+    )

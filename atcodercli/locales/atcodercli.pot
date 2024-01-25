@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-25 16:26+0800\n"
+"POT-Creation-Date: 2024-01-25 22:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -229,86 +229,71 @@ msgstr ""
 msgid "FATAL:failed to login"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:40
-#, python-format
-msgid "problem %s_%s have no any code."
-msgstr ""
-
-#: atcodercli/commands/test_template.py:45
-msgid "please generate one using \"atcli template generate\""
-msgstr ""
-
-#: atcodercli/commands/test_template.py:56
-#, python-format
-msgid "problem %s_%s not found!"
-msgstr ""
-
-#: atcodercli/commands/test_template.py:62
+#: atcodercli/commands/test_template.py:42
 #, python-format
 msgid "testing file %s with template \"%s\"..."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:86
-#, python-format
-msgid "checker \"%s\" not found in config file."
-msgstr ""
-
-#: atcodercli/commands/test_template.py:92
+#: atcodercli/commands/test_template.py:61
 msgid "Waiting Judge..."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:106
+#: atcodercli/commands/test_template.py:75
 msgid "stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:110
+#: atcodercli/commands/test_template.py:79
 msgid "stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:117
+#: atcodercli/commands/test_template.py:84
+msgid "Pre-execute script return non-zero value"
+msgstr ""
+
+#: atcodercli/commands/test_template.py:92
 #, python-format
 msgid "Running on %d/%d"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:134
+#: atcodercli/commands/test_template.py:109
 msgid "runner stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:140
+#: atcodercli/commands/test_template.py:115
 msgid "runner stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:158
+#: atcodercli/commands/test_template.py:133
 msgid "checker stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:164
+#: atcodercli/commands/test_template.py:139
 msgid "checker stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:171
+#: atcodercli/commands/test_template.py:146
 #, python-format
 msgid "Test %d Failed - checker returned non-zero value"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:178
+#: atcodercli/commands/test_template.py:153
 #, python-format
 msgid "Test %d Passed"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:182
+#: atcodercli/commands/test_template.py:157
 msgid "TEST SUMMARY"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:184
+#: atcodercli/commands/test_template.py:159
 msgid "All check passed!"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:186
+#: atcodercli/commands/test_template.py:162
 msgid "Some checks failed."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:190
+#: atcodercli/commands/test_template.py:166
 #, python-format
 msgid "check %d failed, files are \"%s\" \"%s\""
 msgstr ""
@@ -394,63 +379,63 @@ msgstr ""
 msgid "try run \"atcli login\" first."
 msgstr ""
 
-#: atcodercli/utils/problems.py:46
+#: atcodercli/utils/problems.py:112
 #, python-format
 msgid "problem %s already exists."
 msgstr ""
 
-#: atcodercli/utils/problems.py:89
+#: atcodercli/utils/problems.py:155
 msgid "This command should run under problem dir, not contest's root dir."
 msgstr ""
 
-#: atcodercli/utils/problems.py:92
+#: atcodercli/utils/problems.py:158
 msgid "please cd in problem dir and exec this command again!"
 msgstr ""
 
-#: atcodercli/utils/problems.py:93
+#: atcodercli/utils/problems.py:159
 msgid "problem.yaml not found in parent dir."
 msgstr ""
 
-#: atcodercli/utils/problems.py:107
+#: atcodercli/utils/problems.py:173
 #, python-format
 msgid "file %s not exist."
 msgstr ""
 
-#: atcodercli/utils/problems.py:109 atcodercli/utils/problems.py:128
+#: atcodercli/utils/problems.py:175 atcodercli/utils/problems.py:194
 msgid "You may want to start a contest using 'atcli contest race'"
 msgstr ""
 
-#: atcodercli/utils/problems.py:110 atcodercli/utils/problems.py:130
+#: atcodercli/utils/problems.py:176 atcodercli/utils/problems.py:196
 msgid "create one manually using 'atcli problem init'"
 msgstr ""
 
-#: atcodercli/utils/problems.py:125
+#: atcodercli/utils/problems.py:191
 #, python-format
 msgid "No problem.yaml found under %s."
 msgstr ""
 
-#: atcodercli/utils/problems.py:132
+#: atcodercli/utils/problems.py:198
 #, python-format
 msgid "\"problem.yaml\" not found in %s, searching up"
 msgstr ""
 
-#: atcodercli/utils/problems.py:151
+#: atcodercli/utils/problems.py:217
 #, python-format
 msgid "%s invalid, don't look like <contest_id>_<problem_id>"
 msgstr ""
 
-#: atcodercli/utils/problems.py:155
+#: atcodercli/utils/problems.py:221
 msgid ""
 "use \"atcli problem add\" or \"atcli contest race\", cd in that dir and "
 "execute this command again!"
 msgstr ""
 
-#: atcodercli/utils/problems.py:166
+#: atcodercli/utils/problems.py:232
 #, python-format
 msgid "problem %s not exist"
 msgstr ""
 
-#: atcodercli/utils/problems.py:169
+#: atcodercli/utils/problems.py:235
 msgid ""
 "tip: don't create problem dir manually, use \"atcli problem add\" or "
 "\"atcli contest race\""
