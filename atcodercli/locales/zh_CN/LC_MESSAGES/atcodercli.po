@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: atcodercli\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-25 22:27+0800\n"
-"PO-Revision-Date: 2024-01-25 15:04\n"
+"PO-Revision-Date: 2024-01-25 17:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -241,7 +241,7 @@ msgstr "标准错误："
 
 #: atcodercli/commands/test_template.py:84
 msgid "Pre-execute script return non-zero value"
-msgstr ""
+msgstr "预先执行脚本返回了非零值"
 
 #: atcodercli/commands/test_template.py:92
 #, python-format
