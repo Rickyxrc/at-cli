@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-26 02:16+0800\n"
+"POT-Creation-Date: 2024-01-26 02:40+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgid "ignore pretest check"
 msgstr ""
 
 #: atcodercli/__main__.py:110
-msgid "submit this problem, though it's completed"
+msgid "submit this problem, though it's accepted"
 msgstr ""
 
 #: atcodercli/__main__.py:114
@@ -254,7 +254,24 @@ msgstr ""
 msgid "FATAL:failed to login"
 msgstr ""
 
-#: atcodercli/commands/submit_problem.py:44
+#: atcodercli/commands/submit_problem.py:25
+msgid "interruped because pretest not passed"
+msgstr ""
+
+#: atcodercli/commands/submit_problem.py:27
+msgid "to ignore local check, use --no-check or --force"
+msgstr ""
+
+#: atcodercli/commands/submit_problem.py:36
+#: atcodercli/commands/test_template.py:183
+msgid "This problem is marked as accepted."
+msgstr ""
+
+#: atcodercli/commands/submit_problem.py:37
+msgid "to override, use --ignore-accepted or --force"
+msgstr ""
+
+#: atcodercli/commands/submit_problem.py:56
 #, python-format
 msgid "Submitting problem %s"
 msgstr ""
@@ -326,10 +343,6 @@ msgstr ""
 #: atcodercli/commands/test_template.py:165
 #, python-format
 msgid "check %d failed, files are \"%s\" \"%s\""
-msgstr ""
-
-#: atcodercli/commands/test_template.py:183
-msgid "This problem is marked as accepted."
 msgstr ""
 
 #: atcodercli/commands/test_template.py:193
