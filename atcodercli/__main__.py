@@ -106,8 +106,8 @@ def dispatch_args():
             "--no-check", help=_("ignore pretest check"), action="store_true"
         )
         problem_submit_parser.add_argument(
-            "--ignore-completed",
-            help=_("submit this problem, though it's completed"),
+            "--ignore-accepted",
+            help=_("submit this problem, though it's accepted"),
             action="store_true",
         )
         problem_submit_parser.add_argument(

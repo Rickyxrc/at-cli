@@ -18,17 +18,29 @@ def handle(console: Console, args):
     """
     Entry of cli, handle args.
     """
-    if not args.no_check:
+    if not (args.no_check or args.force):
         test_result = handleTestTemplate(console, args)
         if test_result is False:
-            console.print("[red]interruped because pretest not passed[/red]")
-            console.print("to pass local check, use --no-check")
+            console.print(
+                "[red]" + _("interruped because pretest not passed") + "[/red]"
+            )
+            console.print(_("to ignore local check, use --no-check or --force"))
             return
     path = pathlib.Path(os.getcwd())
     problems = load_parent_of_problem(path, console)
     config = Config(console)
     contest_id, problem_id = get_problem_name(path, problems, console)
-    file = problems.get_by_contest_problem_id_file(contest_id, problem_id, args.file)
+    if problems.get_by_contest_problem_id(contest_id, problem_id)["accepted"] and not (
+        args.ignore_accepted or args.force
+    ):
+        console.print("[red]" + _("This problem is marked as accepted.") + "[/red]")
+        console.print(_("to override, use --ignore-accepted or --force"))
+        raise SystemExit(1)
+    if args.file is None:
+        test_file = problems.get_default_file(contest_id, problem_id)["path"]
+    else:
+        test_file = args.file
+    file = problems.get_by_contest_problem_id_file(contest_id, problem_id, test_file)
     template = args.template if args.template is not None else file["template"]
     session = get_session(console)
     with open(file["path"], "r", encoding="utf-8") as file:
