@@ -1,5 +1,5 @@
 """
-    Race a contest
+    Init a contest
     Pull all samples, generate sample file.
 """
 import os
@@ -33,6 +33,7 @@ def handle(console: Console, arg):
         if not "Submit" in problem.a.string:
             problem_id = problem.a["href"].split("_")[-1]
             add_problem(
+                path,
                 console,
                 arg.contest_id,
                 problem_id,

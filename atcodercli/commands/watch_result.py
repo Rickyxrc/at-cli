@@ -33,7 +33,7 @@ def render_status(stat: str) -> str:
     }.get(stat, _("Unknown status %s") % stat)
 
 
-def watch_result(console: Console, contest_id: str, sids: list[str]) -> None:
+def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
     """
     Render a list of records until judge ends.
     Args:
@@ -72,7 +72,7 @@ def watch_result(console: Console, contest_id: str, sids: list[str]) -> None:
                     progress.update(
                         running_progress[sid],
                         description=f"[green]{sid}[/green] {render_status(verdict)}"
-                        " | " + _("Running on %d/%d...") % (now, total),
+                        " | " + _("Running on %d/%d...") % (int(now), int(total)),
                         total=int(total),
                         completed=int(now),
                     )

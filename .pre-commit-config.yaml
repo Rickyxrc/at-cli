@@ -25,3 +25,4 @@ repos:
       entry: /bin/sh ./scripts/extract-string
       language: script
       always_run: true
+      files: "^(.*)\\.pyi?$"

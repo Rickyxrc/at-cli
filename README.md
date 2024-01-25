@@ -51,3 +51,18 @@ WARNING: EVERY command defined here will DIRECTLY execute on your machine!
 
 We currently use [crowdin](https://crowdin.com/project/atcodercli) and support Chinese only, if you want to contribute to other languages, let me know by issue.
 
+## Something about code
+
+NOTE: I'm too lazy, so this part is in Chinese.
+
+我发现我经常搞混几个概念，所以我把几个经常出现的名词的定义写在这里，也方便各位二次开发：
+
+- template : 模板，也就是用于生成代码的基础，不应与文件（file）混淆
+- file : 文件，也就是用模板生成的文件，不应与模板（template）混淆
+- problems : 题目集，也就是 problem.yaml 中的内容，存储了题目和用题目生成的模板
+- config : 配置项，也就是 ~/atcli/config.yaml 中的内容，存储了模板和比较器
+- contest/init : 进行比赛，其实和 contest race 是一致的，但是计划将 init 作为 文件中统一的名称，而 race 作为命令别名
+- checker : 差异比较器，不应和 diff 混淆
+
+最近正在根据定义重新修改代码中的部分内容，如果有错漏欢迎 PR。
+

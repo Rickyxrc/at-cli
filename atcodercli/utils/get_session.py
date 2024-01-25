@@ -2,6 +2,7 @@
 This helper function is used to load session file at ~/.config/atcli/session.yaml
 """
 import os
+import re
 
 import requests
 import yaml
@@ -32,6 +33,16 @@ def get_session(console: Console) -> requests.Session:
     session = requests.session()
     session.cookies.update(cookiejar_from_dict(dat["cookies"]))
     return session
+
+
+def get_csrf(
+    session: requests.Session, _console: Console, url: str = "https://atcoder.jp"
+) -> str:
+    """
+    Get session
+    """
+    request_result = session.get(url)
+    return re.findall(r'var csrfToken = "(\S+)"', request_result.text)[0]
 
 
 if __name__ == "__main__":

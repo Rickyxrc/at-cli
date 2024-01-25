@@ -16,15 +16,6 @@ class ProblemNotFoundError(Exception):
         super().__init__(*args)
 
 
-class TemplateNotFoundError(Exception):
-    """
-    TemplateNotFoundError
-    """
-
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
-
-
 class ProblemSet:
     """
     A set of problems, usually load from problem.yaml
@@ -49,21 +40,21 @@ class ProblemSet:
                 return problem
         raise ProblemNotFoundError
 
-    def get_default_template(self, contest_id: str, problem_id: str) -> dict:
+    def get_default_file(self, contest_id: str, problem_id: str) -> dict:
         """
-        Get a problem's default template.
+        Get a problem's default file.
         try f"{contest_id}_{problem_id}" first, then random file.
         """
         problem = self.get_by_contest_problem_id(contest_id, problem_id)
         # detect {contest_id}_{problem_id} first
-        for template in problem["templates"]:
+        for template in problem["files"]:
             template_path = pathlib.Path(template["path"])
             name = template_path.name.replace(f".{template['template']}", "")
             if name == f"{contest_id}_{problem_id}":
                 return template
-        if len(problem["templates"]) == 0:
-            raise TemplateNotFoundError
-        return problem["templates"][0]
+        if len(problem["files"]) == 0:
+            raise FileNotFoundError
+        return problem["files"][0]
 
     def get_by_contest_problem_id_file(
         self, contest_id: str, problem_id: str, path: pathlib.Path
@@ -79,7 +70,7 @@ class ProblemSet:
         path_string = pathlib.Path(path)
         path_string_name = path_string.name
         problem = self.get_by_contest_problem_id(contest_id, problem_id)
-        for template in problem["templates"]:
+        for template in problem["files"]:
             template_path_name = pathlib.Path(template["path"]).name
             template_path_name_without_ext = template_path_name.replace(
                 f".{template['template']}", ""
@@ -91,7 +82,7 @@ class ProblemSet:
                 and template_path_name_without_ext == path_string_name
             ):
                 return template
-        raise TemplateNotFoundError
+        raise FileNotFoundError
 
     def add_problem(self, contest_id: str, problem_id: str) -> None:
         """
@@ -102,7 +93,7 @@ class ProblemSet:
             "contest_id": contest_id,
             "problem_id": problem_id,
             "accepted": False,
-            "templates": [],
+            "files": [],
         }
         if not addobj in self.dat["problems"]:
             self.dat["problems"].append(addobj)
@@ -126,8 +117,8 @@ class ProblemSet:
                 problem["contest_id"] == contest_id
                 and problem["problem_id"] == problem_id
             ):
-                if addobj not in self.dat["problems"][index]["templates"]:
-                    self.dat["problems"][index]["templates"].append(addobj)
+                if addobj not in self.dat["problems"][index]["files"]:
+                    self.dat["problems"][index]["files"].append(addobj)
                 return
         raise ProblemNotFoundError
 
@@ -139,7 +130,7 @@ class ProblemSet:
             write_stream.write(yaml.safe_dump(self.dat))
 
 
-def load_parent_of_problem(path_str: str, console: Console):
+def load_parent_of_problem(path_str: pathlib.Path, console: Console):
     """
     Load problem.yaml exactly from parent
     if not found, throw Error
@@ -160,7 +151,7 @@ def load_parent_of_problem(path_str: str, console: Console):
     raise SystemExit(1)
 
 
-def load_problem_directly(path_str: str, console: Console):
+def load_problem_directly(path_str: pathlib.Path, console: Console):
     """
     Try to load problem.yaml from path
     If not found, throw Error
@@ -172,7 +163,7 @@ def load_problem_directly(path_str: str, console: Console):
     console.print(
         "[red]" + _("file %s not exist.") % (path / "problem.yaml") + "[/red]"
     )
-    console.print(_("You may want to start a contest using 'atcli contest race'"))
+    console.print(_("You may want to start a contest using 'atcli contest init'"))
     console.print(_("create one manually using 'atcli problem init'"))
     raise SystemExit(1)
 
@@ -191,7 +182,7 @@ def load_problem_from_all_ancestors(path_str: str, console: Console) -> ProblemS
                 "[red]" + _("No problem.yaml found under %s.") % path + "[/red]"
             )
             console.print(
-                _("You may want to start a contest using 'atcli contest race'")
+                _("You may want to start a contest using 'atcli contest init'")
             )
             console.print(_("create one manually using 'atcli problem init'"))
             raise SystemExit(1)
@@ -219,7 +210,7 @@ def get_problem_name(path_str: pathlib.Path, problems: ProblemSet, console: Cons
         )
         console.print(
             _(
-                'use "atcli problem add" or "atcli contest race", cd in that dir and execute this command again!'
+                'use "atcli problem add" or "atcli contest init", cd in that dir and execute this command again!'
             )
         )
         raise SystemExit(1) from e
@@ -233,7 +224,7 @@ def get_problem_name(path_str: pathlib.Path, problems: ProblemSet, console: Cons
         console.print(
             "[blue]"
             + _(
-                'tip: don\'t create problem dir manually, use "atcli problem add" or "atcli contest race"'
+                'tip: don\'t create problem dir manually, use "atcli problem add" or "atcli contest init"'
             )
             + "[/blue]"
         )

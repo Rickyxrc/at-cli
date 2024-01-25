@@ -17,6 +17,7 @@ from ..utils.problems import load_problem_from_all_ancestors
 
 
 def add_problem(
+    path: pathlib.Path,
     console: Console,
     contest_id: str,
     problem_id: str,
@@ -28,7 +29,9 @@ def add_problem(
     """
     Add a problem to ./problem.yaml
     """
-    problems = load_problem_from_all_ancestors(os.getcwd(), console)
+    problems = load_problem_from_all_ancestors(path, console)
+    while not (path / "problem.yaml").exists():
+        path = path.parent
     session = get_session(console)
     console.print(_("Adding problem %s...") % (f"{contest_id}_{problem_id}"))
     endpoint = (
@@ -81,7 +84,7 @@ def add_problem(
         + "[/green]"
     )
     init_file(
-        pathlib.Path(os.getcwd()) / f"{contest_id}_{problem_id}" / file_name,
+        path / f"{contest_id}_{problem_id}" / file_name,
         template,
         config,
         problems,
@@ -104,6 +107,7 @@ def handle(console: Console, arg):
         arg.name if arg.name is not None else f"{arg.contest_id}_{arg.problem_id}"
     )
     add_problem(
+        pathlib.Path(os.getcwd()),
         console,
         arg.contest_id,
         arg.problem_id,

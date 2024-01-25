@@ -57,6 +57,7 @@ def check_template(dic: dict, name: str, console: Console):
     """
     base_path = f"template.types.{name}"
     check_path(dic, f"{base_path}.file", console)
+    check_path(dic, f"{base_path}.lang_id", console)
     check_path(dic, f"{base_path}.ext", console)
     check_path(dic, f"{base_path}.test", console)
     check_path(dic, f"{base_path}.test.before", console)

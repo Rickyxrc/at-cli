@@ -10,11 +10,7 @@ from rich.progress import Progress
 
 from atcodercli.utils.config import Config
 
-from ..utils.problems import (
-    TemplateNotFoundError,
-    get_problem_name,
-    load_parent_of_problem,
-)
+from ..utils.problems import get_problem_name, load_parent_of_problem
 
 
 # TODO: eval ansi code
@@ -39,7 +35,10 @@ def test_template(
     """
     # contest_id, problem_id = get_problem_name(path.parent, problems, console)
 
-    console.print(_('testing file %s with template "%s"...') % (path, template))
+    console.print(
+        _('testing file %s with template "%s" and checker "%s"...')
+        % (path, template, checker)
+    )
     tests = config.dat["template"]["types"][template]["test"]
     run_env = os.environ.copy()
     run_env["FILE"] = path
@@ -79,7 +78,7 @@ def test_template(
                     command_init.stderr, "[red]" + _("stderr:") + "[/red]", console
                 )
             command_init_res = command_init.wait()
-            if command_init_res is not 0:
+            if command_init_res != 0:
                 console.print(
                     "[red]" + _("Pre-execute script return non-zero value") + "[/red]"
                 )
@@ -169,7 +168,7 @@ def test_template(
             return False
 
 
-def handle(console: Console, args):
+def handle(console: Console, args) -> bool:
     """
     Entry of cli, handle args.
     """
@@ -183,28 +182,41 @@ def handle(console: Console, args):
         console.print(
             "[yellow]" + _("This problem is marked as accepted.") + "[/yellow]"
         )
-    if args.template is None:
-        template = problems.get_default_template(contest_id, problem_id)
+    if args.file is None:
+        file = problems.get_default_file(contest_id, problem_id)
     else:
         try:
-            template = problems.get_by_contest_problem_id_file(
-                contest_id, problem_id, args.template
+            file = problems.get_by_contest_problem_id_file(
+                contest_id, problem_id, args.file
             )
-        except TemplateNotFoundError as exception:
-            console.print(
-                "[red]" + _("template %s not found") % args.template + "[/red]"
-            )
+        except FileNotFoundError as exception:
+            console.print("[red]" + _("file %s not found") % args.file + "[/red]")
             raise SystemExit(1) from exception
     if args.checker is None:
         checker = config.dat["checker"]["default"]
     else:
         if config.dat["checker"]["types"].get(args.checker) is None:
-            console.print(f'[red]checker "{args.checker}" not exist in config.')
+            console.print(
+                "[red]"
+                + _('checker "%s" not exist in config.') % args.checker
+                + "[/red]"
+            )
             raise SystemExit(1)
         checker = args.checker
-    test_template(
-        pathlib.Path(template["path"]),
-        template["template"],
+    if args.template is None:
+        template = file["template"]
+    else:
+        if config.dat["template"]["types"].get(args.template) is None:
+            console.print(
+                "[red]"
+                + _('template "%s" not exist in config') % args.template
+                + "[/red]"
+            )
+            raise SystemExit(1)
+        template = args.template
+    return test_template(
+        pathlib.Path(file["path"]),
+        template,
         checker,
         config,
         console,
