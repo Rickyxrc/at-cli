@@ -2,13 +2,13 @@
     Load gettext function _() to translate
 """
 import gettext
+import locale
 import os
 import pathlib
 
 LOCALEDIR = pathlib.Path(__file__).parent / "locales"
 
-# TODO: fix this DIRTY solution
-LANG = os.environ.get("LANG", "en_US.utf-8").split(".")[0]
+LANG = locale.getdefaultlocale()[0]
 
 try:
     lang = gettext.translation(
