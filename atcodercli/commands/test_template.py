@@ -180,7 +180,9 @@ def handle(console: Console, args):
     current_problem = problems.get_by_contest_problem_id(contest_id, problem_id)
     config = Config(console)
     if current_problem["accepted"] is True:
-        console.print("[yellow]This problem is marked as accepted.[/yellow]")
+        console.print(
+            "[yellow]" + _("This problem is marked as accepted.") + "[/yellow]"
+        )
     if args.template is None:
         template = problems.get_default_template(contest_id, problem_id)
     else:
@@ -189,7 +191,9 @@ def handle(console: Console, args):
                 contest_id, problem_id, args.template
             )
         except TemplateNotFoundError as exception:
-            console.print(f'[red]template "{args.template}" not found[/red]')
+            console.print(
+                "[red]" + _("template %s not found") % args.template + "[/red]"
+            )
             raise SystemExit(1) from exception
     if args.checker is None:
         checker = config.dat["checker"]["default"]
