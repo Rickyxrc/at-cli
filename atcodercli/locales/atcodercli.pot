@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-25 22:27+0800\n"
+"POT-Creation-Date: 2024-01-25 23:13+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -296,6 +296,15 @@ msgstr ""
 #: atcodercli/commands/test_template.py:166
 #, python-format
 msgid "check %d failed, files are \"%s\" \"%s\""
+msgstr ""
+
+#: atcodercli/commands/test_template.py:184
+msgid "This problem is marked as accepted."
+msgstr ""
+
+#: atcodercli/commands/test_template.py:195
+#, python-format
+msgid "template %s not found"
 msgstr ""
 
 #: atcodercli/commands/watch_result.py:26
