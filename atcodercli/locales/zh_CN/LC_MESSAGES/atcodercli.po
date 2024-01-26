@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: atcodercli\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-26 02:16+0800\n"
-"PO-Revision-Date: 2024-01-25 19:31\n"
+"PO-Revision-Date: 2024-01-26 05:41\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -49,15 +49,15 @@ msgstr "观看一个（或一些）提交的结果，传入提交 id"
 #: atcodercli/__main__.py:66 atcodercli/__main__.py:75
 #: atcodercli/__main__.py:88 atcodercli/__main__.py:137
 msgid "The id of the contest, like 'abc123'"
-msgstr "比赛的 id，比如说“abc123”"
+msgstr "比赛的编号，比如说“abc123”"
 
 #: atcodercli/__main__.py:69
 msgid "The submission id of the contest"
-msgstr "在比赛中的提交 id"
+msgstr "在比赛中的提交编号"
 
 #: atcodercli/__main__.py:72
 msgid "watch a contest's latest submissions"
-msgstr "查看一场竞赛最近的一些提交"
+msgstr "查看一场比赛最近的一些提交"
 
 #: atcodercli/__main__.py:79
 msgid "operate with problems(like submit, add)"
@@ -94,7 +94,7 @@ msgstr "忽略预先测试"
 
 #: atcodercli/__main__.py:110
 msgid "submit this problem, though it's completed"
-msgstr "提交这个题目，尽管已经通过"
+msgstr "提交这个题目（即使已经通过）"
 
 #: atcodercli/__main__.py:114
 msgid "ignore all check, just submit the problem"
@@ -106,7 +106,7 @@ msgstr "指定要提交的文件"
 
 #: atcodercli/__main__.py:123 atcodercli/__main__.py:166
 msgid "specific checker to use"
-msgstr "指定差异比较器"
+msgstr "指定要使用的差异比较器"
 
 #: atcodercli/__main__.py:126
 msgid "operate with contests(pull all problem samples)"
@@ -160,12 +160,12 @@ msgstr "这个问题有可能是一道[bold]交互题[/bold]。"
 
 #: atcodercli/commands/add_problem.py:75
 msgid "If not, this behavior might not net your expectation, please open a issue and let me know."
-msgstr "如果不是这样的话，程序现在的行为可能和它的期望行为不同，请提出 issue 让我知道。"
+msgstr "如果不是这样的话，程序现在的行为可能和它的期望行为不同，请在原仓库提个 issue~"
 
 #: atcodercli/commands/add_problem.py:83
 #, python-format
 msgid "success fully add problem %s"
-msgstr "成功添加问题 %s"
+msgstr "成功添加题目 %s"
 
 #: atcodercli/commands/init_problem.py:20
 #, python-format
