@@ -2,17 +2,23 @@ checker:
   default: diff
   types:
     # If you're using windows, please use 'fc'
+    # or use testlib checker
+    # return 0 means correct
+    # return non-zero value means differ
     diff: diff --strip-trailing-cr --ignore-trailing-space $OUTPUT $ANSWER
 
 template:
   default: cpp
   types:
     cpp:
+      lang_id: 5001 # can be found in source
       file: ~/oi/template.cpp
-      ext: cpp
+      ext: cpp # file extension
       test:
+        # run before test
         before: g++ $FILE -o $FILE.run -fsanitize=undefined -D debug_rickyxrc
         # $OUTPUT is fixed now, but please use it, in future it will be dynamic.
         run: $FILE.run < $INPUT > $OUTPUT
+        # run after test
         after: rm ./file_run $OUTPUT
 
