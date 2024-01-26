@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atcodercli\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-24 23:40+0800\n"
-"PO-Revision-Date: 2024-01-24 15:48\n"
+"POT-Creation-Date: 2024-01-26 02:16+0800\n"
+"PO-Revision-Date: 2024-01-26 05:41\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -15,14 +15,14 @@ msgstr ""
 "X-Crowdin-Project-ID: 641840\n"
 "X-Crowdin-Language: zh-CN\n"
 "X-Crowdin-File: /[Rickyxrc.at-cli] crowdin-translation/atcodercli/locales/atcodercli.pot\n"
-"X-Crowdin-File-ID: 18\n"
+"X-Crowdin-File-ID: 26\n"
 "Language: zh_CN\n"
 
-#: atcodercli/__main__.py:28
+#: atcodercli/__main__.py:30
 msgid "at-cli, a lightweight, cross-platform, fast and beautiful command line interface for https://atcoder.jp"
 msgstr "at-cli，一个轻量级、跨平台、的 Atcoder 命令行工具"
 
-#: atcodercli/__main__.py:31
+#: atcodercli/__main__.py:33
 msgid "default config path: ~/.config/atcli/config.yaml\n"
 "default login session path: ~/.config/atcli/session.yaml\n"
 "program source: https://github.com/rickyxrc/atcli\n"
@@ -30,52 +30,53 @@ msgstr "默认配置路径： ~/.config/atcli/config.yaml\n"
 "默认登录会话路径： ~/.config/atcli/session.yaml\n"
 "程序来源：https://github.com/rickyxrc/atcli\n"
 
-#: atcodercli/__main__.py:43
+#: atcodercli/__main__.py:45
 msgid "login with your username and password, the session will stored in ~/.config/atcli/session.yaml"
 msgstr "使用您的用户名和密码登录，会话将存储在 ~/.config/atcli/session.yaml"
 
-#: atcodercli/__main__.py:51
+#: atcodercli/__main__.py:53
 msgid "check if your session file is valid"
 msgstr "检查您的登录状态（会话文件）是否有效"
 
-#: atcodercli/__main__.py:55
+#: atcodercli/__main__.py:57
 msgid "watch submission's results"
 msgstr "查看提交结果"
 
-#: atcodercli/__main__.py:61
+#: atcodercli/__main__.py:63
 msgid "watch a specific submission id's result"
 msgstr "观看一个（或一些）提交的结果，传入提交 id"
 
-#: atcodercli/__main__.py:64 atcodercli/__main__.py:73
-#: atcodercli/__main__.py:86 atcodercli/__main__.py:112
+#: atcodercli/__main__.py:66 atcodercli/__main__.py:75
+#: atcodercli/__main__.py:88 atcodercli/__main__.py:137
 msgid "The id of the contest, like 'abc123'"
-msgstr "比赛的 id，比如说“abc123”"
+msgstr "比赛的编号，比如说“abc123”"
 
-#: atcodercli/__main__.py:67
+#: atcodercli/__main__.py:69
 msgid "The submission id of the contest"
-msgstr "在比赛中的提交 id"
+msgstr "在比赛中的提交编号"
 
-#: atcodercli/__main__.py:70
+#: atcodercli/__main__.py:72
 msgid "watch a contest's latest submissions"
-msgstr "查看一场竞赛最近的一些提交"
+msgstr "查看一场比赛最近的一些提交"
 
-#: atcodercli/__main__.py:77
+#: atcodercli/__main__.py:79
 msgid "operate with problems(like submit, add)"
 msgstr "提供对题目的操作（如提交、添加）"
 
-#: atcodercli/__main__.py:83
+#: atcodercli/__main__.py:85
 msgid "add a problem to solve"
 msgstr "添加一个要解决的问题"
 
-#: atcodercli/__main__.py:89
+#: atcodercli/__main__.py:91
 msgid "The id of the problem, like 'a' or 'g'"
 msgstr "问题的编号，比如“a”或者“g“"
 
-#: atcodercli/__main__.py:93 atcodercli/__main__.py:132
-msgid "specific template type(or using the default)"
-msgstr "指定模板类型 (或使用默认值)"
+#: atcodercli/__main__.py:94 atcodercli/__main__.py:117
+#: atcodercli/__main__.py:140
+msgid "specific template type"
+msgstr "指定要使用的模板"
 
-#: atcodercli/__main__.py:96 atcodercli/__main__.py:129
+#: atcodercli/__main__.py:96 atcodercli/__main__.py:155
 msgid "specific generated file name"
 msgstr "指定生成的文件名"
 
@@ -84,63 +85,87 @@ msgid "init problem.yaml in current dir"
 msgstr "在当前目录中初始化 problem.yaml"
 
 #: atcodercli/__main__.py:103
+msgid "submit current problem"
+msgstr "提交当前题目"
+
+#: atcodercli/__main__.py:106
+msgid "ignore pretest check"
+msgstr "忽略预先测试"
+
+#: atcodercli/__main__.py:110
+msgid "submit this problem, though it's completed"
+msgstr "提交这个题目（即使已经通过）"
+
+#: atcodercli/__main__.py:114
+msgid "ignore all check, just submit the problem"
+msgstr "忽略所有测试，直接提交题目"
+
+#: atcodercli/__main__.py:120
+msgid "specific the file to submit"
+msgstr "指定要提交的文件"
+
+#: atcodercli/__main__.py:123 atcodercli/__main__.py:166
+msgid "specific checker to use"
+msgstr "指定要使用的差异比较器"
+
+#: atcodercli/__main__.py:126
 msgid "operate with contests(pull all problem samples)"
 msgstr "提供对比赛的操作（如拉取所有题目和测试样例）"
 
-#: atcodercli/__main__.py:109
+#: atcodercli/__main__.py:133
 msgid "init a problem.yaml locally and pull all problem samples"
 msgstr "在当前目录下初始化 problem.yaml 并且拉取当场比赛的所有题目和样例"
 
-#: atcodercli/__main__.py:115
-msgid "specific template type"
-msgstr "指定要使用的模板"
-
-#: atcodercli/__main__.py:117
+#: atcodercli/__main__.py:142
 msgid "init with template, run template commands(like test)"
 msgstr "提供对模板的操作，运行和模板有关的命令（如测试样例）"
 
-#: atcodercli/__main__.py:124
+#: atcodercli/__main__.py:150
 msgid "init a template under current dir(need \"atcli contest racce\" or \"atcli problem init\"), template name is dirname default, a \"problem.yaml\" should exist exactly pwd's parent dir."
 msgstr "在当前目录下使用通过某个模板初始化一份代码（需要之前运行过”atcli contest race“或”atcli problems init“），模板名称默认是目录名，”problem.yaml”应该在上级目录存在"
 
-#: atcodercli/__main__.py:136
+#: atcodercli/__main__.py:158
+msgid "specific template type(or using the default)"
+msgstr "指定模板类型 (或使用默认值)"
+
+#: atcodercli/__main__.py:162
 msgid "test a templete defined in config."
 msgstr "对某份由模板生成的代码进行样例测试"
 
-#: atcodercli/__main__.py:139
-msgid "specific file to test(or test the default)"
-msgstr "指定要测试的文件（或使用默认值）"
+#: atcodercli/__main__.py:164
+msgid "specific file to test"
+msgstr "指定要测试的文件"
 
-#: atcodercli/__main__.py:142
-msgid "specific checker to use"
-msgstr "指定差异比较器"
+#: atcodercli/__main__.py:169
+msgid "override the template setting"
+msgstr "覆盖模板设置"
 
-#: atcodercli/__main__.py:170
+#: atcodercli/__main__.py:199
 msgid "FATAL:Interrupted."
 msgstr "致命错误：操作被用户中断。"
 
-#: atcodercli/commands/add_problem.py:33
+#: atcodercli/commands/add_problem.py:36
 #, python-format
 msgid "Adding problem %s..."
 msgstr "正在添加题目 %s……"
 
-#: atcodercli/commands/add_problem.py:67
+#: atcodercli/commands/add_problem.py:70
 #, python-format
 msgid "Failed when parsing %s."
 msgstr "在解析题目 %s 时失败。"
 
-#: atcodercli/commands/add_problem.py:70
+#: atcodercli/commands/add_problem.py:73
 msgid "This problem maybe a [bold]interactive problem[/bold]."
 msgstr "这个问题有可能是一道[bold]交互题[/bold]。"
 
-#: atcodercli/commands/add_problem.py:72
+#: atcodercli/commands/add_problem.py:75
 msgid "If not, this behavior might not net your expectation, please open a issue and let me know."
-msgstr "如果不是这样的话，程序现在的行为可能和它的期望行为不同，请提出 issue 让我知道。"
+msgstr "如果不是这样的话，程序现在的行为可能和它的期望行为不同，请在原仓库提个 issue~"
 
-#: atcodercli/commands/add_problem.py:80
+#: atcodercli/commands/add_problem.py:83
 #, python-format
 msgid "success fully add problem %s"
-msgstr "成功添加问题 %s"
+msgstr "成功添加题目 %s"
 
 #: atcodercli/commands/init_problem.py:20
 #, python-format
@@ -222,89 +247,98 @@ msgstr "成功以用户 %s 身份登录"
 msgid "FATAL:failed to login"
 msgstr "致命错误：登录失败"
 
-#: atcodercli/commands/test_template.py:40
+#: atcodercli/commands/submit_problem.py:44
 #, python-format
-msgid "problem %s_%s have no any code."
-msgstr "问题 %s_%s 下没有任何一份代码文件。"
+msgid "Submitting problem %s"
+msgstr "提交题目 %s"
 
-#: atcodercli/commands/test_template.py:45
-msgid "please generate one using \"atcli template generate\""
-msgstr "请使用 “atcli template genetate” 生成一个"
-
-#: atcodercli/commands/test_template.py:56
+#: atcodercli/commands/test_template.py:39
 #, python-format
-msgid "problem %s_%s not found!"
-msgstr "问题 %s_%s 不存在！"
+msgid "testing file %s with template \"%s\" and checker \"%s\"..."
+msgstr "正在测试文件 %s，使用模板 “%s”，差异比较器 “%s”……"
 
-#: atcodercli/commands/test_template.py:62
-#, python-format
-msgid "testing file %s with template \"%s\"..."
-msgstr "正在为文件 %s 用模板配置 “%s” 测试……"
-
-#: atcodercli/commands/test_template.py:86
-#, python-format
-msgid "checker \"%s\" not found in config file."
-msgstr "差异比较器 “%s” 没有在配置中出现。"
-
-#: atcodercli/commands/test_template.py:92
+#: atcodercli/commands/test_template.py:60
 msgid "Waiting Judge..."
 msgstr "等待评测……"
 
-#: atcodercli/commands/test_template.py:106
+#: atcodercli/commands/test_template.py:74
 msgid "stdout:"
 msgstr "标准输出："
 
-#: atcodercli/commands/test_template.py:110
+#: atcodercli/commands/test_template.py:78
 msgid "stderr:"
 msgstr "标准错误："
 
-#: atcodercli/commands/test_template.py:117
+#: atcodercli/commands/test_template.py:83
+msgid "Pre-execute script return non-zero value"
+msgstr "预先执行脚本返回了非零值"
+
+#: atcodercli/commands/test_template.py:91
 #, python-format
 msgid "Running on %d/%d"
 msgstr "正在运行 %d，共 %d 个测试点"
 
-#: atcodercli/commands/test_template.py:134
+#: atcodercli/commands/test_template.py:108
 msgid "runner stdout:"
 msgstr "运行器标准输出："
 
-#: atcodercli/commands/test_template.py:140
+#: atcodercli/commands/test_template.py:114
 msgid "runner stderr:"
 msgstr "运行器标准错误："
 
-#: atcodercli/commands/test_template.py:158
+#: atcodercli/commands/test_template.py:132
 msgid "checker stdout:"
 msgstr "差异比较器标准输出："
 
-#: atcodercli/commands/test_template.py:164
+#: atcodercli/commands/test_template.py:138
 msgid "checker stderr:"
 msgstr "差异比较器标准错误："
 
-#: atcodercli/commands/test_template.py:171
+#: atcodercli/commands/test_template.py:145
 #, python-format
 msgid "Test %d Failed - checker returned non-zero value"
 msgstr "测试点 %d 失败 - 差异比较器返回了非0值"
 
-#: atcodercli/commands/test_template.py:178
+#: atcodercli/commands/test_template.py:152
 #, python-format
 msgid "Test %d Passed"
 msgstr "测试 %d 通过"
 
-#: atcodercli/commands/test_template.py:182
+#: atcodercli/commands/test_template.py:156
 msgid "TEST SUMMARY"
 msgstr "测试摘要"
 
-#: atcodercli/commands/test_template.py:184
+#: atcodercli/commands/test_template.py:158
 msgid "All check passed!"
 msgstr "恭喜AC！"
 
-#: atcodercli/commands/test_template.py:186
+#: atcodercli/commands/test_template.py:161
 msgid "Some checks failed."
 msgstr "某些测试点出错。"
 
-#: atcodercli/commands/test_template.py:190
+#: atcodercli/commands/test_template.py:165
 #, python-format
 msgid "check %d failed, files are \"%s\" \"%s\""
 msgstr "测试点 %d 出错，样例输入输出分别是 “%s” 和 “%s”"
+
+#: atcodercli/commands/test_template.py:183
+msgid "This problem is marked as accepted."
+msgstr "这个问题已经被标记为通过。"
+
+#: atcodercli/commands/test_template.py:193
+#, python-format
+msgid "file %s not found"
+msgstr "文件 %s 未找到"
+
+#: atcodercli/commands/test_template.py:201
+#, python-format
+msgid "checker \"%s\" not exist in config."
+msgstr "差异比较器 “%s” 没有在配置中出现。"
+
+#: atcodercli/commands/test_template.py:212
+#, python-format
+msgid "template \"%s\" not exist in config"
+msgstr "模板 “%s” 在配置中不存在"
 
 #: atcodercli/commands/watch_result.py:26
 msgid "Judging"
@@ -367,79 +401,79 @@ msgstr "配置文件中，路径 %s 的类型不正确，应该是字典，却�
 msgid "config %s not exist in config.yaml."
 msgstr "配置项 %s 在 config.yaml 中未找到。"
 
-#: atcodercli/utils/config.py:87
+#: atcodercli/utils/config.py:88
 msgid "No config file found under ~/.config/atcli/config.yaml"
 msgstr "~/.config/atcli/config.yaml 不存在"
 
-#: atcodercli/utils/config.py:92
+#: atcodercli/utils/config.py:93
 #, python-format
 msgid "created a null config at %s"
 msgstr "在 %s 创建了空配置"
 
-#: atcodercli/utils/get_session.py:26
+#: atcodercli/utils/get_session.py:27
 #, python-format
 msgid "ERROR:no session file found at %s"
 msgstr "错误：在 %s 没有找到绘画文件"
 
-#: atcodercli/utils/get_session.py:30
+#: atcodercli/utils/get_session.py:31
 msgid "try run \"atcli login\" first."
 msgstr "请尝试先运行 \"atcli login\""
 
-#: atcodercli/utils/problems.py:46
+#: atcodercli/utils/problems.py:103
 #, python-format
 msgid "problem %s already exists."
 msgstr "问题 %s 已经存在。"
 
-#: atcodercli/utils/problems.py:89
+#: atcodercli/utils/problems.py:146
 msgid "This command should run under problem dir, not contest's root dir."
 msgstr "这个命令应该在题目目录下运行，而不是比赛目录。"
 
-#: atcodercli/utils/problems.py:92
+#: atcodercli/utils/problems.py:149
 msgid "please cd in problem dir and exec this command again!"
 msgstr "请切换目录至题目目录并再次运行此命令！"
 
-#: atcodercli/utils/problems.py:93
+#: atcodercli/utils/problems.py:150
 msgid "problem.yaml not found in parent dir."
 msgstr "problem.yaml 没有在父目录中找到。"
 
-#: atcodercli/utils/problems.py:107
+#: atcodercli/utils/problems.py:164
 #, python-format
 msgid "file %s not exist."
 msgstr "文件 %s 不存在。"
 
-#: atcodercli/utils/problems.py:109 atcodercli/utils/problems.py:128
-msgid "You may want to start a contest using 'atcli contest race'"
-msgstr "你也许想要通过运行 “atcli contest race” 开始比赛。"
+#: atcodercli/utils/problems.py:166 atcodercli/utils/problems.py:185
+msgid "You may want to start a contest using 'atcli contest init'"
+msgstr "你也许想要通过运行 “atcli contest init” 开始比赛。"
 
-#: atcodercli/utils/problems.py:110 atcodercli/utils/problems.py:130
+#: atcodercli/utils/problems.py:167 atcodercli/utils/problems.py:187
 msgid "create one manually using 'atcli problem init'"
 msgstr "请使用 “atcli problem init” 手动创建一个。"
 
-#: atcodercli/utils/problems.py:125
+#: atcodercli/utils/problems.py:182
 #, python-format
 msgid "No problem.yaml found under %s."
 msgstr "%s 下没有 problem.yaml。"
 
-#: atcodercli/utils/problems.py:132
+#: atcodercli/utils/problems.py:189
 #, python-format
 msgid "\"problem.yaml\" not found in %s, searching up"
 msgstr "\"problem.yaml\" 没有在 %s 下找到，正在搜索父级目录……"
 
-#: atcodercli/utils/problems.py:151
+#: atcodercli/utils/problems.py:208
 #, python-format
 msgid "%s invalid, don't look like <contest_id>_<problem_id>"
 msgstr "%s 不是有效的题目类型，看起来不像 <比赛编号>_<题目编号> 的形式"
 
-#: atcodercli/utils/problems.py:155
-msgid "use \"atcli problem add\" or \"atcli contest race\", cd in that dir and execute this command again!"
-msgstr "请使用 “atcli problem add” 或 “atcli contest race”，进入题目目录然后再次运行此命令！"
+#: atcodercli/utils/problems.py:212
+msgid "use \"atcli problem add\" or \"atcli contest init\", cd in that dir and execute this command again!"
+msgstr "请使用 “atcli problem add” 或 “atcli contest init”，进入题目目录然后再次运行此命令！"
 
-#: atcodercli/utils/problems.py:166
+#: atcodercli/utils/problems.py:223
 #, python-format
 msgid "problem %s not exist"
 msgstr "题目 %s 不存在"
 
-#: atcodercli/utils/problems.py:169
-msgid "tip: don't create problem dir manually, use \"atcli problem add\" or \"atcli contest race\""
-msgstr "提示：不要手动创建题目目录，请使用 “atcli problem add” 或 “atcli contest race”"
+#: atcodercli/utils/problems.py:226
+msgid "tip: don't create problem dir manually, use \"atcli problem add\" or \"atcli contest init\""
+msgstr "提示：不要手动创建题目目录，请使用 “atcli problem add” 或 “atcli contest init”"
 
