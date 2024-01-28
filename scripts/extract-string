@@ -1,1 +1,2 @@
+#!sh
 pybabel extract atcodercli -o atcodercli/locales/atcodercli.pot

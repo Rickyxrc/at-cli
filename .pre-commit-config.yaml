@@ -15,14 +15,15 @@ repos:
       - id: isort
   - repo: local
     hooks:
-    - id: lint
-      name: lint code
-      entry: pylint
-      language: system
-      files: "^(.*)\\.pyi?$"
-    - id: extract-string
-      name: (i18n) extract string
-      entry: /bin/sh ./scripts/extract-string
-      language: script
-      always_run: true
-      files: "^(.*)\\.pyi?$"
+      - id: lint
+        name: lint code
+        entry: pylint
+        language: system
+        files: "^(.*)\\.pyi?$"
+
+      - id: extract-string
+        name: (i18n) extract string
+        entry: ./scripts/extract-string
+        language: system
+        always_run: true
+        files: "^(.*)\\.pyi?$"
