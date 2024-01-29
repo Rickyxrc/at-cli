@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-29 20:05+0800\n"
+"POT-Creation-Date: 2024-01-29 20:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,40 +174,40 @@ msgstr ""
 msgid "success fully add problem %s"
 msgstr ""
 
-#: atcodercli/commands/init_problem.py:20
+#: atcodercli/commands/init_problem.py:23
 #, python-format
 msgid "problem.yaml already exists under %s"
 msgstr ""
 
-#: atcodercli/commands/init_problem.py:22
-#: atcodercli/commands/init_template.py:37
+#: atcodercli/commands/init_problem.py:25
+#: atcodercli/commands/init_template.py:43
 msgid "to override, use --force"
 msgstr ""
 
-#: atcodercli/commands/init_problem.py:26
+#: atcodercli/commands/init_problem.py:29
 msgid "initialized empty problem.yaml, now use \"atcli problem add\""
 msgstr ""
 
-#: atcodercli/commands/init_template.py:26
+#: atcodercli/commands/init_template.py:32
 #, python-format
 msgid "loaded template \"%s\" from %s"
 msgstr ""
 
-#: atcodercli/commands/init_template.py:30
+#: atcodercli/commands/init_template.py:36
 #, python-format
 msgid "template \"%s\" file %s does not exist!"
 msgstr ""
 
-#: atcodercli/commands/init_template.py:36
+#: atcodercli/commands/init_template.py:42
 #, python-format
 msgid "file %s already exists!"
 msgstr ""
 
-#: atcodercli/commands/init_template.py:38
+#: atcodercli/commands/init_template.py:44
 msgid "or if you want to create other file, use --name <file_name>"
 msgstr ""
 
-#: atcodercli/commands/init_template.py:42
+#: atcodercli/commands/init_template.py:48
 #, python-format
 msgid "generated %s"
 msgstr ""
