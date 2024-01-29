@@ -17,7 +17,7 @@ repos:
     hooks:
       - id: lint
         name: lint code
-        entry: pylint
+        entry: poetry run pylint
         language: system
         files: "^(.*)\\.pyi?$"
 

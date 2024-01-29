@@ -6,6 +6,8 @@ def create_mo_files(setup_kwargs):
     for lang in ["zh_CN"]:
         subprocess.run(
             [
+                "poetry",
+                "run",
                 "pybabel",
                 "compile",
                 "-i",
