@@ -8,7 +8,7 @@ import pathlib
 
 LOCALEDIR = pathlib.Path(__file__).parent / "locales"
 
-LANG = locale.getdefaultlocale()[0]
+LANG = locale.getlocale()[0]
 
 try:
     lang = gettext.translation(
