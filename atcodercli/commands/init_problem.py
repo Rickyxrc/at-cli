@@ -1,3 +1,6 @@
+"""
+This module is used to init a null problem.yaml
+"""
 import os
 import pathlib
 
@@ -27,4 +30,7 @@ def init(console: Console, filepath: pathlib.Path, force: bool):
 
 
 def handle(console: Console, arg):
+    """
+    Entry of cli, handle args.
+    """
     init(console, os.getcwd(), arg.force)

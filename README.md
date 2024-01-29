@@ -1,5 +1,7 @@
 # At-cli
 
+[![Lint Code](https://github.com/Rickyxrc/at-cli/actions/workflows/lint.yml/badge.svg)](https://github.com/Rickyxrc/at-cli/actions/workflows/lint.yml)
+
 At-cli, a lightweight, cross-platform, fast and beautiful command line interface for https://atcoder.jp.
 
 ## Multi-language support

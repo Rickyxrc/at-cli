@@ -1,3 +1,6 @@
+"""
+This module is used to init code from a template.
+"""
 import os
 import pathlib
 
@@ -17,6 +20,9 @@ def init_file(
     force: bool,
     console: Console,
 ):
+    """
+    Init a file with a template.
+    """
     template_path = pathlib.Path(
         os.path.expanduser(config.dat["template"]["types"][template]["file"])
     )
@@ -45,6 +51,9 @@ def init_file(
 
 
 def handle(console: Console, arg):
+    """
+    Entry of cli, handle args.
+    """
     path = pathlib.Path(os.getcwd())
     problems = load_parent_of_problem(path, console)
     contest_id, problem_id = get_problem_name(path, problems, console)
