@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atcodercli\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-26 02:16+0800\n"
-"PO-Revision-Date: 2024-01-26 05:41\n"
+"POT-Creation-Date: 2024-01-29 20:36+0800\n"
+"PO-Revision-Date: 2024-02-02 10:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: atcodercli\n"
 "X-Crowdin-Project-ID: 641840\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /[Rickyxrc.at-cli] crowdin-translation/atcodercli/locales/atcodercli.pot\n"
-"X-Crowdin-File-ID: 26\n"
+"X-Crowdin-File: /crowdin-translation/atcodercli/locales/atcodercli.pot\n"
+"X-Crowdin-File-ID: 34\n"
 "Language: zh_CN\n"
 
 #: atcodercli/__main__.py:30
@@ -93,8 +93,8 @@ msgid "ignore pretest check"
 msgstr "忽略预先测试"
 
 #: atcodercli/__main__.py:110
-msgid "submit this problem, though it's completed"
-msgstr "提交这个题目（即使已经通过）"
+msgid "submit this problem, though it's accepted"
+msgstr ""
 
 #: atcodercli/__main__.py:114
 msgid "ignore all check, just submit the problem"
@@ -167,40 +167,40 @@ msgstr "如果不是这样的话，程序现在的行为可能和它的期望行
 msgid "success fully add problem %s"
 msgstr "成功添加题目 %s"
 
-#: atcodercli/commands/init_problem.py:20
+#: atcodercli/commands/init_problem.py:23
 #, python-format
 msgid "problem.yaml already exists under %s"
 msgstr "problem.yaml 已经在 %s 下存在"
 
-#: atcodercli/commands/init_problem.py:22
-#: atcodercli/commands/init_template.py:37
+#: atcodercli/commands/init_problem.py:25
+#: atcodercli/commands/init_template.py:43
 msgid "to override, use --force"
 msgstr "要覆盖上述行为，请使用 --force"
 
-#: atcodercli/commands/init_problem.py:26
+#: atcodercli/commands/init_problem.py:29
 msgid "initialized empty problem.yaml, now use \"atcli problem add\""
 msgstr "已经在当前目录初始化了 problem.yaml，现在请使用 “atcli problem add”"
 
-#: atcodercli/commands/init_template.py:26
+#: atcodercli/commands/init_template.py:32
 #, python-format
 msgid "loaded template \"%s\" from %s"
 msgstr "从模板“%s”加载了%s"
 
-#: atcodercli/commands/init_template.py:30
+#: atcodercli/commands/init_template.py:36
 #, python-format
 msgid "template \"%s\" file %s does not exist!"
 msgstr "由模板“%s”生成的 %s 文件不存在！"
 
-#: atcodercli/commands/init_template.py:36
+#: atcodercli/commands/init_template.py:42
 #, python-format
 msgid "file %s already exists!"
 msgstr "文件 %s 已经存在！"
 
-#: atcodercli/commands/init_template.py:38
+#: atcodercli/commands/init_template.py:44
 msgid "or if you want to create other file, use --name <file_name>"
 msgstr "或者如果您想要创建其他名称不同的代码文件，请使用 --name <file_name>"
 
-#: atcodercli/commands/init_template.py:42
+#: atcodercli/commands/init_template.py:48
 #, python-format
 msgid "generated %s"
 msgstr "已经生成了 %s"
@@ -247,7 +247,24 @@ msgstr "成功以用户 %s 身份登录"
 msgid "FATAL:failed to login"
 msgstr "致命错误：登录失败"
 
-#: atcodercli/commands/submit_problem.py:44
+#: atcodercli/commands/submit_problem.py:25
+msgid "interruped because pretest not passed"
+msgstr ""
+
+#: atcodercli/commands/submit_problem.py:27
+msgid "to ignore local check, use --no-check or --force"
+msgstr ""
+
+#: atcodercli/commands/submit_problem.py:36
+#: atcodercli/commands/test_template.py:183
+msgid "This problem is marked as accepted."
+msgstr "这个问题已经被标记为通过。"
+
+#: atcodercli/commands/submit_problem.py:37
+msgid "to override, use --ignore-accepted or --force"
+msgstr ""
+
+#: atcodercli/commands/submit_problem.py:56
 #, python-format
 msgid "Submitting problem %s"
 msgstr "提交题目 %s"
@@ -320,10 +337,6 @@ msgstr "某些测试点出错。"
 #, python-format
 msgid "check %d failed, files are \"%s\" \"%s\""
 msgstr "测试点 %d 出错，样例输入输出分别是 “%s” 和 “%s”"
-
-#: atcodercli/commands/test_template.py:183
-msgid "This problem is marked as accepted."
-msgstr "这个问题已经被标记为通过。"
 
 #: atcodercli/commands/test_template.py:193
 #, python-format
