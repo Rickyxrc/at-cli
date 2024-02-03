@@ -13,7 +13,18 @@
             overlays = [ poetry2nix.overlays.default ];
         };
         app = pkgs.poetry2nix.mkPoetryApplication {
-            projectDir = ./.;
+            projectDir = pkgs.stdenv.mkDerivation {
+                name = "atcli-core";
+                # TODO: This is DIRTY, fix it.
+                src = pkgs.nix-gitignore.gitignoreSource (pkgs.lib.cleanSource ./.) (pkgs.lib.cleanSource ./.);
+                buildInputs = with pkgs; [ tree python3 python311Packages.babel ];
+                buildPhase = ''
+                    source $stdenv/setup
+                    mkdir -p $out
+                    cp . $out -r
+                    python3 $out/scripts/build-mo.py
+                '';
+            };
         };
     in {
         devShells."${system}" = {
@@ -21,10 +32,10 @@
                 packages = with pkgs; [ poetry ];
             };
         };
+
         packages."${system}".default = pkgs.writeShellApplication {
             name = "atcli";
-            runtimeInputs =
-                [ app.dependencyEnv ];
+            runtimeInputs = [ app.dependencyEnv ];
             text = ''
                 python -m atcodercli "$@"
             '';

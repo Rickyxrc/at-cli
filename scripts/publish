@@ -1,0 +1,9 @@
+#/bin/sh
+
+# exit when fail
+set -e
+
+python3 ./scripts/build-mo.py
+
+poetry publish --build
+
