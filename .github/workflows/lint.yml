@@ -26,4 +26,4 @@ jobs:
       - name: Lint code
         run: poetry run pylint atcodercli
       - name: Test code
-        run: ./scripts/test-code
+        run: pytest tests -x
