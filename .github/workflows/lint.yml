@@ -1,7 +1,6 @@
 name: Lint Code
 on:
   - pull_request
-  - push
 
 jobs:
   ci:
@@ -27,5 +26,7 @@ jobs:
         run: poetry run pylint atcodercli
       - name: build i18n files
         run: poetry run python3 ./scripts/build-mo.py
+      - name: show file tree
+        run: tree
       - name: Test code
         run: poetry run pytest tests -x
