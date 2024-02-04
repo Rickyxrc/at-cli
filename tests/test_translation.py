@@ -26,7 +26,7 @@ def run_command_and_get_output(lang: str, extra_args: list[str]) -> str:
     run_env["LANG"] = lang
     res = ""
     with subprocess.Popen(
-        " ".join(["poetry", "run", "python3", "-m", "atcodercli"] + extra_args),
+        " ".join(["poetry", "run", "python", "-m", "atcodercli"] + extra_args),
         env=run_env,
         shell=True,
         stdout=subprocess.PIPE,
