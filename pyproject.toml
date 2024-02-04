@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atcodercli"
-version = "0.5.4-beta1"
+version = "0.5.4-beta2"
 description = "A lightweight, fast and beautiful command line interface for Atcoder.jp"
 authors = ["Rickyxrc <rickyxrc@outlook.com>"]
 license = "MIT"
@@ -26,6 +26,7 @@ babel = "^2.14.0"
 black = "^23.12.1"
 isort = "^5.13.2"
 pre-commit = "^3.6.0"
+pytest = "^8.0.0"
 
 [tool.isort]
 profile = "black"

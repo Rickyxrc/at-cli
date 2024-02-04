@@ -5,5 +5,7 @@ set -e
 
 python3 ./scripts/build-mo.py
 
+pytest tests -x
+
 poetry publish --build
 
