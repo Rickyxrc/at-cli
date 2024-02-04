@@ -2,6 +2,7 @@
 This module is used to test the translation.
 """
 import os
+import pathlib
 import subprocess
 
 
@@ -32,6 +33,7 @@ def run_command_and_get_output(lang: str, extra_args: list[str]) -> str:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         stdin=subprocess.DEVNULL,
+        cwd=pathlib.Path(__file__).parent.parent,
     ) as command_test:
         with command_test.stdout:
             res += readall(command_test.stdout)
@@ -39,6 +41,7 @@ def run_command_and_get_output(lang: str, extra_args: list[str]) -> str:
             res += readall(command_test.stderr)
         returncode = command_test.wait()
         assert res != ""  # assert command is executed
+        print(res)
         assert returncode == 0
     return res
 
