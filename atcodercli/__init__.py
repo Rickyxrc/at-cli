@@ -8,6 +8,7 @@ import pathlib
 
 LOCALEDIR = pathlib.Path(__file__).parent / "locales"
 
+# pylint: disable=deprecated-method
 LANG = locale.getdefaultlocale()[0]
 
 if LANG is None:
@@ -26,4 +27,6 @@ try:
     )
     lang.install()
 except FileNotFoundError:
+    print(f"WARN: language {LANG} not found.")
+    print(f"localedir = {LOCALEDIR}")
     gettext.install("atcodercli")
