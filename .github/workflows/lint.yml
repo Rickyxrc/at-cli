@@ -25,3 +25,5 @@ jobs:
         run: poetry install --with dev
       - name: Lint code
         run: poetry run pylint atcodercli
+      - name: Test code
+        run: ./scripts/test-code
