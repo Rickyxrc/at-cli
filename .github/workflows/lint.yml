@@ -29,4 +29,4 @@ jobs:
       - name: show file tree
         run: tree
       - name: Test code
-        run: poetry run pytest tests -x
+        run: poetry run pytest tests
