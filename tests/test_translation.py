@@ -19,6 +19,9 @@ def run_command_and_get_output(lang: str, extra_args: list[str]) -> str:
     """
     Run a command and get output
     """
+    assert extra_args != []
+    assert lang != ""
+
     run_env = os.environ
     run_env["LANG"] = lang
     res = ""
@@ -35,8 +38,8 @@ def run_command_and_get_output(lang: str, extra_args: list[str]) -> str:
         with command_test.stderr:
             res += readall(command_test.stderr)
         returncode = command_test.wait()
+        assert res != ""  # assert command is executed
         assert returncode == 0
-    assert res != ""  # assert command is executed
     return res
 
 
