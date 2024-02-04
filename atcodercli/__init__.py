@@ -17,7 +17,7 @@ if LANG is None:
 if LANG is None:
     LANG = "en_US"
 
-if LANG is "en_US":
+if LANG == "en_US":
     gettext.install("atcodercli")
 else:
     try:
