@@ -26,6 +26,6 @@ jobs:
       - name: Lint code
         run: poetry run pylint atcodercli
       - name: build i18n files
-        run: poerty run python3 ./scripts/build-mo.py
+        run: poetry run python3 ./scripts/build-mo.py
       - name: Test code
         run: poetry run pytest tests -x
