@@ -3,12 +3,14 @@
 """
 import gettext
 import locale
-import os
 import pathlib
 
 LOCALEDIR = pathlib.Path(__file__).parent / "locales"
 
-LANG = locale.getlocale()[0]
+LANG = locale.getdefaultlocale()[0]
+
+if LANG is None:
+    LANG = "en_US"
 
 try:
     lang = gettext.translation(
