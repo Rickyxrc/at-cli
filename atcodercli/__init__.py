@@ -9,7 +9,8 @@ import pathlib
 LOCALEDIR = pathlib.Path(__file__).parent / "locales"
 
 # pylint: disable=deprecated-method
-LANG = locale.getdefaultlocale()[0]
+# LANG = locale.getdefaultlocale()[0]
+LANG = None  # FIXME: dirty.
 
 if LANG is None:
     LANG = os.environ["LANG"]
