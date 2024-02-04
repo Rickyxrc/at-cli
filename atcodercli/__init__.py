@@ -8,12 +8,14 @@ import pathlib
 
 LOCALEDIR = pathlib.Path(__file__).parent / "locales"
 
-# pylint: disable=deprecated-method
-# LANG = locale.getdefaultlocale()[0]
-LANG = None  # FIXME: dirty.
+LANG = None
 
 if LANG is None:
     LANG = os.environ["LANG"]
+
+if LANG is None:
+    # pylint: disable=deprecated-method
+    LANG = locale.getdefaultlocale()[0]
 
 if LANG is None:
     LANG = "en_US"
