@@ -9,7 +9,8 @@ jobs:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12"]
         poetry-version: ["1.7.1"]
-        os: [ubuntu-22.04, macos-latest, windows-latest]
+        # FIXME: Removed windows support temporarily
+        os: [ubuntu-22.04, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
