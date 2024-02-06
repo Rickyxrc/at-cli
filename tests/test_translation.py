@@ -47,12 +47,18 @@ def run_command_and_get_output(lang: str, extra_args: list[str]) -> str:
     return res
 
 
+def test_system_output():
+    """
+    Test output encoding, must be utf-8
+    """
+    assert sys.stdout.encoding == "utf-8"
+
+
 def test_chinese_translation():
     """
     Test Chinese translation
     """
     res_str = run_command_and_get_output("zh_CN.UTF-8", ["--help"])
-    print(sys.stdout.encoding)  # NOTE: debug only
     assert "工具" in res_str
 
 
