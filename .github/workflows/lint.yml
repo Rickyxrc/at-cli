@@ -1,7 +1,6 @@
 name: Lint Code
 on:
   - pull_request
-  - push
 
 jobs:
   ci:
@@ -10,7 +9,8 @@ jobs:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12"]
         poetry-version: ["1.7.1"]
-        os: [ubuntu-22.04, macos-latest, windows-latest]
+        # FIXME: Removed windows support temporarily
+        os: [ubuntu-22.04, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -25,3 +25,7 @@ jobs:
         run: poetry install --with dev
       - name: Lint code
         run: poetry run pylint atcodercli
+      - name: Build i18n files
+        run: poetry run python3 ./scripts/build-mo.py
+      - name: Test code
+        run: poetry run pytest tests

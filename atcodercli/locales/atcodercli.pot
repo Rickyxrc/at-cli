@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-01-29 20:36+0800\n"
+"POT-Creation-Date: 2024-02-06 23:17+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -263,7 +263,7 @@ msgid "to ignore local check, use --no-check or --force"
 msgstr ""
 
 #: atcodercli/commands/submit_problem.py:36
-#: atcodercli/commands/test_template.py:183
+#: atcodercli/commands/test_template.py:185
 msgid "This problem is marked as accepted."
 msgstr ""
 
@@ -276,86 +276,86 @@ msgstr ""
 msgid "Submitting problem %s"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:39
+#: atcodercli/commands/test_template.py:41
 #, python-format
 msgid "testing file %s with template \"%s\" and checker \"%s\"..."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:60
+#: atcodercli/commands/test_template.py:62
 msgid "Waiting Judge..."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:74
+#: atcodercli/commands/test_template.py:76
 msgid "stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:78
+#: atcodercli/commands/test_template.py:80
 msgid "stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:83
+#: atcodercli/commands/test_template.py:85
 msgid "Pre-execute script return non-zero value"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:91
+#: atcodercli/commands/test_template.py:93
 #, python-format
 msgid "Running on %d/%d"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:108
+#: atcodercli/commands/test_template.py:110
 msgid "runner stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:114
+#: atcodercli/commands/test_template.py:116
 msgid "runner stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:132
+#: atcodercli/commands/test_template.py:134
 msgid "checker stdout:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:138
+#: atcodercli/commands/test_template.py:140
 msgid "checker stderr:"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:145
+#: atcodercli/commands/test_template.py:147
 #, python-format
 msgid "Test %d Failed - checker returned non-zero value"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:152
+#: atcodercli/commands/test_template.py:154
 #, python-format
 msgid "Test %d Passed"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:156
+#: atcodercli/commands/test_template.py:158
 msgid "TEST SUMMARY"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:158
+#: atcodercli/commands/test_template.py:160
 msgid "All check passed!"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:161
+#: atcodercli/commands/test_template.py:163
 msgid "Some checks failed."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:165
+#: atcodercli/commands/test_template.py:167
 #, python-format
 msgid "check %d failed, files are \"%s\" \"%s\""
 msgstr ""
 
-#: atcodercli/commands/test_template.py:193
+#: atcodercli/commands/test_template.py:195
 #, python-format
 msgid "file %s not found"
 msgstr ""
 
-#: atcodercli/commands/test_template.py:201
+#: atcodercli/commands/test_template.py:203
 #, python-format
 msgid "checker \"%s\" not exist in config."
 msgstr ""
 
-#: atcodercli/commands/test_template.py:212
+#: atcodercli/commands/test_template.py:214
 #, python-format
 msgid "template \"%s\" not exist in config"
 msgstr ""

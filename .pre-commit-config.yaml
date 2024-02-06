@@ -21,6 +21,12 @@ repos:
         language: system
         files: "^(.*)\\.pyi?$"
 
+      - id: test-code
+        name: test code
+        entry: ./scripts/test-code
+        language: system
+        files: "^(.*)\\.pyi?$"
+
       - id: extract-string
         name: (i18n) extract string
         entry: ./scripts/extract-string

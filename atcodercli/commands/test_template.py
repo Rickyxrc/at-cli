@@ -7,20 +7,22 @@ import subprocess
 
 from rich.console import Console
 from rich.progress import Progress
+from rich.text import Text
 
 from atcodercli.utils.config import Config
 
 from ..utils.problems import get_problem_name, load_parent_of_problem
 
 
-# TODO: eval ansi code
-# https://stackoverflow.com/a/21978778/19706510
+# Eval ansi code: https://stackoverflow.com/a/73284729/19706510
+# Read Line from subprocess: https://stackoverflow.com/a/21978778/19706510
 def log_subprocess_output(pipe, prefix: str, console: Console):
     """
     Print output of a subprocess with a prefix.
     """
     for line in iter(pipe.readline, b""):
-        console.print(prefix, str(line, encoding="utf-8"), end="")
+        ansi_text = Text.from_ansi(str(line, encoding="utf-8"))
+        console.print(prefix, ansi_text)
 
 
 def test_template(
