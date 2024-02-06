@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atcodercli"
-version = "0.5.5"
+version = "0.5.4"
 description = "A lightweight, fast and beautiful command line interface for Atcoder.jp"
 authors = ["Rickyxrc <rickyxrc@outlook.com>"]
 license = "MIT"
