@@ -4,6 +4,7 @@ This module is used to test the translation.
 import os
 import pathlib
 import subprocess
+import sys
 
 
 def readall(pipe) -> str:
@@ -51,6 +52,7 @@ def test_chinese_translation():
     Test Chinese translation
     """
     res_str = run_command_and_get_output("zh_CN.UTF-8", ["--help"])
+    print(sys.stdout.encoding)  # NOTE: debug only
     assert "工具" in res_str
 
 
