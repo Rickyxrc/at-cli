@@ -33,7 +33,7 @@ def render_status(stat: str) -> str:
     }.get(stat, _("Unknown status %s") % stat)
 
 
-def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
+def watch_result(console: Console, contest_id: str, sids: list[int]) -> list[bool]:
     """
     Render a list of records until judge ends.
     Args:
@@ -41,8 +41,9 @@ def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
         sids(list[str]): The id(s) of a contest.
         console(Console): Console object from rich.console.
     Returns:
-        None, outputs are rendered.
+        list[bool] (accepted or not), outputs are rendered.
     """
+    status = [False for _ in sids]
     with Progress(console=console) as progress:
         console.print(
             _('Getting result with contestid "%s" and sids %s...') % (contest_id, sids)
@@ -58,7 +59,7 @@ def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
                 f"https://atcoder.jp/contests/{contest_id}"
                 f"/submissions/status/json?{'&'.join([f'sids[]={sid}' for sid in sids])}"
             )
-            for sid in sids:
+            for index, sid in enumerate(sids):
                 status_string = res.json()["Result"].get(
                     str(sid), {"Html": r'title="Not Found">.</span'}
                 )["Html"]
@@ -84,7 +85,9 @@ def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
                         completed=1,
                         total=1,
                     )
+                    status[index] = verdict == "Accepted"
             sleep(1)
+        return status
 
 
 def handle(console: Console, args):

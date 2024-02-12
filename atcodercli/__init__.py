@@ -33,6 +33,6 @@ else:
         )
         lang.install()
     except FileNotFoundError:
-        print(f"WARN: language {LANG} not found.")
+        print(f"WARNING: language {LANG} not found.")
         print(f"localedir = {LOCALEDIR}")
         gettext.install("atcodercli")

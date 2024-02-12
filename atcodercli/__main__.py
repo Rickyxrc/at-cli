@@ -2,9 +2,13 @@
 Main Module of atcli
 """
 # TODO: input the config and problem object here to reuse
+# TODO: reuse session here and save after program
+
 import argparse
 
 import rich
+
+from atcodercli.utils.get_session import get_session, save_session
 
 from .commands.add_problem import handle as handleAddProblem
 from .commands.init_contest import handle as handleInitContest
@@ -170,10 +174,12 @@ def dispatch_args():
         )
 
         arg = parser.parse_args()
+        session = get_session(console)
+
         if arg.command == "login":
             handleLogin(console, arg)
         if arg.command == "me":
-            handleMe(console, arg)
+            handleMe(console, session)
         if arg.command == "result":
             if arg.result_subcommand == "watch":
                 handleWatchResult(console, arg)
@@ -185,7 +191,7 @@ def dispatch_args():
             if arg.problem_subcommand == "init":
                 handleInitProblem(console, arg)
             if arg.problem_subcommand == "submit":
-                handleSubmitProblem(console, arg)
+                handleSubmitProblem(console, session, arg)
         if arg.command == "contest":
             if arg.contest_subcommand in ["init", "race"]:
                 handleInitContest(console, arg)
@@ -194,6 +200,8 @@ def dispatch_args():
                 handleInitTemplate(console, arg)
             if arg.template_subcommand == "test":
                 handleTestTemplate(console, arg)
+
+        save_session(console, session)
 
     except KeyboardInterrupt:
         console.print("[red]" + _("FATAL:Interrupted.") + "[/red]")
