@@ -2,7 +2,6 @@
 Main Module of atcli
 """
 # TODO: input the config and problem object here to reuse
-# TODO: reuse session here and save after program
 
 import argparse
 
@@ -182,19 +181,19 @@ def dispatch_args():
             handleMe(console, session)
         if arg.command == "result":
             if arg.result_subcommand == "watch":
-                handleWatchResult(console, arg)
+                handleWatchResult(console, session, arg)
             if arg.result_subcommand == "page":
-                handleWatchPage(console, arg)
+                handleWatchPage(console, session, arg)
         if arg.command == "problem":
             if arg.problem_subcommand == "add":
-                handleAddProblem(console, arg)
+                handleAddProblem(console, session, arg)
             if arg.problem_subcommand == "init":
                 handleInitProblem(console, arg)
             if arg.problem_subcommand == "submit":
                 handleSubmitProblem(console, session, arg)
         if arg.command == "contest":
             if arg.contest_subcommand in ["init", "race"]:
-                handleInitContest(console, arg)
+                handleInitContest(console, session, arg)
         if arg.command == "template":
             if arg.template_subcommand in ["init", "gen", "add"]:
                 handleInitTemplate(console, arg)

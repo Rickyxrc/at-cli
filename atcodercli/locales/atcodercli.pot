@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-12 17:44+0800\n"
+"POT-Creation-Date: 2024-02-12 18:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,135 +17,135 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: atcodercli/__main__.py:34
+#: atcodercli/__main__.py:33
 msgid ""
 "at-cli, a lightweight, cross-platform, fast and beautiful command line "
 "interface for https://atcoder.jp"
 msgstr ""
 
-#: atcodercli/__main__.py:37
+#: atcodercli/__main__.py:36
 msgid ""
 "default config path: ~/.config/atcli/config.yaml\n"
 "default login session path: ~/.config/atcli/session.yaml\n"
 "program source: https://github.com/rickyxrc/atcli\n"
 msgstr ""
 
-#: atcodercli/__main__.py:49
+#: atcodercli/__main__.py:48
 msgid ""
 "login with your username and password, the session will stored in "
 "~/.config/atcli/session.yaml"
 msgstr ""
 
-#: atcodercli/__main__.py:57
+#: atcodercli/__main__.py:56
 msgid "check if your session file is valid"
 msgstr ""
 
-#: atcodercli/__main__.py:61
+#: atcodercli/__main__.py:60
 msgid "watch submission's results"
 msgstr ""
 
-#: atcodercli/__main__.py:67
+#: atcodercli/__main__.py:66
 msgid "watch a specific submission id's result"
 msgstr ""
 
-#: atcodercli/__main__.py:70 atcodercli/__main__.py:79
-#: atcodercli/__main__.py:92 atcodercli/__main__.py:141
+#: atcodercli/__main__.py:69 atcodercli/__main__.py:78
+#: atcodercli/__main__.py:91 atcodercli/__main__.py:140
 msgid "The id of the contest, like 'abc123'"
 msgstr ""
 
-#: atcodercli/__main__.py:73
+#: atcodercli/__main__.py:72
 msgid "The submission id of the contest"
 msgstr ""
 
-#: atcodercli/__main__.py:76
+#: atcodercli/__main__.py:75
 msgid "watch a contest's latest submissions"
 msgstr ""
 
-#: atcodercli/__main__.py:83
+#: atcodercli/__main__.py:82
 msgid "operate with problems(like submit, add)"
 msgstr ""
 
-#: atcodercli/__main__.py:89
+#: atcodercli/__main__.py:88
 msgid "add a problem to solve"
 msgstr ""
 
-#: atcodercli/__main__.py:95
+#: atcodercli/__main__.py:94
 msgid "The id of the problem, like 'a' or 'g'"
 msgstr ""
 
-#: atcodercli/__main__.py:98 atcodercli/__main__.py:121
-#: atcodercli/__main__.py:144
+#: atcodercli/__main__.py:97 atcodercli/__main__.py:120
+#: atcodercli/__main__.py:143
 msgid "specific template type"
 msgstr ""
 
-#: atcodercli/__main__.py:100 atcodercli/__main__.py:159
+#: atcodercli/__main__.py:99 atcodercli/__main__.py:158
 msgid "specific generated file name"
 msgstr ""
 
-#: atcodercli/__main__.py:103
+#: atcodercli/__main__.py:102
 msgid "init problem.yaml in current dir"
 msgstr ""
 
-#: atcodercli/__main__.py:107
+#: atcodercli/__main__.py:106
 msgid "submit current problem"
 msgstr ""
 
-#: atcodercli/__main__.py:110
+#: atcodercli/__main__.py:109
 msgid "ignore pretest check"
 msgstr ""
 
-#: atcodercli/__main__.py:114
+#: atcodercli/__main__.py:113
 msgid "submit this problem, though it's accepted"
 msgstr ""
 
-#: atcodercli/__main__.py:118
+#: atcodercli/__main__.py:117
 msgid "ignore all check, just submit the problem"
 msgstr ""
 
-#: atcodercli/__main__.py:124
+#: atcodercli/__main__.py:123
 msgid "specific the file to submit"
 msgstr ""
 
-#: atcodercli/__main__.py:127 atcodercli/__main__.py:170
+#: atcodercli/__main__.py:126 atcodercli/__main__.py:169
 msgid "specific checker to use"
 msgstr ""
 
-#: atcodercli/__main__.py:130
+#: atcodercli/__main__.py:129
 msgid "operate with contests(pull all problem samples)"
 msgstr ""
 
-#: atcodercli/__main__.py:137
+#: atcodercli/__main__.py:136
 msgid "init a problem.yaml locally and pull all problem samples"
 msgstr ""
 
-#: atcodercli/__main__.py:146
+#: atcodercli/__main__.py:145
 msgid "init with template, run template commands(like test)"
 msgstr ""
 
-#: atcodercli/__main__.py:154
+#: atcodercli/__main__.py:153
 msgid ""
 "init a template under current dir(need \"atcli contest racce\" or \"atcli"
 " problem init\"), template name is dirname default, a \"problem.yaml\" "
 "should exist exactly pwd's parent dir."
 msgstr ""
 
-#: atcodercli/__main__.py:162
+#: atcodercli/__main__.py:161
 msgid "specific template type(or using the default)"
 msgstr ""
 
-#: atcodercli/__main__.py:166
+#: atcodercli/__main__.py:165
 msgid "test a templete defined in config."
 msgstr ""
 
-#: atcodercli/__main__.py:168
+#: atcodercli/__main__.py:167
 msgid "specific file to test"
 msgstr ""
 
-#: atcodercli/__main__.py:173
+#: atcodercli/__main__.py:172
 msgid "override the template setting"
 msgstr ""
 
-#: atcodercli/__main__.py:207
+#: atcodercli/__main__.py:206
 msgid "FATAL:Interrupted."
 msgstr ""
 
@@ -238,7 +238,7 @@ msgid "welcome, user %s."
 msgstr ""
 
 #: atcodercli/commands/login.py:55 atcodercli/commands/login.py:58
-#: atcodercli/utils/get_session.py:61 atcodercli/utils/get_session.py:64
+#: atcodercli/utils/get_session.py:59 atcodercli/utils/get_session.py:62
 #, python-format
 msgid "creating dir %s"
 msgstr ""
@@ -247,16 +247,16 @@ msgstr ""
 msgid "FATAL: unhandled statment"
 msgstr ""
 
-#: atcodercli/commands/me.py:17
+#: atcodercli/commands/me.py:15
 msgid "getting login status..."
 msgstr ""
 
-#: atcodercli/commands/me.py:25
+#: atcodercli/commands/me.py:22
 #, python-format
 msgid "successfully logged in as user %s"
 msgstr ""
 
-#: atcodercli/commands/me.py:29 atcodercli/commands/me.py:32
+#: atcodercli/commands/me.py:26 atcodercli/commands/me.py:29
 msgid "FATAL:failed to login"
 msgstr ""
 
@@ -277,22 +277,22 @@ msgstr ""
 msgid "to override, use --ignore-accepted or --force"
 msgstr ""
 
-#: atcodercli/commands/submit_problem.py:57
+#: atcodercli/commands/submit_problem.py:56
 #, python-format
 msgid "Submitting problem %s"
 msgstr ""
 
-#: atcodercli/commands/submit_problem.py:68
+#: atcodercli/commands/submit_problem.py:67
 msgid "ERROR: submit request not redirected."
 msgstr ""
 
-#: atcodercli/commands/submit_problem.py:72
+#: atcodercli/commands/submit_problem.py:71
 msgid ""
 "WARNING: Using alternative method, this behaviour is deprecated and not "
 "expected, please issue this problem."
 msgstr ""
 
-#: atcodercli/commands/submit_problem.py:79
+#: atcodercli/commands/submit_problem.py:78
 msgid "WARNING: If you're in a contest, this program can't work properly now."
 msgstr ""
 
@@ -388,45 +388,45 @@ msgstr ""
 msgid "template \"%s\" not exist in config"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:26
+#: atcodercli/commands/watch_result.py:25
 msgid "Judging"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:27
+#: atcodercli/commands/watch_result.py:26
 msgid "Accepted"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:28
+#: atcodercli/commands/watch_result.py:27
 msgid "Time Limit Exceeded"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:29
+#: atcodercli/commands/watch_result.py:28
 msgid "Runtime Error"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:30
+#: atcodercli/commands/watch_result.py:29
 msgid "Compilation Error"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:31
+#: atcodercli/commands/watch_result.py:30
 msgid "Wrong Answer"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:32
+#: atcodercli/commands/watch_result.py:31
 msgid "Not Found"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:33
+#: atcodercli/commands/watch_result.py:32
 #, python-format
 msgid "Unknown status %s"
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:49
+#: atcodercli/commands/watch_result.py:50
 #, python-format
 msgid "Getting result with contestid \"%s\" and sids %s..."
 msgstr ""
 
-#: atcodercli/commands/watch_result.py:54
+#: atcodercli/commands/watch_result.py:55
 msgid "Getting results..."
 msgstr ""
 

@@ -7,15 +7,12 @@ import re
 import requests
 from rich.console import Console
 
-from ..utils.get_session import get_session
-
 
 def handle(console: Console, session: requests.Session):
     """
     Entry of cli, handle args.
     """
     console.print(_("getting login status..."))
-    session = get_session(console)
     res = session.get("https://atcoder.jp")
     if res.status_code == 200:
         try:

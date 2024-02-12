@@ -40,9 +40,7 @@ def get_session(console: Console) -> requests.Session:
     return session
 
 
-def get_csrf(
-    session: requests.Session, _console: Console, url: str = "https://atcoder.jp"
-) -> str:
+def get_csrf(session: requests.Session, url: str = "https://atcoder.jp") -> str:
     """
     Get session
     """

@@ -43,14 +43,13 @@ def handle(console: Console, session: requests.Session, args):
         test_file = args.file
     file = problems.get_by_contest_problem_id_file(contest_id, problem_id, test_file)
     template = args.template if args.template is not None else file["template"]
-    # session = get_session(console)
     with open(file["path"], "r", encoding="utf-8") as file:
         post_data = {
             "data.TaskScreenName": f"{contest_id}_{problem_id}",
             "data.LanguageId": config.dat["template"]["types"][template]["lang_id"],
             "sourceCode": file.read(),
             "csrf_token": get_csrf(
-                session, console, f"https://atcoder.jp/contests/{contest_id}/submit"
+                session, f"https://atcoder.jp/contests/{contest_id}/submit"
             ),
         }
         # submit problem
@@ -89,6 +88,7 @@ def handle(console: Console, session: requests.Session, args):
         res = watch_result(
             console,
             contest_id,
+            session,
             [
                 lis[0],
             ],
