@@ -6,13 +6,13 @@ import os
 import pathlib
 import re
 
+import requests
 from bs4 import BeautifulSoup
 from rich.console import Console
 
 from atcodercli.commands.init_template import init_file
 
 from ..utils.config import Config
-from ..utils.get_session import get_session
 from ..utils.problems import load_problem_from_all_ancestors
 
 
@@ -24,6 +24,7 @@ def add_problem(
     force: bool,
     template: str,
     config: Config,
+    session: requests.Session,
     file_name: str,
 ):
     """
@@ -32,7 +33,6 @@ def add_problem(
     problems = load_problem_from_all_ancestors(path, console)
     while not (path / "problem.yaml").exists():
         path = path.parent
-    session = get_session(console)
     console.print(_("Adding problem %s...") % (f"{contest_id}_{problem_id}"))
     endpoint = (
         f"https://atcoder.jp/contests/{contest_id}/tasks/{contest_id}_{problem_id}"
@@ -95,7 +95,7 @@ def add_problem(
     )
 
 
-def handle(console: Console, arg):
+def handle(console: Console, session: requests.Session, arg):
     """
     Entry of cli, handle args.
     """
@@ -114,5 +114,6 @@ def handle(console: Console, arg):
         arg.force,
         template,
         Config(console),
+        session,
         file_name,
     )

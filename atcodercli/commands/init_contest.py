@@ -5,24 +5,23 @@
 import os
 import pathlib
 
+import requests
 from bs4 import BeautifulSoup
 from rich.console import Console
 
 from atcodercli.utils.config import Config
 
-from ..utils.get_session import get_session
 from .add_problem import add_problem
 from .init_problem import init
 
 
-def handle(console: Console, arg):
+def handle(console: Console, session: requests.Session, arg):
     """
     Entry of cli, handle args.
     """
     config = Config(console)
     path = pathlib.Path(os.getcwd())
     init(console, path, arg.force)
-    session = get_session(console)
     endpoint = f"https://atcoder.jp/contests/{arg.contest_id}/tasks"
     res = session.get(endpoint)
     html = BeautifulSoup(res.text, features="html.parser")
@@ -40,5 +39,6 @@ def handle(console: Console, arg):
                 arg.force,
                 template,
                 config,
+                session,
                 f"{arg.contest_id}_{problem_id}",
             )

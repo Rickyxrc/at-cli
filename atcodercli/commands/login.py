@@ -48,16 +48,14 @@ def handle(console: Console, _arg):
         console.print("[green]" + _("welcome, user %s.") % username + "[/green]")
 
         # TODO : save password for auto flush(optional)
-        conf = yaml.safe_dump(
-            {"cookies": dict_from_cookiejar(session.cookies), "username": username}
-        )
+        conf = yaml.safe_dump({"cookies": dict_from_cookiejar(session.cookies)})
 
         home = os.path.expanduser("~")
         if not os.path.exists(os.path.join(home, ".config")):
-            console.print(f'creating dir "{os.path.join(home, ".config")}"')
+            console.print(_("creating dir %s") % os.path.join(home, ".config"))
             os.mkdir(os.path.join(home, ".config"))
         if not os.path.exists(os.path.join(home, ".config", "atcli")):
-            console.print(f'creating dir "{os.path.join(home, ".config", "atcli")}"')
+            console.print(_("creating dir %s") % os.path.join(home, ".config", "atcli"))
             os.mkdir(os.path.join(home, ".config", "atcli"))
         with open(
             os.path.join(home, ".config", "atcli", "session.yaml"),

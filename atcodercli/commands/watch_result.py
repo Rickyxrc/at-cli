@@ -6,10 +6,9 @@
 import re
 from time import sleep
 
+import requests
 from rich.console import Console
 from rich.progress import Progress
-
-from ..utils.get_session import get_session
 
 
 def render_status(stat: str) -> str:
@@ -33,7 +32,9 @@ def render_status(stat: str) -> str:
     }.get(stat, _("Unknown status %s") % stat)
 
 
-def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
+def watch_result(
+    console: Console, contest_id: str, session: requests.Session, sids: list[int]
+) -> list[bool]:
     """
     Render a list of records until judge ends.
     Args:
@@ -41,8 +42,9 @@ def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
         sids(list[str]): The id(s) of a contest.
         console(Console): Console object from rich.console.
     Returns:
-        None, outputs are rendered.
+        list[bool] (accepted or not), outputs are rendered.
     """
+    status = [False for _ in sids]
     with Progress(console=console) as progress:
         console.print(
             _('Getting result with contestid "%s" and sids %s...') % (contest_id, sids)
@@ -52,13 +54,12 @@ def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
             running_progress[sid] = progress.add_task(
                 "[gray]" + _("Getting results...") + "[/gray]"
             )
-        session = get_session(console)
         while not progress.finished:
             res = session.get(
                 f"https://atcoder.jp/contests/{contest_id}"
                 f"/submissions/status/json?{'&'.join([f'sids[]={sid}' for sid in sids])}"
             )
-            for sid in sids:
+            for index, sid in enumerate(sids):
                 status_string = res.json()["Result"].get(
                     str(sid), {"Html": r'title="Not Found">.</span'}
                 )["Html"]
@@ -84,10 +85,12 @@ def watch_result(console: Console, contest_id: str, sids: list[int]) -> None:
                         completed=1,
                         total=1,
                     )
+                    status[index] = verdict == "Accepted"
             sleep(1)
+        return status
 
 
-def handle(console: Console, args):
+def handle(console: Console, session: requests.Session, args):
     """
     Entry of cli, handle args.
     """
@@ -98,7 +101,7 @@ def handle(console: Console, args):
             'run "atcli submit" will automatically run this with sid.'
         )
     )
-    watch_result(console, args.contest_id, args.submissions)
+    watch_result(console, args.contest_id, session, args.submissions)
 
 
 if __name__ == "__main__":

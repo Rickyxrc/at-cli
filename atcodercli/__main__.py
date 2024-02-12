@@ -2,9 +2,12 @@
 Main Module of atcli
 """
 # TODO: input the config and problem object here to reuse
+
 import argparse
 
 import rich
+
+from atcodercli.utils.get_session import get_session, save_session
 
 from .commands.add_problem import handle as handleAddProblem
 from .commands.init_contest import handle as handleInitContest
@@ -170,30 +173,34 @@ def dispatch_args():
         )
 
         arg = parser.parse_args()
+        session = get_session(console)
+
         if arg.command == "login":
             handleLogin(console, arg)
         if arg.command == "me":
-            handleMe(console, arg)
+            handleMe(console, session)
         if arg.command == "result":
             if arg.result_subcommand == "watch":
-                handleWatchResult(console, arg)
+                handleWatchResult(console, session, arg)
             if arg.result_subcommand == "page":
-                handleWatchPage(console, arg)
+                handleWatchPage(console, session, arg)
         if arg.command == "problem":
             if arg.problem_subcommand == "add":
-                handleAddProblem(console, arg)
+                handleAddProblem(console, session, arg)
             if arg.problem_subcommand == "init":
                 handleInitProblem(console, arg)
             if arg.problem_subcommand == "submit":
-                handleSubmitProblem(console, arg)
+                handleSubmitProblem(console, session, arg)
         if arg.command == "contest":
             if arg.contest_subcommand in ["init", "race"]:
-                handleInitContest(console, arg)
+                handleInitContest(console, session, arg)
         if arg.command == "template":
             if arg.template_subcommand in ["init", "gen", "add"]:
                 handleInitTemplate(console, arg)
             if arg.template_subcommand == "test":
                 handleTestTemplate(console, arg)
+
+        save_session(console, session)
 
     except KeyboardInterrupt:
         console.print("[red]" + _("FATAL:Interrupted.") + "[/red]")

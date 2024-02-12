@@ -8,7 +8,6 @@ import requests
 from bs4 import BeautifulSoup
 from rich.console import Console
 
-from ..utils.get_session import get_session
 from .watch_result import watch_result
 
 
@@ -22,14 +21,14 @@ def get_list(url: str, session: requests.Session) -> list[int]:
     return lis
 
 
-def handle(console: Console, arg):
+def handle(console: Console, session: requests.Session, arg):
     """
     Entry of cli, handle args.
     """
     contest_id = arg.contest_id
-    session = get_session(console)
     watch_result(
         console,
         contest_id,
+        session,
         get_list(f"https://atcoder.jp/contests/{contest_id}/submissions", session),
     )
